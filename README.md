@@ -7,8 +7,8 @@ First of all, clone the repository, then right click on the imported repository 
 Thereafter, when starting a work session, be sure to pull in order to get the updates from other group members. This must be done before every session. 
 
 The convetion for writing packages:  myPackage;
-                           classes:  Class
-                           methods:  method
+                           classes:  Class;
+                           methods:  method.
 
 
 
