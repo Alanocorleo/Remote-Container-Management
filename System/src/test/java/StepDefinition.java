@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import journeysManagement.Container;
 import journeysManagement.Registration;
+import journeysManagement.ResponseObject;
 import journeysManagement.Record;
 
 public class StepDefinition {
@@ -11,7 +12,9 @@ public class StepDefinition {
 	Client client = new Client();
 	Container container = new Container();
 	Registration registration;
-	Record record;
+	Record record = new Record();
+	ResponseObject response;
+	String message;
 	
 	@Given("client-ID {int}")
 	public void a_client_ID(int id) {
@@ -42,7 +45,7 @@ public class StepDefinition {
 	@When("registering")
 	public void registering() {
 	    registration = new Registration(client);
-	    registration.register(container);
+	    response = registration.register(container);
 	}
 
 	@Then("create a journey-ID {string}")
@@ -51,10 +54,15 @@ public class StepDefinition {
 	}
 
 	@Then("put on record")
-	public void put_on_record() {
-		record = new Record();
+	public void put_on_record() { 
 		record.put(container);
-
 	}
+	
+	@Then("system displays message that some information is missing")
+	public void system_displays_message_that_some_information_is_missing() {
+		String message = response.getResponse();
+		System.out.print(message);
+	}
+	
 
 }

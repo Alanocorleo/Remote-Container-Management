@@ -30,3 +30,8 @@ Feature: Registering a container
     Then create a journey-ID "CO00001"
     And put on record
   
+  
+  Scenario: Missing origin, destination, company or content type
+  	Given client-ID 0000001
+    When registering
+    Then system displays message that some information is missing
