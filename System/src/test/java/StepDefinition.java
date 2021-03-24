@@ -1,67 +1,49 @@
 import clientsManagement.Client;
+import clientsManagement.Registery;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import journeysManagement.Container;
 import journeysManagement.Registration;
-import journeysManagement.ResponseObject;
 import journeysManagement.Record;
+
+import static org.junit.Assert.*;
+
+
 
 public class StepDefinition {
 	
-	Client client = new Client();
-	Container container = new Container();
-	Registration registration;
-	Record record = new Record();
-	ResponseObject response;
-	String message;
+	Client newClient = new Client();
+	Registery newRegister = new Registery();
 	
-	@Given("client-ID {int}")
-	public void a_client_ID(int id) {
-		container.setOwner(id);
+	@Given("a new client with name {string}, born {int}, email {string} and phone number {int}")
+	public void a_new_client_with_name_born_email_and_phone_number(String name, Integer BirthDate, String email, Integer PhoneNumber) {
+	    // Write code here that turns the phrase above into concrete actions
+	
+	newClient.setName(name);
+	newClient.setBirthDate(BirthDate);
+	newClient.setEmail(email);
+	newClient.setPhoneNumber(PhoneNumber);
 	}
 
-	@Given("origin {string}")
-	public void origin(String origin) {
-	    container.setOrigin(origin);
+	@When("the company registers the client")
+	public void the_company_registers_the_client() {
+		
+	
+	
+	newRegister.addClient(newClient);
+	
+	    // Write code here that turns the phrase above into concrete actions
+	 
+	}
+
+	@Then("the client is registered in the system successfully")
+	public void the_client_is_registered_in_the_system_successfully() {
+	    // Write code here that turns the phrase above into concrete actions
 	    
+	    assertTrue(newRegister.ClientExists(newClient));
 	}
 
-	@Given("destination {string}")
-	public void destination(String destination) {
-		container.setDestination(destination);
-	}
-
-	@Given("content-type {string}")
-	public void content_type(String contentType) {
-		container.setContentType(contentType);
-	}
-
-	@Given("company {string}")
-	public void company(String company) {
-		container.setCompany(company);
-	}
-
-	@When("registering")
-	public void registering() {
-	    registration = new Registration(client);
-	    response = registration.register(container);
-	}
-
-	@Then("create a journey-ID {string}")
-	public void create_a_journey_ID(String journeyID) {
-		registration.createJourney();
-	}
-
-	@Then("put on record")
-	public void put_on_record() { 
-		record.put(container);
-	}
 	
-	@Then("system displays message that some information is missing")
-	public void system_displays_message_that_some_information_is_missing() {
-		String message = response.getResponse();
-		System.out.print(message);
-	}
-
+	
 }
