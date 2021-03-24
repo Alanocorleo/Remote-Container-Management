@@ -7,7 +7,7 @@ import journeysManagement.Registration;
 import journeysManagement.ResponseObject;
 import journeysManagement.Record;
 
-public class StepDefinition {
+public class StepDefinitionM2 {
 	
 	Client client = new Client();
 	Container container = new Container();
