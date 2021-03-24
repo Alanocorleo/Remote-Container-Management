@@ -16,10 +16,9 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@tag
+
 Feature: Registering a container
 
-  @tag1
   Scenario: Successful registration
     Given client-ID 0000001
     And origin "Copenhagen"

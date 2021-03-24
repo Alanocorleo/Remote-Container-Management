@@ -63,6 +63,5 @@ public class StepDefinition {
 		String message = response.getResponse();
 		System.out.print(message);
 	}
-	
 
 }
