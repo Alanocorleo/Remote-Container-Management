@@ -5,8 +5,8 @@ import clientsManagement.Client;
 
 public class Registration {
 	
-	Client client;
-	Container container;
+	private Client client;
+	private Container container;
 	
 	public Registration(Client client) {
 		this.client = client;
