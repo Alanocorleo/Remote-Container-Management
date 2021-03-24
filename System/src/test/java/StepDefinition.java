@@ -4,12 +4,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import journeysManagement.Container;
 import journeysManagement.Registration;
+import journeysManagement.Record;
 
 public class StepDefinition {
 	
 	Client client = new Client();
 	Container container = new Container();
 	Registration registration;
+	Record record;
 	
 	@Given("client-ID {int}")
 	public void a_client_ID(int id) {
@@ -50,8 +52,9 @@ public class StepDefinition {
 
 	@Then("put on record")
 	public void put_on_record() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		record = new Record();
+		record.put(container);
+
 	}
 
 }
