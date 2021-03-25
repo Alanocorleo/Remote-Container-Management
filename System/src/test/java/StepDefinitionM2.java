@@ -1,24 +1,27 @@
-import clientsManagement.Client;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import clientsManagement.Client;
 import journeysManagement.Container;
 import journeysManagement.Registration;
 import journeysManagement.ResponseObject;
 import journeysManagement.Record;
 
 public class StepDefinitionM2 {
-	
-	Client client = new Client();
+
+	Registration registration = new Registration(new Client());
 	Container container = new Container();
-	Registration registration;
 	Record record = new Record();
 	ResponseObject response;
-	String message;
 	
-	@Given("client-ID {int}")
-	public void a_client_ID(int id) {
-		container.setOwner(id);
+	@Given("client-ID")
+	public void clientId() {
+		container.setOwner(registration.getClient().getId());
+		assertTrue(String.valueOf(container.getOwner()).matches("\\d"));
+		
 	}
 
 	@Given("origin {string}")
@@ -44,24 +47,33 @@ public class StepDefinitionM2 {
 
 	@When("registering")
 	public void registering() {
-	    registration = new Registration(client);
-	    response = registration.register(container);
+		response = registration.register(container);
 	}
 
+	@Then("confirm the registration")
+	public void create_a_registration() {
+		assertEquals(response.getErrorMessage(), "Container has been registered");
+		assertEquals(response.getErrorCode(), 010);
+	}
+	
 	@Then("create a journey-ID {string}")
 	public void create_a_journey_ID(String journeyID) {
 		registration.createJourney();
+		assertEquals(container.getJourneyID().substring(0,2), String.format("%c%c", container.getOrigin().charAt(0), container.getDestination().charAt(0)));
+		assertTrue(container.getJourneyID().matches("[A-Z]{1}\\w{2}\\d{4}"));
 	}
 
 	@Then("put on record")
 	public void put_on_record() { 
 		record.put(container);
+		assertEquals(record.getRecord().get(0), container);
 	}
 	
-	@Then("system displays message that some information is missing")
-	public void system_displays_message_that_some_information_is_missing() {
-		String message = response.getResponse();
-		System.out.print(message);
+	@Then("system displays a message that entry information is missing")
+	public void system_displays_a_message_that_entry_information_is_missing() {
+		assertEquals(response.getErrorMessage(), "Some necessary parameters are not entered");
+		assertEquals(response.getErrorCode(), 110);
 	}
+	
 
 }

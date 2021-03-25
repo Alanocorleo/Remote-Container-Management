@@ -16,21 +16,40 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-
+@tag
 Feature: Registering a container
 
+	@tag1
   Scenario: Successful registration
-    Given client-ID 0000001
+    Given client-ID
     And origin "Copenhagen"
     And destination "Oslo"
     And content-type "Fish"
     And company "Maersk"
     When registering
-    Then create a journey-ID "CO00001"
+    Then confirm the registration
+    And create a journey-ID "CO00001"
     And put on record
   
-  
+  @tag2
   Scenario: Missing origin, destination, company or content type
-  	Given client-ID 0000001
+  	Given client-ID
     When registering
-    Then system displays message that some information is missing
+    Then system displays a message that entry information is missing
+    
+  @tag3
+  Scenario: Successful registration
+    Given client-ID
+    And origin "Copenhagen"
+    And destination "Oslo"
+    When registering
+    Then system displays a message that entry information is missing
+    
+   @tag3
+  Scenario: Successful registration
+    Given client-ID
+    And origin "Copenhagen"
+    And company "Maersk"
+    When registering
+    Then system displays a message that entry information is missing
+  

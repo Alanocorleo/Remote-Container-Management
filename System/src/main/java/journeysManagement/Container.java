@@ -1,7 +1,5 @@
 package journeysManagement;
 
-import clientsManagement.Client;
-
 public class Container {
 	
 	private int owner;

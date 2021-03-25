@@ -4,20 +4,16 @@ public class ResponseObject {
 	
 	private int errorCode;
 	private String errorMessage;
-	private String response;
+	// private String response;
 	
 	public ResponseObject(int errorCode, String errorMessage) {
 		
-			this.errorCode = errorCode;
-			this.errorMessage = errorMessage;
-			this.response = "Error " + String.valueOf(errorCode)+ ": " + errorMessage;
+			setErrorCode(errorCode);
+			setErrorMessage(errorMessage);
+			// this.response = "Error " + String.valueOf(errorCode)+ ": " + errorMessage;
 		
 	}
 	
-	public String getResponse() {
-		return response;
-	}
-
 	public int getErrorCode() {
 		return errorCode;
 	}

@@ -12,57 +12,46 @@ public class Registration {
 	
 	public Registration(Client client) {
 		
-		this.client = client;
+		setClient(client);
 		
 	}
 
 	public ResponseObject register(Container container) {
 		
-		if(container.getOrigin() == null){
-			
-			response = new ResponseObject(100, "No origin entered");
-			
-		}
-		
-		if(container.getDestination() == null){
-			
-			response = new ResponseObject(101, "No destination entered");
-			
-		}
-
-		if(container.getCompany() == null){
-			
-			response = new ResponseObject(102, "No company entered");
-			
-		}
-		
-		if(container.getContentType() == null){
-			
-			response = new ResponseObject(103, "No content type entered");
-			
-		}
-		
 		if(!((container.getOrigin() == null)||(container.getDestination() == null)||(container.getCompany() == null)||(container.getContentType() == null))){
 			
+			// Codes from 000 to 100 indicate successful operation
+			response = new ResponseObject(010, "Container has been registered");
 			this.container = container;
 			
 		}
 		
+		else {
+			
+			// Codes from 100 to 999 indicate otherwise
+			response = new ResponseObject(110, "Some necessary parameters are not entered");
+			
+		}
+		
 		return response;
-		
-		
-            
+		  
 	}
 
 	public void createJourney() {
 		
 		SecureRandom output = new SecureRandom();
 		int cipher = output.nextInt(100000);
-		String journeyID = container.getOrigin().charAt(0) + container.getDestination().charAt(0) + String.valueOf(cipher);
+		String journeyID = (String.format("%c%c", container.getOrigin().charAt(0), container.getDestination().charAt(0)) + String.valueOf(cipher));
 		container.setJourneyID(journeyID);
-		       
+			       
+	}
+	
+	public Client getClient() {
+		return client;
 	}
 
-	
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 }
