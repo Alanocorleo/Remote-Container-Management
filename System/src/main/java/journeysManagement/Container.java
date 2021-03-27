@@ -7,7 +7,7 @@ public class Container {
 	private String destination;
 	private String contentType;
 	private String company;
-	private String journeyID;
+	private String position;
 	
 	
 	public Container() {
@@ -53,12 +53,11 @@ public class Container {
 		this.company = company;
 	}
 	
-	
-	public String getJourneyID() {
-		return journeyID;
+	public String getPosition() {
+		return position;
 	}
-	public void setJourneyID(String journeyID) {
-		this.journeyID = journeyID;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 

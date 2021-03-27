@@ -21,35 +21,39 @@ Feature: Registering a container
 
 	@tag1
   Scenario: Successful registration
-    Given client-ID
+  	Given container
+    And client-ID
     And origin "Copenhagen"
     And destination "Oslo"
     And content-type "Fish"
     And company "Maersk"
     When registering
-    Then confirm the registration
-    And create a journey-ID "CO00001"
+    Then get confirmation
+    And create journey-ID "CO00001"
     And put on record
   
   @tag2
   Scenario: Missing origin, destination, company or content type
-  	Given client-ID
+  	Given container
+  	And client-ID
     When registering
-    Then system displays a message that entry information is missing
+    Then deny confirmation
     
   @tag3
   Scenario: Successful registration
-    Given client-ID
+  	Given container
+    And client-ID
     And origin "Copenhagen"
     And destination "Oslo"
     When registering
-    Then system displays a message that entry information is missing
+    Then deny confirmation
     
    @tag3
   Scenario: Successful registration
+  	Given container
     Given client-ID
     And origin "Copenhagen"
     And company "Maersk"
     When registering
-    Then system displays a message that entry information is missing
+    Then deny confirmation
   

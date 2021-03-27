@@ -6,27 +6,37 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import clientsManagement.Client;
 import journeysManagement.Container;
+import journeysManagement.Manager;
 import journeysManagement.Registration;
 import journeysManagement.ResponseObject;
 import journeysManagement.Record;
 
 public class StepDefinitionM2 {
 
-	Registration registration = new Registration(new Client());
-	Container container = new Container();
-	Record record = new Record();
+	Container container;
+	Client client;
+	Registration registration;
+	Manager manager;
 	ResponseObject response;
+	
+	Record record = new Record();
+	
+	@Given("container")
+	public void container() {
+	   container = new Container();
+	}
 	
 	@Given("client-ID")
 	public void clientId() {
-		container.setOwner(registration.getClient().getId());
+		client = new Client();
+		container.setOwner(client.getId());
 		assertTrue(String.valueOf(container.getOwner()).matches("\\d"));
 		
 	}
 
 	@Given("origin {string}")
 	public void origin(String origin) {
-	    container.setOrigin(origin);
+		container.setOrigin(origin);
 	    
 	}
 
@@ -47,33 +57,78 @@ public class StepDefinitionM2 {
 
 	@When("registering")
 	public void registering() {
+		registration = new Registration(client);
 		response = registration.register(container);
 	}
 
-	@Then("confirm the registration")
-	public void create_a_registration() {
+	@Then("get confirmation")
+	public void get_confirmation() {
 		assertEquals(response.getErrorMessage(), "Container has been registered");
 		assertEquals(response.getErrorCode(), 010);
 	}
 	
-	@Then("create a journey-ID {string}")
-	public void create_a_journey_ID(String journeyID) {
-		registration.createJourney();
-		assertEquals(container.getJourneyID().substring(0,2), String.format("%c%c", container.getOrigin().charAt(0), container.getDestination().charAt(0)));
-		assertTrue(container.getJourneyID().matches("[A-Z]{1}\\w{2}\\d{4}"));
+	@Then("create journey-ID {string}")
+	public void create_journey_ID(String journeyID) {
+		registration.createJourneyID(record);
+		assertEquals(registration.getJourneyID().substring(0,2), String.format("%c%c", journeyID.charAt(0), journeyID.charAt(1)));
+		assertTrue(registration.getJourneyID().matches("[A-Z]{1}\\w{2}\\d{4}"));
 	}
 
 	@Then("put on record")
 	public void put_on_record() { 
-		record.put(container);
-		assertEquals(record.getRecord().get(0), container);
+		registration.put(container, record);
+		assertEquals(record.get().get(registration.getJourneyID()), container);
 	}
 	
-	@Then("system displays a message that entry information is missing")
-	public void system_displays_a_message_that_entry_information_is_missing() {
+	@Then("deny confirmation")
+	public void deny_confirmation() {
 		assertEquals(response.getErrorMessage(), "Some necessary parameters are not entered");
 		assertEquals(response.getErrorCode(), 110);
 	}
+
+	@Given("company manager {string}")
+	public void company_manager(String company) {
+		manager = new Manager(company);
+	}
+	
+	@Given("journey-ID {string}")
+	public void journey_ID(String string) {
+	    
+	}
+	
+	@Given("recorded container")
+	public void recorded_container() {
+		client = new Client();
+		container = new Container();
+		container.setOwner(client.getId());
+		container.setOrigin("Copenhagen");
+		container.setDestination("Oslo");
+		container.setContentType("Fish");
+		container.setCompany("Maersk");
+		registration = new Registration(client);
+		registration.register(container);
+		registration.setJourneyID("CO00001");
+		registration.put(container, record);
+	}
+
+	@When("updating journey {string} to position {string}")
+	public void updating_to_position(String journeyID, String position) {
+		response = manager.update(journeyID, position, record);
+	}
+
+	@Then("change position")
+	public void change_position() {
+		assertEquals(record.get().get("CO00001").getPosition(), "Gothenburg");
+		assertEquals(response.getErrorMessage(), "Position has been updated");
+		assertEquals(response.getErrorCode(), 070);
+	}
+	
+	@Then("deny update")
+	public void deny_update() {
+		assertEquals(response.getErrorMessage(), "The journey was not found");
+		assertEquals(response.getErrorCode(), 700);
+	}
+
 	
 
 }
