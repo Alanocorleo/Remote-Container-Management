@@ -20,40 +20,62 @@
 Feature: Registering a container
 
 	@tag1
-  Scenario: Successful registration
-  	Given container
-    And client-ID
+  Scenario: Register a container, create a journey, and put it on record successfuly
+  	Given client
+  	And container
     And origin "Copenhagen"
     And destination "Oslo"
     And content-type "Fish"
     And company "Maersk"
     When registering
-    Then get confirmation
+    Then confirm registration
     And create journey-ID "CO00001"
     And put on record
   
   @tag2
-  Scenario: Missing origin, destination, company or content type
-  	Given container
-  	And client-ID
+  Scenario: Deny an update due to missing origin, destination, company or content type
+  	Given client
+  	And container
     When registering
-    Then deny confirmation
-    
+    Then deny registration
+   
   @tag3
-  Scenario: Successful registration
-  	Given container
-    And client-ID
-    And origin "Copenhagen"
+  Scenario: Deny an update due to missing origin
+  	Given client
+  	And container
     And destination "Oslo"
-    When registering
-    Then deny confirmation
-    
-   @tag3
-  Scenario: Successful registration
-  	Given container
-    Given client-ID
-    And origin "Copenhagen"
+    And content-type "Fish"
     And company "Maersk"
     When registering
-    Then deny confirmation
+    Then deny registration
+    
+  @tag4 Deny an update due to missing destination
+  Scenario: Successful registration
+  	Given client
+  	And container
+    And origin "Copenhagen"
+    And content-type "Fish"
+    And company "Maersk"
+    When registering
+    Then deny registration
+    
+  @tag5 Deny an update due to missing company
+  Scenario: Successful registration
+  	Given client
+  	And container
+    And origin "Copenhagen"
+    And destination "Oslo"
+    And company "Maersk"
+    When registering
+    Then deny registration
   
+  @tag6 Deny an update due to missing content type
+  Scenario: Successful registration
+  	Given client
+  	And container
+    And origin "Copenhagen"
+    And destination "Oslo"
+    And content-type "Fish"
+    When registering
+    Then deny registration
+ 

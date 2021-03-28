@@ -48,7 +48,7 @@ public class Registration {
 		SecureRandom output = new SecureRandom();
 		int cipher = output.nextInt(100000);
 		String journeyID = (String.format("%c%c", this.container.getOrigin().charAt(0), this.container.getDestination().charAt(0)) + String.valueOf(cipher));
-		if (record.get().containsKey(journeyID)) {
+		if (record.getRecord().containsKey(journeyID)) {
 			return createJourneyID(record);
 		}
 		else 
@@ -56,8 +56,8 @@ public class Registration {
 			       
 	}
 	
-	public void put(Container container, Record record) {
-		record.get().put(journeyID, container);
+	public void upload(Record record) {
+		record.getRecord().put(this.journeyID, this.container);
 		}
 	
 }

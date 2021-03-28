@@ -13,16 +13,20 @@ public class Record {
 		this.record = new HashMap<String, Container>();
 	}
 	
-	public Map<String, Container> get() {
+	public Map<String, Container> getRecord() {
 		return record;
+	}
+	
+	public void setRecord(Map<String, Container> record) {
+		this.record = record;
 	}
 	
     // Generic Map filter, with predicate
     public <K, V> Map<K, V> filter(Map<K, V> map, Predicate<V> predicate) {
         return map.entrySet()
-                .stream()
-                .filter(x -> predicate.test(x.getValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                  .stream()
+                  .filter(x -> predicate.test(x.getValue()))
+                  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 	
 }

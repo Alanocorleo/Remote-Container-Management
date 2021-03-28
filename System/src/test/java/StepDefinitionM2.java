@@ -1,15 +1,18 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import clientsManagement.Client;
 import journeysManagement.Container;
-import journeysManagement.Manager;
 import journeysManagement.Registration;
-import journeysManagement.ResponseObject;
 import journeysManagement.Record;
+import journeysManagement.Manager;
+import journeysManagement.Finder;
+import journeysManagement.ResponseObject;
 
 public class StepDefinitionM2 {
 
@@ -17,21 +20,23 @@ public class StepDefinitionM2 {
 	Client client;
 	Registration registration;
 	Manager manager;
+	Finder finder;
 	ResponseObject response;
 	
 	Record record = new Record();
 	
+	@Given("client")
+	public void client() {
+		client = new Client();
+		finder = new Finder(client);
+		
+	}
+	
 	@Given("container")
 	public void container() {
 	   container = new Container();
-	}
-	
-	@Given("client-ID")
-	public void clientId() {
-		client = new Client();
-		container.setOwner(client.getId());
-		assertTrue(String.valueOf(container.getOwner()).matches("\\d"));
-		
+	   container.setOwner(client.getId());
+	   assertTrue(String.valueOf(container.getOwner()).matches("\\d"));
 	}
 
 	@Given("origin {string}")
@@ -61,8 +66,8 @@ public class StepDefinitionM2 {
 		response = registration.register(container);
 	}
 
-	@Then("get confirmation")
-	public void get_confirmation() {
+	@Then("confirm registration")
+	public void confirm_registration() {
 		assertEquals(response.getErrorMessage(), "Container has been registered");
 		assertEquals(response.getErrorCode(), 010);
 	}
@@ -76,12 +81,12 @@ public class StepDefinitionM2 {
 
 	@Then("put on record")
 	public void put_on_record() { 
-		registration.put(container, record);
-		assertEquals(record.get().get(registration.getJourneyID()), container);
+		registration.upload(record);
+		assertEquals(record.getRecord().get(registration.getJourneyID()), container);
 	}
 	
-	@Then("deny confirmation")
-	public void deny_confirmation() {
+	@Then("deny registration")
+	public void deny_registration() {
 		assertEquals(response.getErrorMessage(), "Some necessary parameters are not entered");
 		assertEquals(response.getErrorCode(), 110);
 	}
@@ -91,13 +96,8 @@ public class StepDefinitionM2 {
 		manager = new Manager(company);
 	}
 	
-	@Given("journey-ID {string}")
-	public void journey_ID(String string) {
-	    
-	}
-	
-	@Given("recorded container")
-	public void recorded_container() {
+	@Given("recorded journey")
+	public void recorded_journey() {
 		client = new Client();
 		container = new Container();
 		container.setOwner(client.getId());
@@ -108,27 +108,71 @@ public class StepDefinitionM2 {
 		registration = new Registration(client);
 		registration.register(container);
 		registration.setJourneyID("CO00001");
-		registration.put(container, record);
+		registration.upload(record);
 	}
 
-	@When("updating journey {string} to position {string}")
-	public void updating_to_position(String journeyID, String position) {
-		response = manager.update(journeyID, position, record);
+	@When("updating containers current position of journey {string} to {string}")
+	public void updating_containers_current_position_of_journey_to(String journeyID, String position) {
+		response = manager.updatePosition(journeyID, position, record);
 	}
 
 	@Then("change position")
 	public void change_position() {
-		assertEquals(record.get().get("CO00001").getPosition(), "Gothenburg");
+		assertEquals(record.getRecord().get("CO00001").getPosition(), "Gothenburg");
 		assertEquals(response.getErrorMessage(), "Position has been updated");
 		assertEquals(response.getErrorCode(), 070);
 	}
 	
 	@Then("deny update")
 	public void deny_update() {
-		assertEquals(response.getErrorMessage(), "The journey was not found");
+		assertEquals(response.getErrorMessage(), "Journey was not found");
 		assertEquals(response.getErrorCode(), 700);
 	}
-
 	
+	@When("completing journey {string}")
+	public void completing_journey(String journeyID) {
+		response = manager.completeJourney(journeyID, record);
+	    
+	}
+
+	@Then("remove from record")
+	public void remove_from_record() {
+		assertEquals(record.getRecord().get("CO00001"), null);
+		assertEquals(response.getErrorMessage(), "Journey has been completed and succesfully removed from the record");
+		assertEquals(response.getErrorCode(), 050);
+	}
+
+	@Then("deny removal")
+	public void deny_removal() {
+		assertEquals(response.getErrorMessage(), "Journey was not found");
+		assertEquals(response.getErrorCode(), 700);
+	}
+	
+	@Given("recorded journeys")
+	public void recorded_journeys() {
+		container = new Container();
+		container.setOwner(client.getId());
+		container.setOrigin("Copenhagen");
+		container.setDestination("Oslo");
+		container.setContentType("Fish");
+		container.setCompany("Maersk");
+		registration = new Registration(client);
+		registration.register(container);
+		registration.setJourneyID("CO00001");
+		registration.upload(record);
+		registration.setJourneyID("CO00002");
+		registration.upload(record);
+	}
+
+	@When("finding based on criteria {string} specified as {string}")
+	public void finding_based_on_criteria_specified_as(String criteria, String entry) {
+		System.out.println(Arrays.asList(record.getRecord()));
+		System.out.println(Arrays.asList(finder.getJourney(criteria, entry, record).getRecord()));
+	}
+
+	@Then("show containers")
+	public void show_containers() {
+	    
+	}
 
 }

@@ -21,15 +21,28 @@
 Feature: Managing journeys information
 
   @tag1
-  Scenario: Update current position of a container
+  Scenario: Update the current position of a container 
   	Given company manager "Maersk"
-  	And recorded container
-    When updating journey "CO00001" to position "Gothenburg"
+  	And recorded journey
+    When updating containers current position of journey "CO00001" to "Gothenburg" 
     Then change position
 
   @tag2
-  Scenario: Cannot update because journey was not found
+  Scenario: Deny an update because the journey was not found
   	Given company manager "Maersk"
-    When updating journey "CO00001" to position "Gothenburg"
+    When updating containers current position of journey "CO00001" to "Gothenburg" 
     Then deny update
+    
+  @tag3
+  Scenario: Complete a journey and remove it from the record
+  	Given company manager "Maersk"
+  	And recorded journey
+    When completing journey "CO00001"
+    Then remove from record
+    
+  @tag4
+  Scenario: Deny completion because the journey was not found
+  	Given company manager "Maersk"
+    When completing journey "CO00001"
+    Then deny removal
 
