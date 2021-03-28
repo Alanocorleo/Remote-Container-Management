@@ -7,7 +7,6 @@ import clientsManagement.Client;
 public class Registration {
 	
 	private Container container;
-	private ResponseObject response;
 	private String journeyID;
 
 	public Registration(Client client) {
@@ -15,6 +14,8 @@ public class Registration {
 	}
 
 	public ResponseObject register(Container container) {
+		
+		ResponseObject response;
 		
 		if(!((container.getOrigin() == null)||(container.getDestination() == null)||(container.getCompany() == null)||(container.getContentType() == null))){
 			

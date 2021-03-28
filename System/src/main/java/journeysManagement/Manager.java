@@ -2,9 +2,7 @@ package journeysManagement;
 
 public class Manager {
 	
-	String manager;
-	private ResponseObject response;
-
+	private String manager;
 
 	public Manager(String company) {
 		this.manager = company;
@@ -13,7 +11,9 @@ public class Manager {
 
 	public ResponseObject updatePosition(String journeyID, String position, Record record) {
 		
+			ResponseObject response;
 			Record companyJourneys = new Record();
+			
 			companyJourneys.setRecord(record.filter(record.getRecord(), container -> container.getCompany().contains(this.manager)));
 			if (companyJourneys.getRecord().containsKey(journeyID)) {
 				
@@ -32,7 +32,9 @@ public class Manager {
 	
 	public ResponseObject completeJourney(String journeyID, Record record) {
 		
+		ResponseObject response;
 		Record companyJourneys = new Record();
+		
 		companyJourneys.setRecord(record.filter(record.getRecord(), container -> container.getCompany().contains(this.manager)));
 		if (companyJourneys.getRecord().containsKey(journeyID)) {
 			
