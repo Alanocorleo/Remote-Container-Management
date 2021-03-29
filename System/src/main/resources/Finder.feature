@@ -21,9 +21,36 @@
 Feature: Finding a journey
 
   @tag1
-  Scenario: Title of your scenario
+  Scenario: Find journeys according to origin
     Given client
     And recorded journeys
     When finding based on criteria "origin" specified as "Copenhagen"
-    Then show containers
-
+    Then show journeys with origin "Copenhagen"
+   
+  @tag2
+  Scenario: Find journeys according to destination
+    Given client
+    And recorded journeys
+    When finding based on criteria "destination" specified as "Oslo"
+    Then show journeys with destination "Oslo"
+   
+  @tag3
+  Scenario: Find journeys according to content-type
+    Given client
+    And recorded journeys
+    When finding based on criteria "content-type" specified as "Flowers"
+    Then show journeys with content-type "Flowers"
+   
+  @tag4
+  Scenario: Find journeys according to company
+    Given client
+    And recorded journeys
+    When finding based on criteria "company" specified as "Maersk"
+    Then show journeys with company "Maersk" 
+  
+  @tag5
+  Scenario: Find all journeys
+    Given client
+    And recorded journeys
+    When finding based on criteria "none" specified as "unspecified"
+    Then show all client journeys 

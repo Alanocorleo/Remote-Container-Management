@@ -7,10 +7,11 @@ import clientsManagement.Client;
 public class Registration {
 	
 	private Container container;
+	private Record record;
 	private String journeyID;
 
-	public Registration(Client client) {
-	
+	public Registration(Client client, Record record) {
+		this.record = record;
 	}
 
 	public ResponseObject register(Container container) {
@@ -44,21 +45,24 @@ public class Registration {
 		this.journeyID = journeyID;
 	}
 	
-	public String createJourneyID(Record record) {
+	public String createJourneyID() {
 		
 		SecureRandom output = new SecureRandom();
 		int cipher = output.nextInt(100000);
 		String journeyID = (String.format("%c%c", this.container.getOrigin().charAt(0), this.container.getDestination().charAt(0)) + String.valueOf(cipher));
-		if (record.getRecord().containsKey(journeyID)) {
-			return createJourneyID(record);
+		if (this.record.getRecord().containsKey(journeyID)) {
+			return createJourneyID();
 		}
 		else 
 			return this.journeyID = journeyID;
 			       
 	}
 	
-	public void upload(Record record) {
-		record.getRecord().put(this.journeyID, this.container);
+	public ResponseObject upload() {
+		ResponseObject response;
+		this.record.getRecord().put(this.journeyID, this.container);
+		response = new ResponseObject(012, "Journey has been uploaded");
+		return response;
 		}
 	
 }

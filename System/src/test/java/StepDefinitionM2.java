@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Arrays;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,12 +24,11 @@ public class StepDefinitionM2 {
 	ResponseObject response;
 	
 	Record record = new Record();
+	Record myJourneys;
 	
 	@Given("client")
 	public void client() {
 		client = new Client();
-		finder = new Finder(client);
-		
 	}
 	
 	@Given("container")
@@ -62,7 +61,7 @@ public class StepDefinitionM2 {
 
 	@When("registering")
 	public void registering() {
-		registration = new Registration(client);
+		registration = new Registration(client, record);
 		response = registration.register(container);
 	}
 
@@ -74,14 +73,16 @@ public class StepDefinitionM2 {
 	
 	@Then("create journey-ID {string}")
 	public void create_journey_ID(String journeyID) {
-		registration.createJourneyID(record);
+		registration.createJourneyID();
 		assertEquals(registration.getJourneyID().substring(0,2), String.format("%c%c", journeyID.charAt(0), journeyID.charAt(1)));
 		assertTrue(registration.getJourneyID().matches("[A-Z]{1}\\w{2}\\d{4}"));
 	}
 
 	@Then("put on record")
 	public void put_on_record() { 
-		registration.upload(record);
+		response = registration.upload();
+		assertEquals(response.getErrorMessage(), "Journey has been uploaded");
+		assertEquals(response.getErrorCode(), 012);
 		assertEquals(record.getRecord().get(registration.getJourneyID()), container);
 	}
 	
@@ -93,7 +94,7 @@ public class StepDefinitionM2 {
 
 	@Given("company manager {string}")
 	public void company_manager(String company) {
-		manager = new Manager(company);
+		manager = new Manager(company, record);
 	}
 	
 	@Given("recorded journey")
@@ -105,15 +106,15 @@ public class StepDefinitionM2 {
 		container.setDestination("Oslo");
 		container.setContentType("Fish");
 		container.setCompany("Maersk");
-		registration = new Registration(client);
+		registration = new Registration(client, record);
 		registration.register(container);
 		registration.setJourneyID("CO00001");
-		registration.upload(record);
+		registration.upload();
 	}
 
 	@When("updating containers current position of journey {string} to {string}")
 	public void updating_containers_current_position_of_journey_to(String journeyID, String position) {
-		response = manager.updatePosition(journeyID, position, record);
+		response = manager.updatePosition(journeyID, position);
 	}
 
 	@Then("change position")
@@ -131,7 +132,7 @@ public class StepDefinitionM2 {
 	
 	@When("completing journey {string}")
 	public void completing_journey(String journeyID) {
-		response = manager.completeJourney(journeyID, record);
+		response = manager.completeJourney(journeyID);
 	    
 	}
 
@@ -150,29 +151,97 @@ public class StepDefinitionM2 {
 	
 	@Given("recorded journeys")
 	public void recorded_journeys() {
-		container = new Container();
-		container.setOwner(client.getId());
-		container.setOrigin("Copenhagen");
-		container.setDestination("Oslo");
-		container.setContentType("Fish");
-		container.setCompany("Maersk");
-		registration = new Registration(client);
-		registration.register(container);
+		client.setId(00001);
+		Container container1 = new Container(); 
+		container1.setOwner(client.getId());
+		container1.setOrigin("Copenhagen");
+		container1.setDestination("Oslo");
+		container1.setContentType("Fish");
+		container1.setCompany("Maersk");
+		registration = new Registration(client, record);
+		registration.register(container1);
 		registration.setJourneyID("CO00001");
-		registration.upload(record);
+		registration.upload();
+		
+		Container container2 = new Container(); 
+		container2.setOwner(client.getId());
+		container2.setOrigin("Amsterdam");
+		container2.setDestination("Copenhagen");
+		container2.setContentType("Flowers");
+		container2.setCompany("Maersk");
+		registration.register(container2);
+		registration.setJourneyID("AC00001");
+		registration.upload();
+		
+		Container container3 = new Container(); 
+		container3.setOwner(client.getId());
+		container3.setOrigin("Copenhagen");
+		container3.setDestination("Gothenburg");
+		container3.setContentType("Fish");
+		container3.setCompany("DSV");
+		registration.register(container3);
+		registration.setJourneyID("CG00001");
+		registration.upload();
+		
+		Client client2 = new Client();
+		client2.setId(00002);
+		Container container4 = new Container(); 
+		container4.setOwner(client2.getId());
+		container4.setOrigin("Copenhagen");
+		container4.setDestination("Oslo");
+		container4.setContentType("Fish");
+		container4.setCompany("Maersk");
+		registration = new Registration(client2, record);
+		registration.register(container4);
 		registration.setJourneyID("CO00002");
-		registration.upload(record);
+		registration.upload();
 	}
 
 	@When("finding based on criteria {string} specified as {string}")
 	public void finding_based_on_criteria_specified_as(String criteria, String entry) {
-		System.out.println(Arrays.asList(record.getRecord()));
-		System.out.println(Arrays.asList(finder.getJourney(criteria, entry, record).getRecord()));
+		 finder = new Finder(client, record);
+		 myJourneys = finder.getJourneys(criteria, entry);	 
 	}
 
-	@Then("show containers")
-	public void show_containers() {
-	    
+	@Then("show journeys with origin {string}")
+	public void show_journeys_with_origin(String origin) {
+		assertEquals(myJourneys.getRecord().get("CO00001").getOrigin(), origin);
+		assertNull(myJourneys.getRecord().get("AC00001"));
+		assertEquals(myJourneys.getRecord().get("CG00001").getOrigin(), origin);
+		assertNull(myJourneys.getRecord().get("CO00002"));
+		
+	}
+	
+	@Then("show journeys with destination {string}")
+	public void show_journeys_with_destination(String destination) {
+		assertEquals(myJourneys.getRecord().get("CO00001").getDestination(), destination);
+		assertNull(myJourneys.getRecord().get("AC00001"));
+		assertNull(myJourneys.getRecord().get("CG00001"));
+		assertNull(myJourneys.getRecord().get("CO00002"));
+	}
+
+	@Then("show journeys with content-type {string}")
+	public void show_journeys_with_content_type(String contentType) {
+		assertNull(myJourneys.getRecord().get("CO00001"));
+		assertEquals(myJourneys.getRecord().get("AC00001").getContentType(), contentType);
+		assertNull(myJourneys.getRecord().get("CG00001"));
+		assertNull(myJourneys.getRecord().get("CO00002"));
+	}
+	
+	@Then("show journeys with company {string}")
+	public void show_journeys_with_company(String company) {
+		assertEquals(myJourneys.getRecord().get("CO00001").getCompany(), company);
+		assertEquals(myJourneys.getRecord().get("AC00001").getCompany(), company);
+		assertNull(myJourneys.getRecord().get("CG00001"));
+		assertNull(myJourneys.getRecord().get("CO00002"));
+	}
+	
+	@Then("show all client journeys")
+	public void show_all_client_journeys() {
+		assertNotNull(myJourneys.getRecord().get("CO00001"));
+		assertNotNull(myJourneys.getRecord().get("AC00001"));
+		assertNotNull(myJourneys.getRecord().get("CG00001"));
+		assertNull(myJourneys.getRecord().get("CO00002"));
 	}
 
 }

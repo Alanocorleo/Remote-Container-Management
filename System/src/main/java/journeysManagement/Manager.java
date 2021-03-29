@@ -3,21 +3,23 @@ package journeysManagement;
 public class Manager {
 	
 	private String manager;
+	private Record record;
 
-	public Manager(String company) {
+	public Manager(String company, Record record) {
 		this.manager = company;
+		this.record = record;
 	}
 
 
-	public ResponseObject updatePosition(String journeyID, String position, Record record) {
+	public ResponseObject updatePosition(String journeyID, String position) {
 		
 			ResponseObject response;
 			Record companyJourneys = new Record();
 			
-			companyJourneys.setRecord(record.filter(record.getRecord(), container -> container.getCompany().contains(this.manager)));
+			companyJourneys.setRecord(this.record.filter(this.record.getRecord(), container -> container.getCompany().contains(this.manager)));
 			if (companyJourneys.getRecord().containsKey(journeyID)) {
 				
-				record.getRecord().get(journeyID).setPosition(position);
+				this.record.getRecord().get(journeyID).setPosition(position);
 				response = new ResponseObject(070, "Position has been updated");
 				
 			} else {
@@ -30,15 +32,15 @@ public class Manager {
 		
 	}
 	
-	public ResponseObject completeJourney(String journeyID, Record record) {
+	public ResponseObject completeJourney(String journeyID) {
 		
 		ResponseObject response;
 		Record companyJourneys = new Record();
 		
-		companyJourneys.setRecord(record.filter(record.getRecord(), container -> container.getCompany().contains(this.manager)));
+		companyJourneys.setRecord(this.record.filter(this.record.getRecord(), container -> container.getCompany().contains(this.manager)));
 		if (companyJourneys.getRecord().containsKey(journeyID)) {
 			
-			record.getRecord().remove(journeyID);
+			this.record.getRecord().remove(journeyID);
 			response = new ResponseObject(050, "Journey has been completed and succesfully removed from the record");
 			
 		} else {
