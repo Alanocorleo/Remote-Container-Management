@@ -60,7 +60,7 @@ Feature: Registering a container
     Then deny registration
     
   @tag5
-  Scenario: Deny updating due to missing company
+  Scenario: Deny updating due to missing content-type
   	Given client
   	And container
     And origin "Copenhagen"
