@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="journeysManagement.Finder" project="System" 
     file="/System/src/main/java/journeysManagement/Finder.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="821" y="607"/>    
+    <position height="-1" width="-1" x="880" y="590"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="journeysManagement.Manager" project="System" 
     file="/System/src/main/java/journeysManagement/Manager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="417" y="606"/>    
+    <position height="-1" width="-1" x="483" y="603"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

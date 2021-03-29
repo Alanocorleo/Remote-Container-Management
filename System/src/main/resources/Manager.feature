@@ -28,7 +28,7 @@ Feature: Managing journeys information
     Then change position
 
   @tag2
-  Scenario: Deny an update because the journey was not found
+  Scenario: Deny updating because the journey was not found
   	Given company manager "Maersk"
     When updating containers current position of journey "CO00001" to "Gothenburg" 
     Then deny update

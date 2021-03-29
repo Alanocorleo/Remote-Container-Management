@@ -33,14 +33,14 @@ Feature: Registering a container
     And put on record
   
   @tag2
-  Scenario: Deny an update due to missing origin, destination, company or content type
+  Scenario: Deny updating due to missing origin, destination, company or content type
   	Given client
   	And container
     When registering
     Then deny registration
    
   @tag3
-  Scenario: Deny an update due to missing origin
+  Scenario: Deny updating update due to missing origin
   	Given client
   	And container
     And destination "Oslo"
@@ -49,8 +49,8 @@ Feature: Registering a container
     When registering
     Then deny registration
     
-  @tag4 Deny an update due to missing destination
-  Scenario: Successful registration
+  @tag4
+  Scenario: Deny updating due to missing destination
   	Given client
   	And container
     And origin "Copenhagen"
@@ -59,8 +59,8 @@ Feature: Registering a container
     When registering
     Then deny registration
     
-  @tag5 Deny an update due to missing company
-  Scenario: Successful registration
+  @tag5
+  Scenario: Deny updating due to missing company
   	Given client
   	And container
     And origin "Copenhagen"
@@ -69,8 +69,8 @@ Feature: Registering a container
     When registering
     Then deny registration
   
-  @tag6 Deny an update due to missing content type
-  Scenario: Successful registration
+  @tag6
+  Scenario: Deny updating due to missing company
   	Given client
   	And container
     And origin "Copenhagen"
