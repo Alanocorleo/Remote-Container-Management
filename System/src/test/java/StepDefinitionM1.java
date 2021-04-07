@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 
-public class StepDefinitions {
+public class StepDefinitionM1 {
 	
 	Client newClient = new Client();
 	Registery newRegister = new Registery();
