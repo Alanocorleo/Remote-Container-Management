@@ -1,5 +1,7 @@
 package journeysManagement;
 
+import java.util.Arrays;
+
 import clientsManagement.Client;
 
 public class Finder {
