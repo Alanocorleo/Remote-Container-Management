@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="14" failures="0" name="CucumberTest" time="0.262" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.vm.version" value="15.0.1+9-18"/>
+    <property name="sun.boot.library.path" value="/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_15.0.1.v20201027-0507/jre/lib"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/sarthaktrehan/eclipse-workspace/ClientManagementSystemBDD"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="user.country" value="SE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/sarthaktrehan/eclipse-workspace/ClientManagementSystemBDD"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="15.0.1+9-18"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/1p/vrndgym92qvd0nj01x0r59_00000gn/T/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/sarthaktrehan/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf9955698923722468834.tmp"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/sarthaktrehan/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="59.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.11.6"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/sarthaktrehan"/>
+    <property name="user.timezone" value="Europe/Stockholm"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="15"/>
+    <property name="user.name" value="sarthaktrehan"/>
+    <property name="java.class.path" value="/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2e.maven.runtime_1.16.0.20210129-0849/jars/plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
+    <property name="java.home" value="/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_15.0.1.v20201027-0507/jre"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="15.0.1"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Users/sarthaktrehan/eclipse-workspace/ClientManagementSystemBDD/EMBEDDED"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.version.date" value="2020-10-20"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+  </properties>
+  <testcase classname="Update information" name="Successfull update of al information except name and birth date" time="0.196"/>
+  <testcase classname="Update information" name="Unsuccessfull update" time="0.004"/>
+  <testcase classname="Update information" name="Unsuccessfull update 2" time="0.006"/>
+  <testcase classname="Update information" name="Unsuccessfull update 3" time="0.006"/>
+  <testcase classname="Contacting clients" name="Contacting registered client by unique id" time="0.005"/>
+  <testcase classname="Contacting clients" name="Contacting registered client by name" time="0.005"/>
+  <testcase classname="Contacting clients" name="Contacting client by id that doesnt exists" time="0.005"/>
+  <testcase classname="Contacting clients" name="Contacting client by name that doesnt exists" time="0.008"/>
+  <testcase classname="Register clients" name="A client is registering in the system with date of birth, full name and email, phone number" time="0.004"/>
+  <testcase classname="Register clients" name="Same client registers again" time="0.009"/>
+  <testcase classname="Register clients" name="Two client with same name but different contact info register" time="0.003"/>
+  <testcase classname="Register clients" name="Client tries to register without name" time="0.004"/>
+  <testcase classname="Register clients" name="Client tries to register with one contact info" time="0.003"/>
+  <testcase classname="Register clients" name="Client tries to register with the other contact info" time="0.004"/>
+</testsuite>
