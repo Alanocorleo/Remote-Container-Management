@@ -32,43 +32,43 @@ public class JourneyDatabase {
                   .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
     
-	public Map<Journey, Container> find(String criteria, String entry, Client client) {
+	public Map<Container, Journey> find(String criteria, String entry, int clientID) {
 		
-		Map<Journey, Container> myJourneys = new HashMap<Journey, Container>();
+		Map<Container, Journey> myContainers = new HashMap<Container, Journey>();
 		
 		for (Journey key : journeys.keySet()) {
 			 for (Container container : journeys.get(key)) {
-				 if (container.getOwner() == client.getId()) {
-					 myJourneys.put(key, container); 
+				 if (container.getOwner() == clientID) {
+					 myContainers.put(container, key); 
 	             }
              } 
         }
 				 
 		if (criteria.equals("origin")) {
-			for(Journey key : myJourneys.keySet()) {
-				if (!(key.getOrigin().equals(entry))) {
-					myJourneys.remove(key);
-				}
-			}
+			myContainers = filter(myContainers, journey -> journey.getOrigin().equals(entry));
 		} 
 		
 		else if (criteria.equals("destination")) {
-			for(Journey key : myJourneys.keySet()) {
-				if (!(key.getDestination().equals(entry))) {
-					myJourneys.remove(key);
+			myContainers = filter(myContainers, journey -> journey.getDestination().equals(entry));
+		}
+		
+		else if (criteria.equals("content-type")) {
+			for(Container key : myContainers.keySet()) {
+				if (!(key.getContentType().equals(entry))) {
+					myContainers.remove(key);
 				}
 			}
 		}
 		
-		else if (criteria.equals("content-type")) {
-			myJourneys = filter(myJourneys, container -> container.getContentType().equals(entry));
-		}
-		
 		else if (criteria.equals("company")) {
-			myJourneys = filter(myJourneys, container -> container.getCompany().equals(entry));
+			for(Container key : myContainers.keySet()) {
+				if (!(key.getCompany().equals(entry))) {
+					myContainers.remove(key);
+				}
+			}
 		}
 		
-		return myJourneys; 
+		return myContainers; 
 		
 	}
 //	

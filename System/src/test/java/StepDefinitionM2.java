@@ -21,7 +21,7 @@ public class StepDefinitionM2 {
 	Client client;
 	Company logisticCompany;
 	Journey journey;
-	Map<Journey, Container> myJourneys;
+	Map<Container, Journey> myContainers;
 	ResponseObject response;
 
 	JourneyDatabase journeys = new JourneyDatabase();
@@ -187,6 +187,49 @@ public class StepDefinitionM2 {
 		assertEquals(response.getErrorMessage(), message);
 		assertEquals(response.getErrorCode(), code);
 	}
+	
+	@Given("{int} containers registered to journey {string} by client {int} from {string} to {string} regulated by {string}")
+	public void containers_registered_to_journey_by_client_from_to_regulated_by(int quantity, String journeyID, int clientID, String origin, String destination, String company) {
+		journey = new Journey(journeys);
+		journey.setJourneyID(journeyID);
+		journey.setOrigin(origin);
+		journey.setDestination(destination);	
+		journeys.create(journey);
+		
+		
+		for (int i = 1; i <= 20; i++) {
+			containers.getContainers().add(new Container());
+			containers.getContainers().get(i - 1).setContainerID(i);
+			containers.getContainers().get(i - 1).setPosition(origin);
+			containers.getContainers().get(i - 1).setAvailability(true);
+		}
+		
+		client = new Client();
+		client.setId(clientID);
+		
+//		for (Container container: containers.getContainers()) {
+//			System.out.println(container.getPosition());
+//		}
+		
+		client.registerContainers(origin, "undefined", company, quantity, containers);
+		
+		for (Container container: containers.getContainers()) {
+			System.out.println(container.isAvailability());
+		}
+		
+		journeys.registerTo(journeyID, origin, destination, client.getMyContainers());
+	}
+	
+	@When("finding based on criteria {string} specified as {string} for client {int}")
+	public void finding_based_on_criteria_specified_as_for_client(String criteria, String entry, int clientID) {
+		 myContainers = journeys.find(criteria, entry, clientID); 
+	}
+	
+	@Then("show journeys with origin {string} owned by client {int}")
+	public void show_journeys_with_origin_owned_by_client(String origin, int clientID) {
+		System.out.println(myContainers.toString());
+	}
+
 //	
 //	@When("completing journey {string}")
 //	public void completing_journey(String journeyID) {
@@ -255,14 +298,9 @@ public class StepDefinitionM2 {
 //		registration.upload();
 //	}
 //
-	@When("finding based on criteria {string} specified as {string}")
-	public void finding_based_on_criteria_specified_as(String criteria, String entry) {
-		 myJourneys = journeys.find(criteria, entry, client); 
-	}
 
 	@Then("show journeys with origin {string}")
 	public void show_journeys_with_origin(String origin) {
-		System.out.println(myJourneys.toString());
 //		assertEquals(myJourneys.getRecord().get("CO00001").getOrigin(), origin);
 //		assertNull(myJourneys.getRecord().get("AC00001"));
 //		assertEquals(myJourneys.getRecord().get("CG00001").getOrigin(), origin);

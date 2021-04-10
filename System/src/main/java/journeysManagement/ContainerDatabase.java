@@ -18,7 +18,7 @@ public class ContainerDatabase {
 		this.containers = containerList;
 	}
 	
-	public ArrayList<Container> extract(Integer number, String position) {
+	public ArrayList<Container> extract(int number, String position) {
 		
 		ArrayList<Container> extract = new ArrayList<Container>();
 		
@@ -30,6 +30,7 @@ public class ContainerDatabase {
 				extract.add(container);
 				count -= 1;
 			}
+			
 			
 		}
 		
