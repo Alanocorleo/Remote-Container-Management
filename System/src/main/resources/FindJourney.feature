@@ -22,15 +22,13 @@ Feature: Finding a journey
 
   @tag1
   Scenario: Find journeys according to origin
-    Given client
-    And recorded journeys
+    Given 5 containers registered to journey "CO02292" from "Copenhagen" to "Oslo" regulated by "Maersk" 
     When finding based on criteria "origin" specified as "Copenhagen"
     Then show journeys with origin "Copenhagen"
    
   @tag2
   Scenario: Find journeys according to destination
-    Given client
-    And recorded journeys
+    Given 5 containers registered to journey "CO02292" from "Copenhagen" to "Oslo" regulated by "Maersk" 
     When finding based on criteria "destination" specified as "Oslo"
     Then show journeys with destination "Oslo"
    

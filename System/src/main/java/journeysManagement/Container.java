@@ -2,17 +2,25 @@ package journeysManagement;
 
 public class Container {
 	
+	private int containerID;
 	private int owner;
-	private String origin;
-	private String destination;
+	private String position;
 	private String contentType;
 	private String company;
-	private String position;
+	private boolean availability;
 	
 	
 	public Container() {
 		super();
 	}
+	
+	public int getContainerID() {
+		return containerID;
+	}
+	public void setContainerID(int containerID) {
+		this.containerID = containerID;
+	}
+	
 	
 	public int getOwner() {
 		return owner;
@@ -22,19 +30,11 @@ public class Container {
 	}
 	
 	
-	public String getOrigin() {
-		return origin;
+	public String getPosition() {
+		return position;
 	}
-	public void setOrigin(String origin) {
-		this.origin = origin;
-	}
-	
-	
-	public String getDestination() {
-		return destination;
-	}
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 	
 	
@@ -52,12 +52,12 @@ public class Container {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	
-	public String getPosition() {
-		return position;
+
+	public boolean isAvailability() {
+		return availability;
 	}
-	public void setPosition(String position) {
-		this.position = position;
+	public void setAvailability(boolean availability) {
+		this.availability = availability;
 	}
 
 
