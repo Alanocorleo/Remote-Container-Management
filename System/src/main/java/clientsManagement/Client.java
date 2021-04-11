@@ -5,7 +5,6 @@ import journeysManagement.Container;
 import journeysManagement.ContainerDatabase;
 import journeysManagement.ResponseObject;
 
-
 public class Client {
 	
 	private String name = null;
@@ -162,6 +161,5 @@ public class Client {
 		return response;
 		
 	}
-	
 
 }

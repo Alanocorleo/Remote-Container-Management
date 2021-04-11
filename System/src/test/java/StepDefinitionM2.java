@@ -188,16 +188,17 @@ public class StepDefinitionM2 {
 		assertEquals(response.getErrorCode(), code);
 	}
 	
-	@Given("{int} containers registered to journey {string} by client {int} from {string} to {string} regulated by {string}")
-	public void containers_registered_to_journey_by_client_from_to_regulated_by(int quantity, String journeyID, int clientID, String origin, String destination, String company) {
+	@Given("{int} containers containing {string} registered to journey {string} by client {int} from {string} to {string} regulated by {string}")
+	public void containers_containing_registered_to_journey_by_client_from_to_regulated_by(int quantity, String contentType, String journeyID, int clientID, String origin, String destination, String company) {
 		journey = new Journey(journeys);
 		journey.setJourneyID(journeyID);
 		journey.setOrigin(origin);
 		journey.setDestination(destination);	
 		journeys.create(journey);
+	
+		int size = containers.getContainers().size();
 		
-		
-		for (int i = 1; i <= 20; i++) {
+		for (int i = 1 + size ; i <= quantity + size; i++) {
 			containers.getContainers().add(new Container());
 			containers.getContainers().get(i - 1).setContainerID(i);
 			containers.getContainers().get(i - 1).setPosition(origin);
@@ -206,28 +207,45 @@ public class StepDefinitionM2 {
 		
 		client = new Client();
 		client.setId(clientID);
-		
-//		for (Container container: containers.getContainers()) {
-//			System.out.println(container.getPosition());
-//		}
-		
-		client.registerContainers(origin, "undefined", company, quantity, containers);
-		
-		for (Container container: containers.getContainers()) {
-			System.out.println(container.isAvailability());
-		}
-		
+		client.registerContainers(origin, contentType, company, quantity, containers);
 		journeys.registerTo(journeyID, origin, destination, client.getMyContainers());
 	}
 	
 	@When("finding based on criteria {string} specified as {string} for client {int}")
 	public void finding_based_on_criteria_specified_as_for_client(String criteria, String entry, int clientID) {
-		 myContainers = journeys.find(criteria, entry, clientID); 
+		 myContainers = journeys.find(clientID, criteria, entry); 
 	}
 	
-	@Then("show journeys with origin {string} owned by client {int}")
+	@Then("show journeys with origin {string} of client {int}")
 	public void show_journeys_with_origin_owned_by_client(String origin, int clientID) {
-		System.out.println(myContainers.toString());
+		for (Container key : myContainers.keySet()) {
+			assertEquals(key.getOwner(), clientID);
+			assertEquals(myContainers.get(key).getOrigin(), origin);
+       }
+	}
+	
+	@Then("show journeys with destination {string} of client {int}")
+	public void show_journeys_with_destination_of_client(String destination, int clientID) {
+		for (Container key : myContainers.keySet()) {
+			assertEquals(key.getOwner(), clientID);
+			assertEquals(myContainers.get(key).getDestination(), destination);
+       }
+	}
+	
+	@Then("show journeys with content-type {string} of client {int}")
+	public void show_journeys_with_content_type_of_client(String contentType, int clientID) {
+		for (Container key : myContainers.keySet()) {
+			assertEquals(key.getOwner(), clientID);
+			assertEquals(key.getContentType(), contentType);
+       }
+	}
+		
+	@Then("show journeys with company {string} of client {int}")
+	public void show_journeys_with_company_of_client(String company, int clientID) {
+		for (Container key : myContainers.keySet()) {
+			assertEquals(key.getOwner(), clientID);
+			assertEquals(key.getCompany(), company);
+       }
 	}
 
 //	
@@ -250,94 +268,5 @@ public class StepDefinitionM2 {
 //		assertEquals(response.getErrorCode(), 700);
 //	}
 //	
-//	@Given("recorded journeys")
-//	public void recorded_journeys() {
-//		client.setId(00001);
-//		Container container1 = new Container(); 
-//		container1.setOwner(client.getId());
-//		container1.setOrigin("Copenhagen");
-//		container1.setDestination("Oslo");
-//		container1.setContentType("Fish");
-//		container1.setCompany("Maersk");
-//		registration = new Journey(client, record);
-//		registration.register(container1);
-//		registration.setJourneyID("CO00001");
-//		registration.upload();
-//		
-//		Container container2 = new Container(); 
-//		container2.setOwner(client.getId());
-//		container2.setOrigin("Amsterdam");
-//		container2.setDestination("Copenhagen");
-//		container2.setContentType("Flowers");
-//		container2.setCompany("Maersk");
-//		registration.register(container2);
-//		registration.setJourneyID("AC00001");
-//		registration.upload();
-//		
-//		Container container3 = new Container(); 
-//		container3.setOwner(client.getId());
-//		container3.setOrigin("Copenhagen");
-//		container3.setDestination("Gothenburg");
-//		container3.setContentType("Fish");
-//		container3.setCompany("DSV");
-//		registration.register(container3);
-//		registration.setJourneyID("CG00001");
-//		registration.upload();
-//		
-//		Client client2 = new Client();
-//		client2.setId(00002);
-//		Container container4 = new Container(); 
-//		container4.setOwner(client2.getId());
-//		container4.setOrigin("Copenhagen");
-//		container4.setDestination("Oslo");
-//		container4.setContentType("Fish");
-//		container4.setCompany("Maersk");
-//		registration = new Journey(client2, record);
-//		registration.register(container4);
-//		registration.setJourneyID("CO00002");
-//		registration.upload();
-//	}
-//
-
-	@Then("show journeys with origin {string}")
-	public void show_journeys_with_origin(String origin) {
-//		assertEquals(myJourneys.getRecord().get("CO00001").getOrigin(), origin);
-//		assertNull(myJourneys.getRecord().get("AC00001"));
-//		assertEquals(myJourneys.getRecord().get("CG00001").getOrigin(), origin);
-//		assertNull(myJourneys.getRecord().get("CO00002"));
-		
-	}
-//	
-//	@Then("show journeys with destination {string}")
-//	public void show_journeys_with_destination(String destination) {
-//		assertEquals(myJourneys.getRecord().get("CO00001").getDestination(), destination);
-//		assertNull(myJourneys.getRecord().get("AC00001"));
-//		assertNull(myJourneys.getRecord().get("CG00001"));
-//		assertNull(myJourneys.getRecord().get("CO00002"));
-//	}
-//
-//	@Then("show journeys with content-type {string}")
-//	public void show_journeys_with_content_type(String contentType) {
-//		assertNull(myJourneys.getRecord().get("CO00001"));
-//		assertEquals(myJourneys.getRecord().get("AC00001").getContentType(), contentType);
-//		assertNull(myJourneys.getRecord().get("CG00001"));
-//		assertNull(myJourneys.getRecord().get("CO00002"));
-//	}
-//	
-//	@Then("show journeys with company {string}")
-//	public void show_journeys_with_company(String company) {
-//		assertEquals(myJourneys.getRecord().get("CO00001").getCompany(), company);
-//		assertEquals(myJourneys.getRecord().get("AC00001").getCompany(), company);
-//		assertNull(myJourneys.getRecord().get("CG00001"));
-//		assertNull(myJourneys.getRecord().get("CO00002"));
-//	}
-//	
-//	@Then("show all client journeys")
-//	public void show_all_client_journeys() {
-//		assertNotNull(myJourneys.getRecord().get("CO00001"));
-//		assertNotNull(myJourneys.getRecord().get("AC00001"));
-//		assertNotNull(myJourneys.getRecord().get("CG00001"));
-//		assertNull(myJourneys.getRecord().get("CO00002"));
-//	}
 
 }

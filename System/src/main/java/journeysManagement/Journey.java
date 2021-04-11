@@ -5,14 +5,22 @@ import java.security.SecureRandom;
 public class Journey {
 	
 	private JourneyDatabase journeyDatabase;
+	private String journeyID;
 	private String origin;
 	private String destination;
 	private int departureDate;
 	private int arrivalDate;
-	private String journeyID;
 
 	public Journey(JourneyDatabase database) {
 		this.journeyDatabase = database;
+	}
+	
+	public String getJourneyID() {
+		return journeyID;
+	}
+
+	public void setJourneyID(String journeyID) {
+		this.journeyID = journeyID;
 	}
 	
 	public String getOrigin() {
@@ -44,14 +52,6 @@ public class Journey {
 	public void setArrivalDate(int arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
-
-	public String getJourneyID() {
-		return journeyID;
-	}
-
-	public void setJourneyID(String journeyID) {
-		this.journeyID = journeyID;
-	}
 	
 	public String createJourneyID() {
 		
@@ -66,5 +66,7 @@ public class Journey {
 			       
 	}
 
-
+    public String toString() {
+        return "{" + "id=" + journeyID + ", origin='" + origin + '\'' + '}';
+    }
 }

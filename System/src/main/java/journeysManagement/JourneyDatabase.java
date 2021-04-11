@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import clientsManagement.Client;
-
 public class JourneyDatabase {
 	
 	private Map<Journey, ArrayList<Container>> journeys;
@@ -23,76 +21,7 @@ public class JourneyDatabase {
 	public void setJourneys(Map<Journey, ArrayList<Container>> journeys) {
 		this.journeys = journeys;
 	}
-	
-    // Generic Map filter, with predicate
-    public <K, V> Map<K, V> filter(Map<K, V> map, Predicate<V> predicate) {
-        return map.entrySet()
-                  .stream()
-                  .filter(x -> predicate.test(x.getValue()))
-                  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
     
-	public Map<Container, Journey> find(String criteria, String entry, int clientID) {
-		
-		Map<Container, Journey> myContainers = new HashMap<Container, Journey>();
-		
-		for (Journey key : journeys.keySet()) {
-			 for (Container container : journeys.get(key)) {
-				 if (container.getOwner() == clientID) {
-					 myContainers.put(container, key); 
-	             }
-             } 
-        }
-				 
-		if (criteria.equals("origin")) {
-			myContainers = filter(myContainers, journey -> journey.getOrigin().equals(entry));
-		} 
-		
-		else if (criteria.equals("destination")) {
-			myContainers = filter(myContainers, journey -> journey.getDestination().equals(entry));
-		}
-		
-		else if (criteria.equals("content-type")) {
-			for(Container key : myContainers.keySet()) {
-				if (!(key.getContentType().equals(entry))) {
-					myContainers.remove(key);
-				}
-			}
-		}
-		
-		else if (criteria.equals("company")) {
-			for(Container key : myContainers.keySet()) {
-				if (!(key.getCompany().equals(entry))) {
-					myContainers.remove(key);
-				}
-			}
-		}
-		
-		return myContainers; 
-		
-	}
-//	
-//	public ResponseObject complete(String journeyID) {
-//		
-//		ResponseObject response;
-//		JourneyDatabase companyJourneys = new JourneyDatabase();
-//		
-//		companyJourneys.setRecord(this.record.filter(this.record.getRecord(), container -> container.getCompany().contains(this.manager)));
-//		if (companyJourneys.getRecord().containsKey(journeyID)) {
-//			
-//			this.record.getRecord().remove(journeyID);
-//			response = new ResponseObject(050, "Journey has been completed and succesfully removed from the record");
-//			
-//		} else {
-//			
-//			response = new ResponseObject(700, "Journey was not found");
-//			
-//		};
-//		
-//	return response;
-//	
-//}
-	
 	public ResponseObject create(Journey journey) {
 		
 		ResponseObject response;
@@ -142,5 +71,68 @@ public class JourneyDatabase {
 		return response;
 		
 	}
+	
+	  // Generic Map filter, with predicate
+    public <K, V> Map<K, V> filter(Map<K, V> map, Predicate<V> predicate) {
+        return map.entrySet()
+                  .stream()
+                  .filter(x -> predicate.test(x.getValue()))
+                  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+	
+	public Map<Container, Journey> find(int clientID, String criteria, String entry) {
+		
+		Map<Container, Journey> myContainers = new HashMap<Container, Journey>();
+		
+		for (Journey key : journeys.keySet()) {
+			 for (Container container : journeys.get(key)) {
+				 if (container.getOwner() == clientID) {
+					 myContainers.put(container, key); 
+	             }
+             } 
+        }
+				 
+		if (criteria.equals("origin")) {
+			myContainers = filter(myContainers, journey -> journey.getOrigin().equals(entry));
+		} 
+		
+		else if (criteria.equals("destination")) {
+			myContainers = filter(myContainers, journey -> journey.getDestination().equals(entry));
+		}
+		
+		else if (criteria.equals("content-type")) {
+			myContainers.entrySet().removeIf(key -> !(key.getKey().getContentType().equals(entry)));
+		}
+		
+		else if (criteria.equals("company")) {
+			myContainers.entrySet().removeIf(key -> !(key.getKey().getCompany().equals(entry)));
+		}
+		
+		return myContainers; 
+		
+	}
+//	
+//	public ResponseObject complete(String journeyID) {
+//		
+//		ResponseObject response;
+//		JourneyDatabase companyJourneys = new JourneyDatabase();
+//		
+//		companyJourneys.setRecord(this.record.filter(this.record.getRecord(), container -> container.getCompany().contains(this.manager)));
+//		if (companyJourneys.getRecord().containsKey(journeyID)) {
+//			
+//			this.record.getRecord().remove(journeyID);
+//			response = new ResponseObject(050, "Journey has been completed and succesfully removed from the record");
+//			
+//		} else {
+//			
+//			response = new ResponseObject(700, "Journey was not found");
+//			
+//		};
+//		
+//	return response;
+//	
+//}
+	
+
 	
 }

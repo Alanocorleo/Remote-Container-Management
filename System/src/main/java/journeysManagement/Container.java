@@ -21,7 +21,6 @@ public class Container {
 		this.containerID = containerID;
 	}
 	
-	
 	public int getOwner() {
 		return owner;
 	}

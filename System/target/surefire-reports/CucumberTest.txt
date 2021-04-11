@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: CucumberTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.75 sec <<< FAILURE!
-Successful registration(Registering a container)  Time elapsed: 0.295 sec  <<< FAILURE!
-java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:87)
-	at org.junit.Assert.assertTrue(Assert.java:42)
-	at org.junit.Assert.assertTrue(Assert.java:53)
-	at StepDefinitionM2.create_a_journey_ID(StepDefinitionM2.java:62)
-	at ?.create a journey-ID "CO00001"(file:///C:/Users/Alan/Desktop/02160%20Agile%20Object-oriented%20Software%20Development/Remote-Container-Management/System/src/main/resources/Registration.feature:31)
-
+Tests run: 35, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 1.93 sec
