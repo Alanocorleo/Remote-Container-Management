@@ -9,7 +9,6 @@ public class Container {
 	private String company;
 	private boolean availability;
 	
-	
 	public Container() {
 		super();
 	}
