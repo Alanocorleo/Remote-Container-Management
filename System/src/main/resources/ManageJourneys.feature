@@ -34,13 +34,20 @@ Feature: Managing journeys information
     Then updating "Journey not found" 140
     
   @tag3
+  Scenario: Deny updating because the journey was not found 
+    Given logistic company "Maersk"
+  	And 5 containers registered to journey "CO02292" from "Copenhagen" to "Oslo" regulated by "Maersk" 
+    When updating containers current position of journey "CO00002" to "Gothenburg" 
+    Then confirm updating "Journey not found" 140
+    
+  @tag4
   Scenario: Complete a journey and remove it from the record
   	Given logistic company "Maersk"
   	And 5 containers registered to journey "CO02292" from "Copenhagen" to "Oslo" regulated by "Maersk" 
     When completing journey "CO02292"
     Then remove from journey database
     
-  @tag4
+  @tag5
   Scenario: Deny completion because the journey was not found
   	Given logistic company "Maersk"
     When completing journey "CO02292"

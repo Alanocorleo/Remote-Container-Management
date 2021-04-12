@@ -2,23 +2,36 @@ package journeysManagement;
 
 import java.security.SecureRandom;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+
 public class Journey {
 	
 	private JourneyDatabase journeyDatabase;
 	private String journeyID;
 	private String origin;
 	private String destination;
-	private int departureDate;
-	private int arrivalDate;
+	private String departureDate;
+	private String arrivalDate;
 
-	public Journey(JourneyDatabase database) {
-		this.journeyDatabase = database;
+	public Journey() {	
+		
+	}
+	
+	public Journey(String key) {
+		String[] info = key.split("[\",\\=\\{\\}\\s]+");
+		this.journeyID = info[2];
+		this.origin = info[4];
+		this.destination = info[6];
+		this.departureDate = info[8];
+		this.arrivalDate = info[10];
 	}
 	
 	public String getJourneyID() {
 		return journeyID;
 	}
-
+	@JsonProperty("journeyID")
 	public void setJourneyID(String journeyID) {
 		this.journeyID = journeyID;
 	}
@@ -26,6 +39,7 @@ public class Journey {
 	public String getOrigin() {
 		return origin;
 	}
+	@JsonProperty("origin")
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
@@ -33,23 +47,24 @@ public class Journey {
 	public String getDestination() {
 		return destination;
 	}
+	@JsonProperty("destination")
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
 
-	public int getDepartureDate() {
+	public String getDepartureDate() {
 		return departureDate;
 	}
-
-	public void setDepartureDate(int departureDate) {
+	@JsonProperty("departureDate")
+	public void setDepartureDate(String departureDate) {
 		this.departureDate = departureDate;
 	}
 
-	public int getArrivalDate() {
+	public String getArrivalDate() {
 		return arrivalDate;
 	}
-
-	public void setArrivalDate(int arrivalDate) {
+	@JsonProperty("arrivalDate")
+	public void setArrivalDate(String arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
 	
@@ -65,8 +80,9 @@ public class Journey {
 			return this.journeyID = journeyID;
 			       
 	}
-
+	
+    @JsonValue
     public String toString() {
-        return "{" + "id=" + journeyID + ", origin='" + origin + '\'' + '}';
+        return "{" + "id=" + journeyID + ", origin=" + origin + ", destination=" + destination + ", departure=" + departureDate + ", arrival=" + arrivalDate + "}";
     }
 }

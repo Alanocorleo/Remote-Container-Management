@@ -26,10 +26,11 @@ public class StepDefinitionM2 {
 
 	JourneyDatabase journeys = new JourneyDatabase();
 	ContainerDatabase containers = new ContainerDatabase();
-	
-	String location;
+
+	String journeyID;
 	String origin;
 	String destination;
+	String location;
 	String contentType;
 	String company;
 	int quantity;
@@ -57,6 +58,7 @@ public class StepDefinitionM2 {
 
 	@Given("shipping yard in {string} with {int} containers")
 	public void shipping_yard_with_containers(String position, Integer number) {
+		this.location = position;
 		for (int i = 1; i <= number; i++) {
 			containers.getContainers().add(new Container());
 			containers.getContainers().get(i - 1).setContainerID(i);
@@ -69,7 +71,6 @@ public class StepDefinitionM2 {
 	public void registering() {
 		client = new Client();
 		response = client.registerContainers(location, contentType, company, quantity, containers);
-		
 		for (Container container : client.getMyContainers()) {
 			assertEquals(container.getOwner(), this.client.getId());
 			assertEquals(container.getPosition(), this.location);
@@ -80,7 +81,7 @@ public class StepDefinitionM2 {
 	
 	@Given("journey {string} from {string} to {string}")
 	public void journey_from_to(String journeyID, String origin, String destination) {
-		journey = new Journey(journeys);
+		journey = new Journey();
 		journey.setJourneyID(journeyID);
 		journey.setOrigin(origin);
 		journey.setDestination(destination);	
@@ -102,6 +103,7 @@ public class StepDefinitionM2 {
 
 	@Given("{int} registered containers from {string}")
 	public void registered_containers_from(Integer number, String position) {
+		this.location = position;
 		for (int i = 1; i <= number; i++) {
 			containers.getContainers().add(new Container());
 			containers.getContainers().get(i - 1).setContainerID(i);
@@ -147,7 +149,7 @@ public class StepDefinitionM2 {
 	
 	@Given("{int} containers registered to journey {string} from {string} to {string} regulated by {string}")
 	public void containers_registered_to_journey_from_to_regulated_by(Integer quantity, String journeyID, String origin, String destination, String company) {
-		journey = new Journey(journeys);
+		journey = new Journey();
 		journey.setJourneyID(journeyID);
 		journey.setOrigin(origin);
 		journey.setDestination(destination);	
@@ -190,7 +192,14 @@ public class StepDefinitionM2 {
 	
 	@Given("{int} containers containing {string} registered to journey {string} by client {int} from {string} to {string} regulated by {string}")
 	public void containers_containing_registered_to_journey_by_client_from_to_regulated_by(int quantity, String contentType, String journeyID, int clientID, String origin, String destination, String company) {
-		journey = new Journey(journeys);
+		try {
+			journeys.pull();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		
+		journey = new Journey();
 		journey.setJourneyID(journeyID);
 		journey.setOrigin(origin);
 		journey.setDestination(destination);	
@@ -208,12 +217,29 @@ public class StepDefinitionM2 {
 		client = new Client();
 		client.setId(clientID);
 		client.registerContainers(origin, contentType, company, quantity, containers);
+		
 		journeys.registerTo(journeyID, origin, destination, client.getMyContainers());
+		
+		try {
+			journeys.push();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@When("finding based on criteria {string} specified as {string} for client {int}")
 	public void finding_based_on_criteria_specified_as_for_client(String criteria, String entry, int clientID) {
-		 myContainers = journeys.find(clientID, criteria, entry); 
+		try {
+			journeys.pull();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 myContainers = journeys.find(clientID, criteria, entry);
+			try {
+				journeys.produce();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 	
 	@Then("show journeys with origin {string} of client {int}")
@@ -246,6 +272,12 @@ public class StepDefinitionM2 {
 			assertEquals(key.getOwner(), clientID);
 			assertEquals(key.getCompany(), company);
        }
+	}
+	
+	@Then("show all journeys of client {int}")
+	public void show_all_journeys_of_client(Integer int1) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
 	}
 
 //	

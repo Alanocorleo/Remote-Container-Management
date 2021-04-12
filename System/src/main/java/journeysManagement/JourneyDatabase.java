@@ -1,15 +1,30 @@
 package journeysManagement;
 
 import java.util.Map;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class JourneyDatabase {
 	
+	final String database = "journey_database.json";
+	
+	@JsonProperty("journeys")
+	@JsonSerialize(keyUsing = JourneySerializer.class)
+	@JsonDeserialize(keyUsing = JourneyDeserializer.class)
 	private Map<Journey, ArrayList<Container>> journeys;
 	
+	@JsonCreator
 	public JourneyDatabase() {
 		this.journeys = new HashMap<Journey, ArrayList<Container>>();
 	}
@@ -21,7 +36,32 @@ public class JourneyDatabase {
 	public void setJourneys(Map<Journey, ArrayList<Container>> journeys) {
 		this.journeys = journeys;
 	}
-    
+	
+	public void produce() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		JourneyDatabase journeys = new JourneyDatabase();
+		String jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(journeys);
+		Files.write(Paths.get(database), jsonResult.getBytes());
+	}
+	
+
+	public void pull() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		JourneyDatabase journeys = new JourneyDatabase();
+		
+		journeys = mapper.readValue(new File(database), JourneyDatabase.class);
+		this.journeys = journeys.getJourneys();
+		
+	}
+	
+	public void push() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		JourneyDatabase journeys = new JourneyDatabase();
+		journeys.setJourneys(this.getJourneys());
+		String jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(journeys);
+		Files.write(Paths.get(database), jsonResult.getBytes());
+	}
+	
 	public ResponseObject create(Journey journey) {
 		
 		ResponseObject response;
@@ -111,6 +151,7 @@ public class JourneyDatabase {
 		return myContainers; 
 		
 	}
+	
 //	
 //	public ResponseObject complete(String journeyID) {
 //		
@@ -132,7 +173,5 @@ public class JourneyDatabase {
 //	return response;
 //	
 //}
-	
-
 	
 }
