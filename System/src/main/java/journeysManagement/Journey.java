@@ -2,6 +2,7 @@ package journeysManagement;
 
 import java.security.SecureRandom;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -18,9 +19,10 @@ public class Journey {
 	public Journey() {	
 		
 	}
-	
+	// @JsonCreator is used for deserializing
+	@JsonCreator
 	public Journey(String key) {
-		String[] info = key.split("[\",\\=\\{\\}\\s]+");
+		String[] info = key.split("[\",\\:\\{\\}\\s]+");
 		this.journeyID = info[2];
 		this.origin = info[4];
 		this.destination = info[6];
@@ -31,7 +33,8 @@ public class Journey {
 	public String getJourneyID() {
 		return journeyID;
 	}
-	@JsonProperty("journeyID")
+	// @JsonProperty() can be used to rename variables instead of overriding toString()
+	@JsonProperty("ID")
 	public void setJourneyID(String journeyID) {
 		this.journeyID = journeyID;
 	}
@@ -39,7 +42,7 @@ public class Journey {
 	public String getOrigin() {
 		return origin;
 	}
-	@JsonProperty("origin")
+	@JsonProperty("Origin")
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
@@ -47,7 +50,7 @@ public class Journey {
 	public String getDestination() {
 		return destination;
 	}
-	@JsonProperty("destination")
+	@JsonProperty("Destination")
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
@@ -55,7 +58,7 @@ public class Journey {
 	public String getDepartureDate() {
 		return departureDate;
 	}
-	@JsonProperty("departureDate")
+	@JsonProperty("Departure")
 	public void setDepartureDate(String departureDate) {
 		this.departureDate = departureDate;
 	}
@@ -63,7 +66,7 @@ public class Journey {
 	public String getArrivalDate() {
 		return arrivalDate;
 	}
-	@JsonProperty("arrivalDate")
+	@JsonProperty("Arrival")
 	public void setArrivalDate(String arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
@@ -81,8 +84,9 @@ public class Journey {
 			       
 	}
 	
+	// @JsonValue is used for serializing
     @JsonValue
     public String toString() {
-        return "{" + "id=" + journeyID + ", origin=" + origin + ", destination=" + destination + ", departure=" + departureDate + ", arrival=" + arrivalDate + "}";
+        return "{" + "ID : " + journeyID + ", Origin : " + origin + ", Destination : " + destination + ", Departure : " + departureDate + ", Arrival : " + arrivalDate + "}";
     }
 }

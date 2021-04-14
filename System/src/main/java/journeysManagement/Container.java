@@ -8,9 +8,14 @@ public class Container {
 	private String contentType;
 	private String company;
 	private boolean availability;
-	
+	private int temperature;
+	private int humidity;
+	private int pressure;
+	private HistoryBook history;
+
 	public Container() {
 		super();
+		history = new HistoryBook();
 	}
 
 	public int getContainerID() {
@@ -58,5 +63,35 @@ public class Container {
 		this.availability = availability;
 	}
 
+	public int getPressure() {
+		return this.pressure;
+	}
+	public void setPressure(int pressure) {
+		this.pressure = pressure;
+	}
 
+	public int getHumidity() {
+		return this.humidity;
+	}
+	public void setHumidity(int humidity) {
+		this.humidity = humidity;
+	}
+
+	public int getTemperature() {
+		return this.temperature;
+	}
+	public void setTemperature(int temperature) {
+		this.temperature = temperature;
+	}
+
+	public HistoryBook getHistory() {
+		return history;
+	}
+	public void setHistory(HistoryBook history) {
+		this.history = history;
+	}
+	public void appendHistory() {
+		this.history.add(temperature, humidity, pressure, position);
+	}
+	
 }
