@@ -1,9 +1,12 @@
+journeysManagement\JourneySerializer.class
 containerStatusTracking\Class.class
 journeysManagement\ContainerDatabase.class
 journeysManagement\Container.class
+journeysManagement\JourneyDeserializer.class
 journeysManagement\Company.class
 journeysManagement\ResponseObject.class
 journeysManagement\Journey.class
 journeysManagement\JourneyDatabase.class
+JsonDatabase.class
 clientsManagement\Client.class
 clientsManagement\Registery.class
