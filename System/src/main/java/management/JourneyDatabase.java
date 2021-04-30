@@ -79,16 +79,16 @@ public class JourneyDatabase extends AbstractTableModel {
 		ResponseObject response;
 		ArrayList<Container> containerList;
 		
-		if(!((journey.getOrigin() == null) || (journey.getOrigin() == null))){
+		if(!((journey.getOrigin() == null) || (journey.getDestination() == null) || (journey.getDepartureDate() == null) || (journey.getArrivalDate() == null))){
 			containerList = new ArrayList<Container>();
 			getJourneys().put(journey, containerList);
 			// Codes from 000 to 100 indicate successful operation
-			response = new ResponseObject(012, "Journey has been created");
+			response = new ResponseObject(020, "Journey has been created");
 		}
 		
 		else {
 			// Codes from 100 to 999 indicate otherwise
-			response = new ResponseObject(120, "Necessary parameters not entered");
+			response = new ResponseObject(210, "Necessary parameters are not entered");
 		}
 		
 		return response;
@@ -97,10 +97,10 @@ public class JourneyDatabase extends AbstractTableModel {
 
 	public ResponseObject registerTo(String journeyID, String origin, String destination, ArrayList<Container> containerList) {
 		
-		ResponseObject response = new ResponseObject(140, "Journey not found");
+		ResponseObject response = new ResponseObject(120, "Journey is not found");
 		
 		if (containerList.size() == 0) {
-			response = new ResponseObject(111, "Container not found"); 
+			response = new ResponseObject(110, "Container is not found"); 
 		} 
 		
 		else {
@@ -123,11 +123,11 @@ public class JourneyDatabase extends AbstractTableModel {
 	
 	public ResponseObject updatePosition(String journeyID, String position) {
 		
-		ResponseObject response = new ResponseObject(140, "Journey not found");
+		ResponseObject response = new ResponseObject(120, "Journey is not found");
 		
 		for(Journey key : journeys.keySet()) {
 			 if (key.getJourneyID().equals(journeyID)) {
-				 response = new ResponseObject(111, "Container not found");
+				 response = new ResponseObject(110, "Container is not found");
 				 for (Container container : journeys.get(key)) {
 					 container.setPosition(position);
 					 response = new ResponseObject(070, "Position has been updated");
@@ -141,14 +141,14 @@ public class JourneyDatabase extends AbstractTableModel {
 	
 	public ResponseObject setDeparture(String journeyID, String date) {
 		
-		ResponseObject response = new ResponseObject(140, "Journey not found");
+		ResponseObject response = new ResponseObject(120, "Journey is not found");
 		
 		for(Journey key : journeys.keySet()) {
 			 if (key.getJourneyID().equals(journeyID)) {
 				 key.setDepartureDate(date);
 			 }
 		}
-		response = new ResponseObject(076, "Departure date has been set");
+		response = new ResponseObject(071, "Departure date has been set");
 		
 		return response;
 	
@@ -160,15 +160,15 @@ public class JourneyDatabase extends AbstractTableModel {
 		LocalDate localDate = LocalDate.now();
 		String date = dtf.format(localDate).toString();
 		
-		ResponseObject response = new ResponseObject(140, "Journey not found");
+		ResponseObject response = new ResponseObject(120, "Journey is not found");
 		
 		for(Journey key : journeys.keySet()) {
 			 if (key.getJourneyID().equals(journeyID)) {
 				 key.setArrivalDate(date);
-				 response = new ResponseObject(111, "Container not found");
+				 response = new ResponseObject(110, "Container is not found");
 				 for (Container container : journeys.get(key)) {
-					 container.setCurrentJourney("Just completed journey: " + journeyID);
-					 response = new ResponseObject(077, "Arrival date has been set");
+					 container.setCurrentJourney("ARRIVED");
+					 response = new ResponseObject(072, "Arrival date has been set");
 				 } 
 			 }
 		}
@@ -179,14 +179,14 @@ public class JourneyDatabase extends AbstractTableModel {
 	
 	public ResponseObject complete(String journeyID) {
 			
-			ResponseObject response = new ResponseObject(700, "Journey not found");
+			ResponseObject response = new ResponseObject(120, "Journey is not found");
 			Iterator<Journey> iterator = journeys.keySet().iterator();
 		    
 		    while(iterator.hasNext()) {
 		    	Journey journey = iterator.next();
 			    if(journey.getJourneyID().equals(journeyID)) {
 			      iterator.remove();
-			      response = new ResponseObject(070, "Journey has been completed and succesfully removed");
+			      response = new ResponseObject(021, "Journey has been completed and succesfully removed");
 			    }
 		    }
 			
@@ -196,7 +196,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	
 	public ResponseObject removeContainer(Journey journey, int containerID) {
 		
-		ResponseObject response = new ResponseObject(140, "Container not found");
+		ResponseObject response = new ResponseObject(110, "Container is not found");
 		
 		Iterator<Container> iterator = journeys.get(journey).iterator();
 	    
@@ -204,7 +204,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	      Container container = iterator.next();
 	      if(container.getContainerID() == containerID){
 	        iterator.remove();
-	        response = new ResponseObject(072, "Container has been succesfully removed");
+	        response = new ResponseObject(011, "Container has been succesfully removed");
 	      }
 	    }
 		

@@ -99,7 +99,7 @@ public class ContainerDatabase extends AbstractTableModel {
 		ResponseObject response;
 		
 		if (!((location == null) || (contentType == null) || (company == null) || (quantity == 0))){
-			response = new ResponseObject(111, "Container not found");
+			response = new ResponseObject(110, "Container is not found");
 			for (Container container : extract(quantity, location)) {
 				container.setOwner(id);
 				container.setContentType(contentType);
@@ -112,7 +112,7 @@ public class ContainerDatabase extends AbstractTableModel {
 		
 		else {
 			// Codes from 100 to 999 indicate otherwise
-			response = new ResponseObject(110, "Necessary parameters not entered");
+			response = new ResponseObject(210, "Necessary parameters are not entered");
 		}
 			 
 		return response;
@@ -123,7 +123,7 @@ public class ContainerDatabase extends AbstractTableModel {
 		
 		ArrayList<Container> myContainers = new ArrayList<Container>();
 		
-		if (criteria == "id") {
+		if (criteria.equals("containerID")) {
 			for (Container container : this.containers) {
 				 if (container.getContainerID() == entry) {
 					  myContainers.add(container);
@@ -132,7 +132,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	        }
 		}
 		
-		if (criteria == "owner") {
+		if (criteria.equals("owner")) {
 			for (Container container : this.containers) {
 				 if (container.getOwner() == entry) {
 					  myContainers.add(container);
@@ -150,7 +150,7 @@ public class ContainerDatabase extends AbstractTableModel {
 		
 		ArrayList<Container> myContainers = new ArrayList<Container>();
 		
-		if (criteria == "position") {
+		if (criteria.equals("position")) {
 			for (Container container : this.containers) {
 				if (container.getPosition() != null) {
 					if (StringUtils.lowerCase(container.getPosition()).equals(entry)) {
@@ -160,7 +160,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	        }
 		}
 		
-		if (criteria == "contentType") {
+		if (criteria.equals("contentType")) {
 			for (Container container : this.containers) {
 				if (container.getContentType() != null) {
 					if (StringUtils.lowerCase(container.getContentType()).equals(entry)) {
@@ -170,7 +170,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	        }
 		}
 		
-		if (criteria == "company") {
+		if (criteria.equals("company")) {
 			for (Container container : this.containers) {
 				if (container.getCompany() != null) {
 					if (StringUtils.lowerCase(container.getCompany()).equals(entry)) {
@@ -180,7 +180,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	        }
 		}
 		
-		if (criteria == "journey") {
+		if (criteria.equals("journeyID")) {
 			for (Container container : this.containers) {
 				if (container.getCurrentJourney() != null) {
 					 if (StringUtils.lowerCase(container.getCurrentJourney()).equals(entry)) {
@@ -207,26 +207,37 @@ public class ContainerDatabase extends AbstractTableModel {
 		return myContainers;
 	}
 	
-	public int register(String Location) {
+	public ResponseObject register(String location) {
 		
-		int ID = (containers.get(containers.size()-1).getContainerID() + 1);
+		ResponseObject response = new ResponseObject(162, "Location is not valid");
 		
-		Container container = new Container();
-		container.setAvailability(true);
-		container.setCompany("");
-		container.setContainerID(ID);
-		container.setContentType("");
-		container.setOwner(0);
-		container.setPosition(Location);
+		if (location != null) {
+			int ID;
+			if (containers.size() == 0) {
+				ID = 0;
+			} else {
+				ID = (containers.get(containers.size()-1).getContainerID() + 1);
+			}
+			
+			Container container = new Container();
+			container.setAvailability(true);
+			container.setCompany("");
+			container.setContainerID(ID);
+			container.setContentType("");
+			container.setOwner(0);
+			container.setPosition(location);
+			
+			containers.add(container);
+			response = new ResponseObject(010, "Container has been registered");
+		}
 		
-		containers.add(container);
-		return ID;	
+		return response;
 		
 	}
 	
 	public ResponseObject updatePosition(String journeyID, String position) {
 		
-		ResponseObject response = new ResponseObject(111, "Container not found");;
+		ResponseObject response = new ResponseObject(110, "Container is not found");
 
 		 for (Container container : containers) {
 			 if (container.getCurrentJourney() != null) {
@@ -243,13 +254,13 @@ public class ContainerDatabase extends AbstractTableModel {
 	
 	public ResponseObject markArrived(String journeyID) {
 		
-		ResponseObject response = new ResponseObject(111, "Container not found");;
+		ResponseObject response = new ResponseObject(110, "Container is not found");;
 
 		 for (Container container : containers) {
 			 if (container.getCurrentJourney() != null) {
 				 if (container.getCurrentJourney().equals(journeyID)) {
 					 container.setCurrentJourney("Just completed journey: " + journeyID);
-					 response = new ResponseObject(075, "Journey info has been updated");
+					 response = new ResponseObject(022, "Journey info has been updated");
 				 }  
 			 }
 		}

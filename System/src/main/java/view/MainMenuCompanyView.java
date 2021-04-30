@@ -38,11 +38,11 @@ public class MainMenuCompanyView extends JFrame {
 			setPreferredSize(new Dimension(920, 630));
 			setResizable(false);
 
-//			imageLabel = new JLabel();
-//			URL url = this.getClass().getResource("/resources/cargo_blue.gif");
-//     		ImageIcon imageIcon = new ImageIcon(url);
-//            imageLabel.setIcon(imageIcon);
-//            add(imageLabel, BorderLayout.CENTER);
+			imageLabel = new JLabel();
+			URL url = this.getClass().getResource("/resources/cargo_blue.gif");
+     		ImageIcon imageIcon = new ImageIcon(url);
+            imageLabel.setIcon(imageIcon);
+            add(imageLabel, BorderLayout.CENTER);
 			
 			// buttons( can add as many as you want :) )
 			

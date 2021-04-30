@@ -13,6 +13,9 @@ public class Container {
 	private int humidity;
 	private int pressure;
 	private String date;
+	// every container contains its own history
+	private HistoryBook history;
+		
 	public String getDate() {
 		return date;
 	}
@@ -20,8 +23,6 @@ public class Container {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	// every container contains its own history
-	private HistoryBook history;
 
 	public Container() {
 		super();
