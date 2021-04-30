@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.time.Instant;
-
+// a book keeping array lists of data history
 public class HistoryBook {
 	
 	private  ArrayList<String> date;
@@ -23,7 +23,8 @@ public class HistoryBook {
 		pressure = new ArrayList<Integer>();
 		position = new ArrayList<String>();
 	}
-	
+	// this annotation fine tunes the deserialization process
+	// it specifies how to get the data from databse format
 	@JsonCreator
 	@SuppressWarnings("unchecked")
 	public HistoryBook(Object[][] history) {
@@ -33,14 +34,14 @@ public class HistoryBook {
 		pressure = (ArrayList<Integer>) history[3][0];
 		position = (ArrayList<String>) history[4][0];
 	}
-	
+	// this annotation specifies how the object is going to be serialized
 	@JsonValue
 	public Object[][] show() {
 		Object table[][] = {{date},{temperature},{humidity},{pressure},{position}};
 		return table;
 	}
 	
-	
+	// this method returns history of container
 	public Object[][] showTable() {
 		//Object table[][] = {{date},{temperature},{humidity},{pressure},{position}};
 		int size = date.size();
@@ -58,7 +59,7 @@ public class HistoryBook {
 		}
 		return table;
 }
-
+	// this method appends new data to the history
 	public void add(String date, int temperature, int humidity, int pressure, String position) {
 		this.date.add(date);
 		this.temperature.add(temperature);
