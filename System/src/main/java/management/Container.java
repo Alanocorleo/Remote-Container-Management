@@ -1,5 +1,5 @@
 package management;
-
+	// The instances of this class represent single containers.
 public class Container {
 	
 	private int containerID;
@@ -20,6 +20,7 @@ public class Container {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	// every container contains its own history
 	private HistoryBook history;
 
 	public Container() {
@@ -106,6 +107,7 @@ public class Container {
 	public void setHistory(HistoryBook history) {
 		this.history = history;
 	}
+	// this method adds the current values to the history of the container
 	public void appendHistory() {
 		this.history.add(date, temperature, humidity, pressure, position);
 	}
