@@ -823,7 +823,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.remove(5);
-		assertEquals(response.getErrorCode(), 111);
+		assertEquals(response.getErrorCode(), 110);
 	}
 	
 	@Test
@@ -831,7 +831,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.remove(1);
-		assertEquals(response.getErrorCode(), 111);
+		assertEquals(response.getErrorCode(), 110);
 	}
 	
 	@Test
@@ -846,7 +846,6 @@ public class ContainerDatabaseTest {
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		System.out.println(containerDatabase.remove(3).getErrorMessage());
 		response = containerDatabase.remove(3);
 		assertEquals(response.getErrorCode(), 074);
 	}
