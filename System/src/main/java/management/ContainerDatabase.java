@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import management.Container;
 import response.ResponseObject;
 
 public class ContainerDatabase extends AbstractTableModel {
@@ -98,8 +99,12 @@ public class ContainerDatabase extends AbstractTableModel {
 		
 		ResponseObject response;
 		
-		if (!((location == null) || (contentType == null) || (company == null) || (quantity == 0))){
-			response = new ResponseObject(110, "Container is not found");
+		if(id == 0) {
+			response = new ResponseObject(131, "Client not found");
+		}
+		
+		else if (!((location == null) || (contentType == null) || (company == null) || (quantity == 0))){
+			response = new ResponseObject(110, "Container not found");
 			for (Container container : extract(quantity, location)) {
 				container.setOwner(id);
 				container.setContentType(contentType);
@@ -123,21 +128,23 @@ public class ContainerDatabase extends AbstractTableModel {
 		
 		ArrayList<Container> myContainers = new ArrayList<Container>();
 		
-		if (criteria.equals("containerID")) {
-			for (Container container : this.containers) {
-				 if (container.getContainerID() == entry) {
-					  myContainers.add(container);
-					  break;
-	            } 
-	        }
-		}
-		
-		if (criteria.equals("owner")) {
-			for (Container container : this.containers) {
-				 if (container.getOwner() == entry) {
-					  myContainers.add(container);
-	            } 
-	        }
+		if(criteria!=null) {
+			if (criteria.equals("containerID")) {
+				for (Container container : this.containers) {
+					 if (container.getContainerID() == entry) {
+						  myContainers.add(container);
+						  break;
+		            } 
+		        }
+			}
+			
+			if (criteria.equals("owner")) {
+				for (Container container : this.containers) {
+					 if (container.getOwner() == entry) {
+						  myContainers.add(container);
+		            } 
+		        }
+			}
 		}
 		
 		return myContainers;
@@ -150,44 +157,46 @@ public class ContainerDatabase extends AbstractTableModel {
 		
 		ArrayList<Container> myContainers = new ArrayList<Container>();
 		
-		if (criteria.equals("position")) {
-			for (Container container : this.containers) {
-				if (container.getPosition() != null) {
-					if (StringUtils.lowerCase(container.getPosition()).equals(entry)) {
-						  myContainers.add(container);
-		            } 
-				}
-	        }
-		}
-		
-		if (criteria.equals("contentType")) {
-			for (Container container : this.containers) {
-				if (container.getContentType() != null) {
-					if (StringUtils.lowerCase(container.getContentType()).equals(entry)) {
-						  myContainers.add(container);
-		            } 
-				}
-	        }
-		}
-		
-		if (criteria.equals("company")) {
-			for (Container container : this.containers) {
-				if (container.getCompany() != null) {
-					if (StringUtils.lowerCase(container.getCompany()).equals(entry)) {
-						  myContainers.add(container);
-		            } 
-				}
-	        }
-		}
-		
-		if (criteria.equals("journeyID")) {
-			for (Container container : this.containers) {
-				if (container.getCurrentJourney() != null) {
-					 if (StringUtils.lowerCase(container.getCurrentJourney()).equals(entry)) {
-						  myContainers.add(container);
-		            } 
-				}
-	        }
+		if(criteria!=null) {
+			if (criteria.equals("position")) {
+				for (Container container : this.containers) {
+					if (container.getPosition() != null) {
+						if (StringUtils.lowerCase(container.getPosition()).equals(entry)) {
+							  myContainers.add(container);
+			            } 
+					}
+		        }
+			}
+			
+			if (criteria.equals("contentType")) {
+				for (Container container : this.containers) {
+					if (container.getContentType() != null) {
+						if (StringUtils.lowerCase(container.getContentType()).equals(entry)) {
+							  myContainers.add(container);
+			            } 
+					}
+		        }
+			}
+			
+			if (criteria.equals("company")) {
+				for (Container container : this.containers) {
+					if (container.getCompany() != null) {
+						if (StringUtils.lowerCase(container.getCompany()).equals(entry)) {
+							  myContainers.add(container);
+			            } 
+					}
+		        }
+			}
+			
+			if (criteria.equals("journeyID")) {
+				for (Container container : this.containers) {
+					if (container.getCurrentJourney() != null) {
+						 if (StringUtils.lowerCase(container.getCurrentJourney()).equals(entry)) {
+							  myContainers.add(container);
+			            } 
+					}
+		        }
+			}
 		}
 		
 		return myContainers;
@@ -214,7 +223,7 @@ public class ContainerDatabase extends AbstractTableModel {
 		if (location != null) {
 			int ID;
 			if (containers.size() == 0) {
-				ID = 0;
+				ID = 1;
 			} else {
 				ID = (containers.get(containers.size()-1).getContainerID() + 1);
 			}
@@ -269,17 +278,18 @@ public class ContainerDatabase extends AbstractTableModel {
 	
 	}
 	
-	public void remove(int row) {
-		int containerID = -1;
-		if (containers.size() > 0) {
-			containerID = containers.get(row).getContainerID();
-		}
-		for (Container container: containers) {
-			if (container.getContainerID() == containerID) {
-				containers.remove(container);
-				break;
+	public ResponseObject remove(int row) {
+		ResponseObject response = new ResponseObject(111, "Container not found");
+		if(row<containers.size()) {
+			int containerID = containers.get(row).getContainerID();
+			for(Container container: containers) {
+				if(container.getContainerID() == containerID) {
+					containers.remove(container);
+					response = new ResponseObject(074, "Container has been removed");
+				}
 			}
 		}
+		return response;
 	}
 	
 	@JsonIgnore

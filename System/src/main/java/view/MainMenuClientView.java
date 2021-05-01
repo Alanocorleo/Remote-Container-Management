@@ -81,7 +81,7 @@ public class MainMenuClientView extends JFrame {
 				}
 			});
 			
-			JButton btnRegister = new JButton("Register");
+			JButton btnRegister = new JButton("Register container(s) for journeys");
 			box.add(btnRegister);
 			btnRegister.addActionListener(new ActionListener() {
 				@Override
