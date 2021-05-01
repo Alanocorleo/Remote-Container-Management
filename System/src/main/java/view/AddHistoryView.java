@@ -70,8 +70,8 @@ public class AddHistoryView extends JFrame {
 			JTextField pressure = new JTextField();
 			JLabel plabel = new JLabel("Pressure");
 
-			JTextField position = new JTextField();
-			JLabel poslabel = new JLabel("Position");
+//			JTextField position = new JTextField();
+//			JLabel poslabel = new JLabel("Position");
 
 			JButton button = new JButton("Update info");
 			
@@ -90,7 +90,7 @@ public class AddHistoryView extends JFrame {
 					} else if (!idFormateChecker || !TempFormatChecker || !HumidFormatChecker || !PressFormatChecker) {
 						new IdFormatErrorGUI();
 					} else {
-					addHistorycontroller.submitChanges(date.getText(),Integer.parseInt(container.getText()),Integer.parseInt(temperature.getText()),Integer.parseInt(humidity.getText()),Integer.parseInt(pressure.getText()),position.getText());
+					addHistorycontroller.submitChanges(date.getText(),Integer.parseInt(container.getText()),Integer.parseInt(temperature.getText()),Integer.parseInt(humidity.getText()),Integer.parseInt(pressure.getText()));
 					}
 				}
 			});
@@ -107,8 +107,8 @@ public class AddHistoryView extends JFrame {
 			panel.add(humidity);
 			panel.add(plabel);
 			panel.add(pressure);
-			panel.add(poslabel);
-			panel.add(position);
+//			panel.add(poslabel);
+//			panel.add(position);
 			panel.add(button);
 			add(panel);
 			

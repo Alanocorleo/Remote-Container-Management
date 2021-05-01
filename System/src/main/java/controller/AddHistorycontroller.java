@@ -25,7 +25,7 @@ public class AddHistorycontroller {
 		this.sessionModel = session;
 	}
 
-	public void submitChanges(String date, int id, int temp, int humid, int press, String pos) {
+	public void submitChanges(String date, int id, int temp, int humid, int press) {
 
 
 
@@ -48,8 +48,8 @@ public class AddHistorycontroller {
 				containers.get(i).setPressure(press);
 
 				
-				containers.get(i).setPosition(pos);
-
+				//containers.get(i).setPosition(pos);
+				//containers.get(i).setPosition(containers.get(i).getPosition());
 
 				containers.get(i).appendHistory();
 
