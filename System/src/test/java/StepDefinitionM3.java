@@ -33,46 +33,32 @@ public class StepDefinitionM3 {
 
 	@When("^add Temperature (\\d+)$")
 	public void add_Temperature(int temp)  {
-//		if (logcom.getChosenContainer() == container.getContainerID()) {
-//			container.setTemperature(temp);
-//		} else {
-//			
-//			System.out.print("Wrong container is chosen!");
-//		}
-	    	
+		
+			container.setTemperature(temp);
 	}
 
 	@When("^add Humidity (\\d+)$")
 	public void add_Humidity(int humid)  {
 	    
-//	    if (logcom.getChosenContainer() == container.getContainerID()) {
-//	    	container.setHumidity(humid);
-//		} else {
-//			
-//			System.out.print("Wrong container is chosen!");
-//		}
+	    
+	    	container.setHumidity(humid);
+		
 	}
 
 	@When("^add Pressure (\\d+)$")
 	public void add_Pressure(int pres)  {
 	    
-//	    if (logcom.getChosenContainer() == container.getContainerID()) {
-//	    	container.setPressure(pres);
-//		} else {
-//			
-//			System.out.print("Wrong container is chosen!");
-//		}
+	    
+	    	container.setPressure(pres);
+		
 	}
 
 	@When("^add Position \"([^\\\"]*)\"$")
 	public void add_Position(String pos)  {
 	    
-//	    if (logcom.getChosenContainer() == container.getContainerID()) {
-//	    	container.setPosition(pos);
-//		} else {
-//			
-//			System.out.print("Wrong container is chosen!");
-//		}
+	    
+	    	container.setPosition(pos);
+		
 	}
 
 	@Then("^update container's values$")
@@ -96,6 +82,7 @@ public class StepDefinitionM3 {
 		
 		if (container.getOwner() == client.getId()) {
 			container.getHistory().show();
+			container.getHistory().showTable();
 		} else {
 			
 			System.out.println("this container does not belong to you");
@@ -110,9 +97,22 @@ public class StepDefinitionM3 {
 	
 	@Given("^a container with id (\\d+) and owner (\\d+)$")
 	public void a_container_with_id_and_owner(int id, int owner)  {
+		
+		
 	    container = new Container();
 	    container.setContainerID(id);
+	    
+	    container.setDate("12\12\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
+		
 	    container.setOwner(owner);
+	    
+	    container.appendHistory();
+	    
+	   
 	}
 	
 	@Given("^a client with id (\\d+)$")
