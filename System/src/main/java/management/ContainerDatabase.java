@@ -100,11 +100,11 @@ public class ContainerDatabase extends AbstractTableModel {
 		ResponseObject response;
 		
 		if(id == 0) {
-			response = new ResponseObject(131, "Client not found");
+			response = new ResponseObject(131, "Client is not found");
 		}
 		
 		else if (!((location == null) || (contentType == null) || (company == null) || (quantity == 0))){
-			response = new ResponseObject(110, "Container not found");
+			response = new ResponseObject(110, "Container is not found");
 			for (Container container : extract(quantity, location)) {
 				container.setOwner(id);
 				container.setContentType(contentType);
