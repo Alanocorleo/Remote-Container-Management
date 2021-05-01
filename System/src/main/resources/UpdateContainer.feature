@@ -28,14 +28,32 @@ Feature: Updating containers information
     Then confirm position updating "Position has been updated" 070
 
   @tag2
-  Scenario: Deny updating because the container was not found
+  Scenario: Deny position updating because the container was not found
     When updating containers current position with current journey "CO02292" to "Gothenburg"
     Then deny position updating "Container is not found" 110
     
   @tag3
-  Scenario: Deny updating because the container was not found
+  Scenario: Deny position updating because the container was not found
   	Given 8 containers registered by client 234 to journey "CO02292" positioned in "Copenhagen"
   	And 2 containers registered by client 67 to journey "AC02391" positioned in "Amsterdam"
-    When updating containers current position with current "CO02292" to "Gothenburg"
+    When updating containers current position with current journey "CO02272" to "Gothenburg"
     Then deny position updating "Container is not found" 110
     
+  @tag4
+  Scenario: Update the current journey label of a container to arrived
+  	Given 8 containers registered by client 234 to journey "CO02292" positioned in "Copenhagen"
+  	And 2 containers registered by client 67 to journey "AC02391" positioned in "Amsterdam"
+    When updating containers current journey label with current journey "CO02292"
+    Then confirm journey label updating "Journey label has been updated" 022
+    
+  @tag5
+  Scenario: Deny updating of the current journey label because the container was not found
+    When updating containers current journey label with current journey "CO02272"
+    Then deny journey label updating "Container is not found" 110
+ 
+ 	@tag6
+  Scenario: Deny updating of the current journey label because the container was not found
+  	Given 8 containers registered by client 234 to journey "CO02292" positioned in "Copenhagen"
+  	And 2 containers registered by client 67 to journey "AC02391" positioned in "Amsterdam"
+    When updating containers current journey label with current journey "CO02272"
+    Then deny journey label updating "Container is not found" 110

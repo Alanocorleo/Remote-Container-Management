@@ -125,7 +125,7 @@ public class JourneyDatabase extends AbstractTableModel {
 		
 		ResponseObject response = new ResponseObject(120, "Journey is not found");
 		
-		for(Journey key : journeys.keySet()) {
+		for (Journey key : journeys.keySet()) {
 			 if (key.getJourneyID().equals(journeyID)) {
 				 response = new ResponseObject(110, "Container is not found");
 				 for (Container container : journeys.get(key)) {
@@ -146,9 +146,10 @@ public class JourneyDatabase extends AbstractTableModel {
 		for(Journey key : journeys.keySet()) {
 			 if (key.getJourneyID().equals(journeyID)) {
 				 key.setDepartureDate(date);
+				 response = new ResponseObject(071, "Departure date has been set");
+				 break;
 			 }
 		}
-		response = new ResponseObject(071, "Departure date has been set");
 		
 		return response;
 	
@@ -184,9 +185,10 @@ public class JourneyDatabase extends AbstractTableModel {
 		    
 		    while(iterator.hasNext()) {
 		    	Journey journey = iterator.next();
-			    if(journey.getJourneyID().equals(journeyID)) {
+			    if (journey.getJourneyID().equals(journeyID)) {
 			      iterator.remove();
 			      response = new ResponseObject(021, "Journey has been completed and succesfully removed");
+			      break;
 			    }
 		    }
 			
@@ -194,31 +196,40 @@ public class JourneyDatabase extends AbstractTableModel {
 		
 	}
 	
-	public ResponseObject removeContainer(Journey journey, int containerID) {
+	public ResponseObject removeContainer(String journeyID, int containerID) {
 		
 		ResponseObject response = new ResponseObject(110, "Container is not found");
 		
-		Iterator<Container> iterator = journeys.get(journey).iterator();
+		Iterator<Journey> iteratorJ = journeys.keySet().iterator();
+		
+		while(iteratorJ.hasNext()) {
+			Journey journey = iteratorJ.next();
+			if (journey.getJourneyID().equals(journeyID)) {
+				Iterator<Container> iteratorC = journeys.get(journey).iterator();
+				while(iteratorC.hasNext()) {
+					Container container = iteratorC.next();
+				    if (container.getContainerID() == containerID) {
+				    	iteratorC.remove();
+				        response = new ResponseObject(011, "Container has been succesfully removed");
+				        break;
+				    }
+				}
+			}
+		}
 	    
-	    while(iterator.hasNext()){
-	      Container container = iterator.next();
-	      if(container.getContainerID() == containerID){
-	        iterator.remove();
-	        response = new ResponseObject(011, "Container has been succesfully removed");
-	      }
-	    }
+	    
 		
 		return response;
 	
     }
 	
-	  // Generic Map filter, with predicate
-    public <K, V> Map<K, V> filter(Map<K, V> map, Predicate<V> predicate) {
-        return map.entrySet()
-                  .stream()
-                  .filter(x -> predicate.test(x.getValue()))
-                  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
+//	  // Generic Map filter, with predicate
+//    public <K, V> Map<K, V> filter(Map<K, V> map, Predicate<V> predicate) {
+//        return map.entrySet()
+//                  .stream()
+//                  .filter(x -> predicate.test(x.getValue()))
+//                  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+//    }
 	
 	public Map<Journey, ArrayList<Container>> extract(int clientID) {
 		

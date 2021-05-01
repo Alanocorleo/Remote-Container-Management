@@ -259,8 +259,8 @@ public class ContainerDatabase extends AbstractTableModel {
 		 for (Container container : containers) {
 			 if (container.getCurrentJourney() != null) {
 				 if (container.getCurrentJourney().equals(journeyID)) {
-					 container.setCurrentJourney("Just completed journey: " + journeyID);
-					 response = new ResponseObject(022, "Journey info has been updated");
+					 container.setCurrentJourney("ARRIVED");
+					 response = new ResponseObject(022, "Journey label has been updated");
 				 }  
 			 }
 		}
@@ -270,10 +270,14 @@ public class ContainerDatabase extends AbstractTableModel {
 	}
 	
 	public void remove(int row) {
-		int containerID = containers.get(row).getContainerID();
-		for(Container container: containers) {
-			if(container.getContainerID() == containerID) {
+		int containerID = -1;
+		if (containers.size() > 0) {
+			containerID = containers.get(row).getContainerID();
+		}
+		for (Container container: containers) {
+			if (container.getContainerID() == containerID) {
 				containers.remove(container);
+				break;
 			}
 		}
 	}

@@ -19,25 +19,53 @@
 
 @tag
 Feature: Complete and remove journey from registry
-  I want to use this template for my feature file
 
   @tag1
-  Scenario: Title of your scenario
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
-
+  Scenario: Complete a journey and remove it from the registry
+  	Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "30/04/2021" and arriving "31/04/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "20/05/2021" and arriving "21/05/2021"
+    When completing journey "CO02292"
+    Then confirm completing and removing of the journey "Journey has been completed and succesfully removed" 021
+    
   @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+  Scenario: Deny completion because the journey was not found
+    When completing journey "CO02292"
+    Then deny completing "Journey is not found" 120
 
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+  @tag3
+  Scenario: Deny completion because the journey was not found
+  	Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "30/04/2021" and arriving "31/04/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "20/05/2021" and arriving "21/05/2021"
+    When completing journey "CO00002"
+    Then deny completing "Journey is not found" 120
+    
+  @tag4
+  Scenario: Remove a container from a journey
+  	Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "30/04/2021" and arriving "31/04/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "20/05/2021" and arriving "21/05/2021"
+    When removing a container with ID 2 from journey "CO02292"
+    Then confirm container removing "Container has been succesfully removed" 011
+    
+  @tag5
+  Scenario: Deny completion because the journey was not found
+    When removing a container with ID 2 from journey "CO02292"
+    Then deny container removing "Container is not found" 110
+
+  @tag6
+  Scenario: Deny completion because the journey was not found
+  	Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "30/04/2021" and arriving "31/04/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "20/05/2021" and arriving "21/05/2021"
+    When removing a container with ID 2 from journey "CO00002"
+    Then deny container removing "Container is not found" 110
+    
+  @tag7
+  Scenario: Deny completion because the journey was not found
+  	Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "30/04/2021" and arriving "31/04/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "20/05/2021" and arriving "21/05/2021"
+    When removing a container with ID 7 from journey "CO02292"
+    Then deny container removing "Container is not found" 110

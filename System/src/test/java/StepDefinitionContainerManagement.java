@@ -14,6 +14,7 @@ import response.ResponseObject;
 public class StepDefinitionContainerManagement {
 	
 	Client client;
+	Container container;
 	Journey journey;
 	ResponseObject response;
 	
@@ -222,4 +223,40 @@ public class StepDefinitionContainerManagement {
 		}
 	}
 		
+	@When("updating containers current journey label with current journey {string}")
+	public void updating_containers_current_journey_label_with_current_journey(String journeyID) {
+		response = containers.markArrived(journeyID);
+	}
+
+	@Then("confirm journey label updating {string} {int}")
+	public void confirm_journey_label_updating(String message, int code) {
+		assertEquals(response.getErrorMessage(), message);
+		assertEquals(response.getErrorCode(), code);	
+	}
+	
+	@Then("deny journey label updating {string} {int}")
+	public void deny_journey_label_updating(String message, int code) {
+		assertEquals(response.getErrorMessage(), message);
+		assertEquals(response.getErrorCode(), code);
+	}
+	
+	@Given("a container with ID {int}")
+	public void a_container_with_ID(int containerID) {
+	    container = new Container();
+	    container.setContainerID(containerID);
+	    containers.getContainers().add(container);
+	}
+
+	@When("removing container number {int}")
+	public void removing_container_number(int row) {
+		containers.remove(row);
+	}
+
+	@Then("confirm removing of a container with ID {int}")
+	public void confirm_removing_of_a_container_with_ID(Integer containerID) {
+		for (Container container : containers.getContainers()) {
+			assertTrue(container.getContainerID() != containerID);
+		}
+	}
+	
 }

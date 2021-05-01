@@ -79,7 +79,7 @@ public class DisplayJourneyContainersCompanyController {
 		public void remove(int selectedRow) {
 			if (selectedRow >= 0) {
 				int containerID = (int) registry.getValueAt(selectedRow, 0);
-				logisticCompany.getJourneyDatabase().removeContainer(key, containerID);
+				logisticCompany.getJourneyDatabase().removeContainer(key.getJourneyID(), containerID);
 				for(Container container: logisticCompany.getContainerDatabase().getContainers()) {
 					if(container.getContainerID() == containerID) {
 						container.setCurrentJourney(null);

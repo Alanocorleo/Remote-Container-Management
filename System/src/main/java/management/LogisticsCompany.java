@@ -14,7 +14,7 @@ public class LogisticsCompany {
 	private ContainerDatabase containerDatabase;
 	private JourneyDatabase journeyDatabase;
 	
-	private LogisticsCompany() {
+	public LogisticsCompany() {
 		
 		clientDatabase = new ClientDatabase();
 		containerDatabase = new ContainerDatabase();

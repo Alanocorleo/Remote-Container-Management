@@ -19,25 +19,28 @@
 
 @tag
 Feature: Remove container from registry
-  I want to use this template for my feature file
 
   @tag1
-  Scenario: Title of your scenario
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
-
+  Scenario: Successfully remove the selected container 
+    Given a container with ID 22
+    And a container with ID 77
+    And a container with ID 200
+    When removing container number 1
+    Then confirm removing of a container with ID 77
+ 
   @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+  Scenario: Successfully remove the selected container 
+    Given a container with ID 22
+    And a container with ID 77
+    And a container with ID 200
+    When removing container number 2
+    And removing container number 1
+    And removing container number 0
+    Then confirm removing of a container with ID 200
+    Then confirm removing of a container with ID 77
+    Then confirm removing of a container with ID 22
+    
+  @tag3
+  Scenario: Restrict removing when there is nothing to select
+    When removing container number 1
+    Then pass

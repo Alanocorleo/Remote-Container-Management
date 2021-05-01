@@ -27,8 +27,8 @@ Feature: Seeing the info of containers
     When requesting to see info for container 100
     Then history of container is shown
     
-    @tag2
-  Scenario: UnSuccessful seeing of info because container does not belong to the client
+  @tag2
+  Scenario: Unsuccessful seeing of info because container does not belong to the client
     Given a container with id 100 and owner 1000
     And a client with id 2000 
     When requesting to see info for container 100

@@ -36,6 +36,8 @@ public class Testing2 {
 		journey2.setJourneyID(journeyID2);
 		journey2.setOrigin(origin2);
 		journey2.setDestination(destination2);	
+		journey2.setDepartureDate("12/06/2021");
+		journey2.setArrivalDate("15/06/2021");
 		journeys.create(journey2);
 		
 		Journey journey3 = new Journey();
@@ -55,7 +57,9 @@ public class Testing2 {
 		String destination4 = "Copenhagen";
 		journey4.setJourneyID(journeyID4);
 		journey4.setOrigin(origin4);
-		journey4.setDestination(destination4);	
+		journey4.setDestination(destination4);
+		journey4.setDepartureDate("29/05/2021");
+		journey4.setArrivalDate("30/05/2021");
 		journeys.create(journey4);
 		
 		Journey journey5 = new Journey();
@@ -64,7 +68,9 @@ public class Testing2 {
 		String destination5 = "Amsterdam";
 		journey5.setJourneyID(journeyID5);
 		journey5.setOrigin(origin5);
-		journey5.setDestination(destination5);	
+		journey5.setDestination(destination5);
+		journey5.setDepartureDate("17/05/2021");
+		journey5.setArrivalDate("19/05/2021");
 		journeys.create(journey5);
 		
 		try {

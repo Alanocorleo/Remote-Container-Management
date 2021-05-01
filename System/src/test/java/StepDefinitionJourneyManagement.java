@@ -264,46 +264,49 @@ public class StepDefinitionJourneyManagement {
 		assertEquals(response.getErrorCode(), code);
 	}
 	
-//	@Then("show journeys with content-type {string} of client {int}")
-//	public void show_journeys_with_content_type_of_client(String contentType, int clientID) {
-//		for (Journey key : myJourneys.getJourneys().keySet()) {
-//			for (Container contianer : myJourneys.getJourneys().get(key)) {
-//				assertEquals(contianer.getOwner(), clientID);
-//				assertEquals(contianer.getContentType(), contentType);
-//			}
-//		}
-//	}
-//		
-//	@Then("show journeys with company {string} of client {int}")
-//	public void show_journeys_with_company_of_client(String company, int clientID) {
-//		for (Journey key : myJourneys.getJourneys().keySet()) {
-//			for (Container contianer : myJourneys.getJourneys().get(key)) {
-//				assertEquals(contianer.getOwner(), clientID);
-//				assertEquals(contianer.getCompany(), company);
-//			}
-//		}
-//	}
-	
 
-//	
-//	@When("completing journey {string}")
-//	public void completing_journey(String journeyID) {
-//		response = manager.completeJourney(journeyID);
-//	    
-//	}
-//
-//	@Then("remove from record")
-//	public void remove_from_record() {
-//		assertEquals(record.getRecord().get("CO00001"), null);
-//		assertEquals(response.getErrorMessage(), "Journey has been completed and succesfully removed from the record");
-//		assertEquals(response.getErrorCode(), 050);
-//	}
-//
-//	@Then("deny removal")
-//	public void deny_removal() {
-//		assertEquals(response.getErrorMessage(), "Journey was not found");
-//		assertEquals(response.getErrorCode(), 700);
-//	}
-//	
+	@When("updating current departure date of journey {string} to {string}")
+	public void updating_current_departure_date_of_journey_to(String journeyID, String departureDate) {
+			response = journeys.setDeparture(journeyID, departureDate);
+	}
+	
+	@When("updating current arrival date of journey {string} to todays date and setting the current journey label of containers to arrived")
+	public void updating_current_arrival_date_of_journey_to_todays_date_and_setting_the_current_journey_label_of_containers_to_arrived(String journeyID) {
+			response = journeys.markArrived(journeyID);
+	}
+	
+	@When("completing journey {string}")
+	public void completing_journey(String journeyID) {
+	    response = journeys.complete(journeyID);
+	}
+	
+	@Then("confirm completing and removing of the journey {string} {int}")
+	public void confirm_completing_and_removing_of_the_journey(String message, int code) {
+		assertEquals(response.getErrorMessage(), message);
+		assertEquals(response.getErrorCode(), code);
+	}
+
+	@Then("deny completing {string} {int}")
+	public void deny_completing(String message, int code) {
+		assertEquals(response.getErrorMessage(), message);
+		assertEquals(response.getErrorCode(), code);
+	}
+
+	@When("removing a container with ID {int} from journey {string}")
+	public void removing_a_container_with_ID_from_journey(Integer containerID, String journeyID) {
+	    response = journeys.removeContainer(journeyID, containerID);
+	}
+
+	@Then("confirm container removing {string} {int}")
+	public void confirm_container_removing(String message, int code) {
+		assertEquals(response.getErrorMessage(), message);
+		assertEquals(response.getErrorCode(), code);
+	}
+	
+	@Then("deny container removing {string} {int}")
+	public void deny_container_removing(String message, int code) {
+		assertEquals(response.getErrorMessage(), message);
+		assertEquals(response.getErrorCode(), code);
+	}	
 
 }
