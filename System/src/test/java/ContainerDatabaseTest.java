@@ -53,21 +53,6 @@ public class ContainerDatabaseTest {
 	}
 
 	@Test
-	public void testProduce() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPull() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPush() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testExtractIntString() {
 		container1.setAvailability(true);
 		container2.setAvailability(true);
@@ -863,11 +848,6 @@ public class ContainerDatabaseTest {
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		assertEquals(containerDatabase.getRowCount(),4);
-	}
-
-	@Test
-	public void testGetTableModelListeners() {
-		fail("Not yet implemented");
 	}
 
 	@Test

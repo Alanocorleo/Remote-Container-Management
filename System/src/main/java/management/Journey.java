@@ -74,6 +74,10 @@ public class Journey {
 		this.journeyDatabase = database;
 	}
 	
+	public JourneyDatabase getJourneyDatabase() {
+		return journeyDatabase;
+	}
+	
 	public String createJourneyID() {
 		
 		SecureRandom output = new SecureRandom();
@@ -92,4 +96,5 @@ public class Journey {
     public String toString() {
         return "{" + "ID : " + journeyID + ", Origin : " + origin + ", Destination : " + destination + ", Departure : " + departureDate + ", Arrival : " + arrivalDate + "}";
     }
+
 }

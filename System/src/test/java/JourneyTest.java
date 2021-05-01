@@ -84,20 +84,38 @@ public class JourneyTest {
 
 	@Test
 	public void testSetJourneyDatabase() {
-//		JourneyDatabase journeyDatabase = new JourneyDatabase();
-//		assertNull(journey.getJourneyDatabase());
-//		journey.setJourneyDatabase(journeyDatabase);
-//		assertEquals(journeyDatabase, journey.getArrivalDate());
+		JourneyDatabase journeyDatabase = new JourneyDatabase();
+		assertNull(journey.getJourneyDatabase());
+		journey.setJourneyDatabase(journeyDatabase);
+		assertNotNull(journey.getJourneyDatabase());
 	}
 
 	@Test
 	public void testCreateJourneyID() {
-		fail("Not yet implemented");
+		JourneyDatabase journeyDatabase = new JourneyDatabase();
+		journey.setJourneyDatabase(journeyDatabase);
+		journey.setOrigin("Copenhagen");
+		journey.setDestination("Oslo");
+		assertNull(journey.getJourneyID());
+		journey.createJourneyID();
+		assertNotNull(journey.getJourneyID());
 	}
-
+	
 	@Test
-	public void testToString() {
-		fail("Not yet implemented");
+	public void testCreateJourneyID2() {
+		JourneyDatabase journeys = new JourneyDatabase();
+		Journey journey1 = new Journey();
+		String journeyID1 = "CO23143";
+		journey1.setJourneyID(journeyID1);
+		journeys.create(journey1);
+		
+		Journey journey2 = new Journey();
+		journey2.setOrigin("Copenhagen");
+		journey2.setDestination("Oslo");
+		journey2.setJourneyDatabase(journeys);
+		assertNull(journey2.getJourneyID());
+		journey2.createJourneyID();
+		assertNotNull(journey2.getJourneyID());
 	}
 
 }

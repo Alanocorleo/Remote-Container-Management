@@ -281,14 +281,14 @@ public class ContainerDatabase extends AbstractTableModel {
 	public ResponseObject remove(int row) {
 		int containerID = -1;
 		ResponseObject response = new ResponseObject(110, "Container not found");
-		if (containers.size() > 0) {
+		if(row<containers.size()) {
 			containerID = containers.get(row).getContainerID();
-		}
-		for (Container container: containers) {
-			if (container.getContainerID() == containerID) {
-				containers.remove(container);
-				response = new ResponseObject(074, "Container has been removed");
-				break;
+			for (Container container: containers) {
+				if (container.getContainerID() == containerID) {
+					containers.remove(container);
+					response = new ResponseObject(074, "Container has been removed");
+					break;
+				}
 			}
 		}
 		return response;
