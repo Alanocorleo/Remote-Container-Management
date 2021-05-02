@@ -20,7 +20,7 @@ public class DisplayJourneyContainersClientController {
 		private JTextField id = new JTextField();
 		private JTextField position = new JTextField();
 		private JTextField contentType = new JTextField();
-		///////parsa
+	
 		private LogisticsCompany company;
         
 		Object [] fields = {
@@ -33,7 +33,7 @@ public class DisplayJourneyContainersClientController {
 			String journeyID = (String) client.getMyJourneys().getValueAt(selectedRow, 0);
 			String origin = (String) client.getMyJourneys().getValueAt(selectedRow, 1);
 			String destination = (String) client.getMyJourneys().getValueAt(selectedRow, 2);
-			///////parsa added this
+		
 			this.company = company;
 			
 			for (Journey key : client.getMyJourneys().getJourneys().keySet()) {
@@ -57,8 +57,6 @@ public class DisplayJourneyContainersClientController {
 			
 			if (response==0) {
 				
-				registry.setContainers(client.getMyContainers());
-				
 				if (!containerID.equals("") && containerID!=null) {
 			        registry.setContainers(registry.find("containerID", Integer.parseInt(containerID)));
 				}
@@ -73,7 +71,7 @@ public class DisplayJourneyContainersClientController {
 				
 			}
 		}
-		///////////////
+	
 		public void showHistory(int selectedRow) {
 			if (selectedRow >= 0) {
 				

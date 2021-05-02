@@ -47,7 +47,6 @@ public class DisplayJourneyContainersClientView extends JFrame {
 			}
 		});
 		
-		////////// PPPAAAAARRRRSSSAAAAA
 		JButton btnSee = new JButton("History");
 		btnSee.setEnabled(false);
 		btnSee.addActionListener(new ActionListener() {
