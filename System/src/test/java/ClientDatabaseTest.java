@@ -22,7 +22,6 @@ public class ClientDatabaseTest {
 		client = new Client();
 		company = LogisticsCompany.getInstance();
 		
-		
 	}
 
 	@Test

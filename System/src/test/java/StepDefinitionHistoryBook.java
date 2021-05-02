@@ -8,7 +8,7 @@ import management.Container;
 //import management.LogisticCompany;
 import management.LogisticsCompany;
 
-public class StepDefinitionM3 {
+public class StepDefinitionHistoryBook {
 
 	Container container;
 	LogisticsCompany logcom;
@@ -79,7 +79,7 @@ public class StepDefinitionM3 {
 			container.getHistory();
 		} else {
 			
-			System.out.println("this container does not belong to you");
+			System.out.println("This container does not belong to you");
 		}
 	}
 
@@ -96,14 +96,14 @@ public class StepDefinitionM3 {
 			container.getHistory().showTable();
 		} else {
 			
-			System.out.println("this container does not belong to you");
+			System.out.println("This container does not belong to you");
 		}
 		
 	}
 	
 	@Then("^show message: container does not exist$")
 	public void show_message_container_does_not_exist()  {
-	    System.out.println("this container does not exist!");
+	    System.out.println("This container does not exist!");
 	}
 	
 	@Given("^a container with id (\\d+) and owner (\\d+)$")
@@ -135,7 +135,7 @@ public class StepDefinitionM3 {
 			container.getHistory().show();
 		} else {
 			
-			System.out.println("this container does not belong to you");
+			System.out.println("This container does not belong to you");
 		}
 		
 	}

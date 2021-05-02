@@ -1,14 +1,5 @@
-
-//
-//	frame.add(panel, BorderLayout.CENTER);
-//	//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	frame.setTitle("Adding info GUI");
-//	frame.pack();
-//	frame.setVisible(true);
-
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,25 +7,15 @@ import java.awt.event.ActionListener;
 import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableModel;
 
 import controller.AddHistorycontroller;
-import controller.MainMenuClientController;
 import controller.Session;
-
 
 public class AddHistoryView extends JFrame {
 
@@ -47,7 +28,6 @@ public class AddHistoryView extends JFrame {
 			initGUI();
 		}
 	
-		
 		/**
 		 * this creates the GUI window that asks the company for container ID
 		 * and the new measurement values to be updated for that container

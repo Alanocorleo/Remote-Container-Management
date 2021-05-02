@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -41,11 +43,17 @@ public class MainMenuClientView extends JFrame {
 			setPreferredSize(new Dimension(920, 630));
 			setResizable(false);
 
-//			imageLabel = new JLabel();
+			try {
+			imageLabel = new JLabel();
 //			URL url = this.getClass().getResource("/resources/cargo_blue.gif");
-//     		ImageIcon imageIcon = new ImageIcon(url);
-//            imageLabel.setIcon(imageIcon);
-//            add(imageLabel, BorderLayout.CENTER);
+			URL url = Paths.get("cargo_blue.gif").toUri().toURL();
+			ImageIcon imageIcon = new ImageIcon(url);
+            imageLabel.setIcon(imageIcon);
+            add(imageLabel, BorderLayout.CENTER);
+			} 
+			catch (NullPointerException | MalformedURLException e) {
+				
+			}
 			
 			// buttons( can add as many as you want :) )
 			

@@ -1,55 +1,52 @@
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\AddHistorycontroller.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\Client.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\LogisticsCompany.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\serialization\JourneySerializer.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayContainersView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\Journey.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\response\ResponseObject.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\Session.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayJourneysCompanyController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayJourneyContainersClientController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\MainMenuCompanyController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\ApplicationController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\LoginView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayJourneysClientController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayJourneyContainersCompanyView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\SeeHistoryView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\Container.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\IdFormatErrorGUI.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\SeeHistoryController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayJourneysClientView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayRegisterView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\ClientPersonalInfoController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\LoginController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\ContainerErrorGUI.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\CompanyPersonalInfoView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayJourneysRegisterController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayJourneysCompanyView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\HistoryView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\ClientPersonalInfoView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\CompanyPersonalInfoController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayJourneyContainersCompanyController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\JourneyDatabase.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\utils\GridBagLayoutUtils.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayJourneyContainersClientView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayContainersController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayJourneysRegisterView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\ContainerDatabase.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\FriendsMainMenuView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\User.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\AddHistoryView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\serialization\JourneyDeserializer.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\MainMenuCompanyView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\Testing.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DisplayClientsView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayClientsController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\Testing2.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\DisplayRegisterController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\JsonDatabase.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\ClientDatabase.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\FriendsMainMenuController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\MainMenuClientView.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\HistoryController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\controller\MainMenuClientController.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\view\DateFormatErrorGUI.java
-C:\Users\Asus\git\Remote-Container-Management\System\src\main\java\management\HistoryBook.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\HistoryView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\ContainerDatabase.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayJourneyContainersClientView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\AddHistorycontroller.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\IdFormatErrorGUI.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\HistoryBook.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\SeeHistoryView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayJourneysClientView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayContainersView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\SeeHistoryController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\CompanyPersonalInfoController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\MainMenuCompanyController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayJourneysRegisterView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\response\ResponseObject.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayClientsView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayClientsController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\AddHistoryView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayJourneysRegisterController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\Journey.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\HistoryController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\MainMenuClientController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\Client.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\ClientDatabase.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\MainMenuCompanyView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\ApplicationController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\LogisticsCompany.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\ContainerErrorGUI.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayJourneysCompanyView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayJourneysClientController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\LoginController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\Container.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\MainMenuClientView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayJourneyContainersClientController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\LoginView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\FriendsMainMenuController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayRegisterView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\ClientPersonalInfoController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\User.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DateFormatErrorGUI.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayJourneysCompanyController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\FriendsMainMenuView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayJourneyContainersCompanyController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\serialization\JourneySerializer.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayContainersController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\DisplayRegisterController.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\controller\Session.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\serialization\JourneyDeserializer.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\ClientPersonalInfoView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\CompanyPersonalInfoView.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\management\JourneyDatabase.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\utils\GridBagLayoutUtils.java
+C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management-newBranch\System\src\main\java\view\DisplayJourneyContainersCompanyView.java

@@ -13,7 +13,7 @@ import view.MainMenuClientView;
 import view.MainMenuCompanyView;
 
 public class ApplicationController {
-	//Attributes
+	// Attributes
 	private Client client;
 	private LogisticsCompany logisticsCompany;
 	private LoginController loginController;
@@ -21,18 +21,18 @@ public class ApplicationController {
 	private MainMenuCompanyController mainMenuCompanyController;
 	private ClientDatabase clientDataBase;
 	
-	//constructor
+	// Constructor
 	public ApplicationController() {
 		logisticsCompany = LogisticsCompany.getInstance();
 		clientDataBase = logisticsCompany.getClientDatabase(); 
 	}
 	
-	//Sends to the login page 
+	// Sends to the login page 
 	public void login() {
 		loginController = new LoginController(this);
 		loginController.display();
 	}
-	//Sends to the main menu page either the company's or the client's
+	// Sends to the main menu page either the company's or the client's
 	public void mainMenu(Session session){
 		if (session.getRole().equals("Company")) {
 			mainMenuCompanyController = new MainMenuCompanyController(this.logisticsCompany, session);
@@ -54,12 +54,12 @@ public class ApplicationController {
 	}
 	
 	
-	//getter
+	// Getter
 	public ClientDatabase getclientdatabase() {
 		return this.clientDataBase;
 	}
 	
-	//main 
+	// main 
 	public static void main(String[] args) {
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

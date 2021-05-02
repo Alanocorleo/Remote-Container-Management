@@ -4,78 +4,52 @@
     "myJourneys" : {
       "journeys" : { }
     },
-    "id" : 1,
+    "id" : 100000,
     "fistName" : "Alan",
     "lastName" : "Mansour",
-    "birthDate" : "21\\04\\2021",
+    "birthDate" : "21/04/2021",
     "email" : "Alan.Mansour@mail.com",
     "password" : "0000",
-    "phoneNumber" : "12345678",
+    "phoneNumber" : "+999-999-99-998",
     "friends" : [ ]
   }, {
     "myContainers" : [ ],
     "myJourneys" : {
       "journeys" : { }
     },
-    "id" : 2,
+    "id" : 100001,
     "fistName" : "Javier",
     "lastName" : "Almendra",
-    "birthDate" : "21\\04\\2021",
+    "birthDate" : "21/04/2021",
     "email" : "Javier.Almendra@mail.com",
-    "password" : "0000",
-    "phoneNumber" : "23456789",
+    "password" : "21/04/2021",
+    "phoneNumber" : "+999-999-99-999",
     "friends" : [ ]
   }, {
     "myContainers" : [ ],
     "myJourneys" : {
       "journeys" : { }
     },
-    "id" : 3,
+    "id" : 100002,
     "fistName" : "Kristyn",
     "lastName" : "Korboe",
-    "birthDate" : "21\\04\\2021",
+    "birthDate" : "21/04/2021",
     "email" : "Kristyn.Korboe@mail.com",
-    "password" : "0000",
-    "phoneNumber" : "98765432",
+    "password" : "21/04/2021",
+    "phoneNumber" : "+999-999-99-999",
     "friends" : [ ]
   }, {
     "myContainers" : [ ],
     "myJourneys" : {
       "journeys" : { }
     },
-    "id" : 4,
-    "fistName" : "Ousama",
-    "lastName" : "Mhadden",
-    "birthDate" : "21\\04\\2021",
-    "email" : "Ousama.Mhadden@mail.com",
-    "password" : "0000",
-    "phoneNumber" : "96385274",
-    "friends" : [ ]
-  }, {
-    "myContainers" : [ ],
-    "myJourneys" : {
-      "journeys" : { }
-    },
-    "id" : 5,
-    "fistName" : "Parsa",
-    "lastName" : "Mehrizi",
-    "birthDate" : "21\\04\\2021",
-    "email" : "Parsa.Mehrizi@mail.com",
-    "password" : "0000",
-    "phoneNumber" : "74185296",
-    "friends" : [ ]
-  }, {
-    "myContainers" : [ ],
-    "myJourneys" : {
-      "journeys" : { }
-    },
-    "id" : 6,
+    "id" : 1,
     "fistName" : "Sarthak",
     "lastName" : "Trehan",
-    "birthDate" : "21\\04\\2021",
-    "email" : "Sarthak.Trehan@mail.com",
+    "birthDate" : "24-02-2021",
+    "email" : "alice@mail.com",
     "password" : "0000",
-    "phoneNumber" : "75395123",
+    "phoneNumber" : "1234567",
     "friends" : [ ]
   } ]
 }

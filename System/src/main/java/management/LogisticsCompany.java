@@ -124,7 +124,7 @@ public class LogisticsCompany {
 	}
 	
 	
-	//this is to insure the the company follows a singleton design pattern
+	//This is to insure the the company follows a singleton design pattern
 	public static LogisticsCompany getInstance() {
 		if (instance == null) {
 			instance = new LogisticsCompany();

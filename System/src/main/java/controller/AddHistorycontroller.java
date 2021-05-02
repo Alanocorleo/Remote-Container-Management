@@ -51,13 +51,11 @@ public class AddHistorycontroller {
 				containers.get(i).setDate(date);
 				
 				containers.get(i).setTemperature(temp);
-
 				
 				containers.get(i).setHumidity(humid);
 				
 				containers.get(i).setPressure(press);
 
-				
 				//containers.get(i).setPosition(pos);
 				//containers.get(i).setPosition(containers.get(i).getPosition());
 
@@ -70,7 +68,7 @@ public class AddHistorycontroller {
 					System.out.println("Pushing");
 					logisticCompany.getContainerDatabase().push();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
 

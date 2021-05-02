@@ -21,20 +21,10 @@ public class ContainerErrorGUI {
 		panel.setLayout(new GridLayout());
 		panel.add(errlabel);
 		
-		
 		frame.add(panel, BorderLayout.CENTER);
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Error");
 		frame.pack();
 		frame.setVisible(true);
-
 	}
-	
-//	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//new ErrorGUI();
-
-//	}
-	
 
 }

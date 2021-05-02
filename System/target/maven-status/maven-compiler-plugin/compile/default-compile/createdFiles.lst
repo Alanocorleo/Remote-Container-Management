@@ -25,7 +25,6 @@ view\FriendsMainMenuView$1.class
 management\LogisticsCompany.class
 view\DisplayRegisterView$2.class
 view\DisplayJourneyContainersClientView$4.class
-Testing.class
 view\HistoryView.class
 controller\DisplayContainersController.class
 view\AddHistoryView.class
@@ -52,7 +51,6 @@ view\DisplayJourneyContainersClientView$2.class
 management\ClientDatabase.class
 view\FriendsMainMenuView$2.class
 controller\FriendsMainMenuController.class
-JsonDatabase.class
 controller\CompanyPersonalInfoController.class
 view\DisplayJourneysCompanyView$7.class
 controller\DisplayJourneysCompanyController.class
@@ -102,7 +100,6 @@ management\ContainerDatabase.class
 view\MainMenuClientView$1.class
 view\DisplayRegisterView.class
 view\DisplayJourneyContainersClientView$1.class
-Testing2.class
 view\DisplayContainersView$6.class
 view\DisplayJourneysClientView$3.class
 controller\DisplayClientsController.class

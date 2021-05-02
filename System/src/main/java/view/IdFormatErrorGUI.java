@@ -22,14 +22,10 @@ public class IdFormatErrorGUI {
 		panel.setLayout(new GridLayout());
 		panel.add(errlabel);
 		
-		
 		frame.add(panel, BorderLayout.CENTER);
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Error");
 		frame.pack();
 		frame.setVisible(true);
 	}
 
-	
-	
 }

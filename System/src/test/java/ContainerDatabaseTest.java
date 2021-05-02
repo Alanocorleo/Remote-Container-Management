@@ -289,7 +289,6 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(4, "Copenhagen", "Fish", "Captain Fish", 3);
-		System.out.println(response.getErrorCode());
 		assertEquals(response.getErrorCode(), 110);
 	}
 	
