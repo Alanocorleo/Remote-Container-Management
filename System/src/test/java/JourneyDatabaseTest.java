@@ -598,7 +598,7 @@ public class JourneyDatabaseTest {
 		journeys.create(journey2);
 		
 		Object ID = journeys.getValueAt(0, 0);
-		assertEquals(ID, "AO80000");
+		assertEquals(ID, "CO89999");
 	}
 	
 	@Test
@@ -618,7 +618,7 @@ public class JourneyDatabaseTest {
 		journeys.create(journey2);
 		
 		Object origin = journeys.getValueAt(1, 1);
-		assertEquals(origin, "Copenhagen");
+		assertEquals(origin, "Accra");
 	}
 	
 	@Test
@@ -678,7 +678,7 @@ public class JourneyDatabaseTest {
 		journeys.create(journey2);
 		
 		Object arrival = journeys.getValueAt(0, 4);
-		assertEquals(arrival, "27/05/2020");
+		assertEquals(arrival, "24/05/2020");
 	}
 	
 	@Test
