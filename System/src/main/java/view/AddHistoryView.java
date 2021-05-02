@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
@@ -40,8 +42,6 @@ public class AddHistoryView extends JFrame {
 			
 			// buttons( can add as many as you want :) )
 			JPanel panel = new JPanel();
-			JTextField date = new JTextField();
-			JLabel dlabel = new JLabel("Date");
 			
 			JTextField container = new JTextField();
 			JLabel clabel = new JLabel("Container ID");
@@ -65,25 +65,23 @@ public class AddHistoryView extends JFrame {
 			button.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					boolean dateFormatChecker = Pattern.matches("([0-9]{2})\\\\([0-9]{2})\\\\([0-9]{4})", date.getText());
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+					LocalDate localDate = LocalDate.now();
+					String date = dtf.format(localDate).toString();
 					boolean idFormateChecker = container.getText().matches("-?\\d+");
 					boolean TempFormatChecker = temperature.getText().matches("-?\\d+");
 					boolean HumidFormatChecker = humidity.getText().matches("-?\\d+");
 					boolean PressFormatChecker = pressure.getText().matches("-?\\d+");
-					if (!dateFormatChecker) {
-						new DateFormatErrorGUI();
-					} else if (!idFormateChecker || !TempFormatChecker || !HumidFormatChecker || !PressFormatChecker) {
+					if (!idFormateChecker || !TempFormatChecker || !HumidFormatChecker || !PressFormatChecker) {
 						new IdFormatErrorGUI();
 					} else {
-					addHistorycontroller.submitChanges(date.getText(),Integer.parseInt(container.getText()),Integer.parseInt(temperature.getText()),Integer.parseInt(humidity.getText()),Integer.parseInt(pressure.getText()));
+					addHistorycontroller.submitChanges(date,Integer.parseInt(container.getText()),Integer.parseInt(temperature.getText()),Integer.parseInt(humidity.getText()),Integer.parseInt(pressure.getText()));
 					}
 				}
 			});
 			
 			panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 			panel.setLayout(new GridLayout(7,2));
-			panel.add(dlabel);
-			panel.add(date);
 			panel.add(clabel);
 			panel.add(container);
 			panel.add(tlabel);
@@ -92,8 +90,6 @@ public class AddHistoryView extends JFrame {
 			panel.add(humidity);
 			panel.add(plabel);
 			panel.add(pressure);
-//			panel.add(poslabel);
-//			panel.add(position);
 			panel.add(button);
 			add(panel);
 			

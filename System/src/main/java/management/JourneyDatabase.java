@@ -357,7 +357,7 @@ public class JourneyDatabase extends AbstractTableModel {
 				 key.setArrivalDate(date);
 				 response = new ResponseObject(110, "Container is not found");
 				 for (Container container : journeys.get(key)) {
-					 container.setCurrentJourney("ARRIVED");
+					 container.setCurrentJourney(journeyID + ": ARRIVED");
 					 response = new ResponseObject(072, "Arrival date has been set");
 				 } 
 			 }

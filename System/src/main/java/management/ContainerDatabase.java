@@ -238,7 +238,7 @@ public class ContainerDatabase extends AbstractTableModel {
 		
 		ArrayList<Container> myContainers = new ArrayList<Container>();
 		
-		if(criteria!=null) {
+		if(criteria != null) {
 			if (criteria.equals("position")) {
 				for (Container container : this.containers) {
 					if (container.getPosition() != null) {
@@ -271,8 +271,8 @@ public class ContainerDatabase extends AbstractTableModel {
 			
 			if (criteria.equals("journeyID")) {
 				for (Container container : this.containers) {
-					if (container.getCurrentJourney() != null) {
-						 if (StringUtils.lowerCase(container.getCurrentJourney()).equals(entry)) {
+					if (container.getCurrentJourney() != null && !container.getCurrentJourney().equals("")) {
+						 if (StringUtils.lowerCase(container.getCurrentJourney().substring(0, 7)).equals(entry)) {
 							  myContainers.add(container);
 			            } 
 					}
@@ -387,7 +387,7 @@ public class ContainerDatabase extends AbstractTableModel {
 		 for (Container container : containers) {
 			 if (container.getCurrentJourney() != null) {
 				 if (container.getCurrentJourney().equals(journeyID)) {
-					 container.setCurrentJourney("ARRIVED");
+					 container.setCurrentJourney(journeyID + ": ARRIVED");
 					 response = new ResponseObject(022, "Journey label has been updated");
 				 }  
 			 }

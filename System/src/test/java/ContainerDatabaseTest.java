@@ -565,11 +565,11 @@ public class ContainerDatabaseTest {
 	public void testFindStringString13() {
 	container3.setCurrentJourney("CO11111");
 	container4.setCurrentJourney("CO11111");
-	containers.add(container2);
 	containers.add(container3);
 	containers.add(container4);
 	containerDatabase.setContainers(containers);
 	
+	System.out.println(containerDatabase.find("journeyID", "CO11111").size());
 	assertEquals(containerDatabase.find("journeyID", "CO11111").size(), 2);
 	}
 	

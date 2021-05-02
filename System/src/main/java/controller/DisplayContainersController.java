@@ -54,7 +54,7 @@ public class DisplayContainersController {
 				registry.setContainers(logisticCompany.getContainerDatabase().getContainers());
 				
 				if (!containerID.equals("") && containerID!=null) {
-			        registry.setContainers(registry.find("id", Integer.parseInt(containerID)));
+			        registry.setContainers(registry.find("containerID", Integer.parseInt(containerID)));
 				}
 				
 				if (!owner.equals("") && owner!=null) {

@@ -116,7 +116,7 @@ public class DisplayJourneysCompanyController {
 				String date = JOptionPane.showInputDialog("Enter departure date:");
 				
 				if(date!=null) {
-					boolean dateFormatChecker = Pattern.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})", date);
+					boolean dateFormatChecker = Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|[1-9])/([0-9]{4}))$", date);
 					if(dateFormatChecker) {
 						logisticsCompany.getJourneyDatabase().setDeparture(journeyID, date);
 					}
@@ -158,27 +158,27 @@ public class DisplayJourneysCompanyController {
 				
 				if(!(origin.equals("") || origin==null || destination.equals("") || destination==null)) {
 					
-					if (!origin.equals("") && origin!=null) {
-						journey.setOrigin(origin);
-					}
+					journey.setOrigin(origin);
+					journey.setDestination(destination);
 					
-					if (!destination.equals("") && destination!=null) {
-						 journey.setDestination(destination);
-					}
-					
-					if (!departureDate.equals("") && departureDate!=null) {
+					if (!departureDate.equals("") && departureDate!=null && Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|[1-9])/([0-9]{4}))$", departureDate)) {
 						journey.setDepartureDate(departureDate);
+						
+						if (!arrivalDate.equals("") && arrivalDate!=null && Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|[1-9])/([0-9]{4}))$", arrivalDate)) {
+							journey.setArrivalDate(arrivalDate);
+							journey.setJourneyID(journey.createJourneyID());
+							logisticsCompany.getJourneyDatabase().create(journey);
+						}
+						else {
+							view.showError3();
+						}
+				
+					} 
+					else {
+						view.showError3();
 					}
-					
-					if (!arrivalDate.equals("") && arrivalDate!=null) {
-						journey.setArrivalDate(arrivalDate);
-					}
-					
-					journey.setJourneyID(journey.createJourneyID());
-					logisticsCompany.getJourneyDatabase().create(journey);
 					
 				}
-				
 				else {
 					view.showError();
 				}
@@ -193,7 +193,7 @@ public class DisplayJourneysCompanyController {
 			if (selectedRow >= 0) {
 				String journeyID = (String) registry.getValueAt(selectedRow, 0);
 				logisticsCompany.getJourneyDatabase().complete(journeyID);
-				for(Container container : logisticsCompany.getContainerDatabase().find("journey", journeyID)) {
+				for (Container container : logisticsCompany.getContainerDatabase().find("journeyID", journeyID)) {
 					container.setAvailability(true);
 					container.setOwner(0);
 					container.setCurrentJourney("");

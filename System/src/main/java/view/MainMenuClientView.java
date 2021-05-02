@@ -71,7 +71,7 @@ public class MainMenuClientView extends JFrame {
 			btnFriend.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-				MainMenucontroller.Friend();
+				MainMenucontroller.friend();
 				}
 			});
 			

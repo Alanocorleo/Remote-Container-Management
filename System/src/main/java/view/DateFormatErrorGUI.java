@@ -16,11 +16,10 @@ public class DateFormatErrorGUI {
 	public DateFormatErrorGUI() {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
-		JLabel errlabel = new JLabel("The format for date is incorrect! use this format: XX\\XX\\XXXX");
+		JLabel errlabel = new JLabel("The format for date is incorrect! Use this format: DD/MM/YYYY");
 		panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
 		panel.setLayout(new GridLayout());
 		panel.add(errlabel);
-		
 		
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setTitle("Error");

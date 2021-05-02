@@ -48,7 +48,7 @@ public class MainMenuClientController {
 			displayRegisterController.display();
 		}
 		//Sends to Friends main menu page 
-		public void Friend() {
+		public void friend() {
 			FriendsMainMenuController friendsMainMenuController = new FriendsMainMenuController(this.client, this.logisticsCompany,this.sessionModel);
 
 			FriendsMainMenuView clientView = new FriendsMainMenuView(friendsMainMenuController);

@@ -58,7 +58,7 @@ public class DisplayJourneyContainersCompanyController {
 				registry.setContainers(logisticCompany.getJourneyDatabase().getJourneys().get(key));
 				
 				if (!containerID.equals("") && containerID!=null) {
-					registry.setContainers(registry.find("id", Integer.parseInt(containerID)));
+					registry.setContainers(registry.find("containerID", Integer.parseInt(containerID)));
 				}
 				
 				if (!owner.equals("") && owner!=null) {
@@ -80,10 +80,9 @@ public class DisplayJourneyContainersCompanyController {
 			if (selectedRow >= 0) {
 				int containerID = (int) registry.getValueAt(selectedRow, 0);
 				logisticCompany.getJourneyDatabase().removeContainer(key.getJourneyID(), containerID);
-				for(Container container: logisticCompany.getContainerDatabase().getContainers()) {
-					if(container.getContainerID() == containerID) {
-						container.setCurrentJourney(null);
-//						container.setAvailability(true);
+				for (Container container: logisticCompany.getContainerDatabase().getContainers()) {
+					if (container.getContainerID() == containerID) {
+						container.setCurrentJourney("");
 					}
 				}
 				registry.setContainers(logisticCompany.getJourneyDatabase().getJourneys().get(key));

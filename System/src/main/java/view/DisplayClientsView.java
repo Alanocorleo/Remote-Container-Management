@@ -33,7 +33,7 @@ public class DisplayClientsView extends JFrame {
 	}
 	
 	private void initGUI() {
-		setTitle("Containers");
+		setTitle("Clients");
 		setPreferredSize(new Dimension(800, 600));
 		
 		// buttons

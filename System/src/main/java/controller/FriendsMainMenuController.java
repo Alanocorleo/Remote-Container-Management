@@ -35,6 +35,7 @@ public class FriendsMainMenuController {
 			//we figure out the friend from the selectedRow
 			String email = (String) (registery.getValueAt(selectedRow, 4));
 			Client theFriend = registery.getClient(email).get(0);
+			theFriend.getMyJourneys().setJourneys(this.logisticCompany.getJourneyDatabase().extract(theFriend.getId()));
 			DisplayJourneysClientController displayJourneysController = new DisplayJourneysClientController(theFriend, this.sessionModel, this.logisticCompany);
 			DisplayJourneysClientView invView = new DisplayJourneysClientView(displayJourneysController);
 			displayJourneysController.setView(invView);

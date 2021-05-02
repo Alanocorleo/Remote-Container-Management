@@ -9,7 +9,6 @@ import management.Container;
 import management.ContainerDatabase;
 import management.Journey;
 import management.JourneyDatabase;
-import management.LogisticsCompany;
 import response.ResponseObject;
 
 public class StepDefinitionJourneyManagement {

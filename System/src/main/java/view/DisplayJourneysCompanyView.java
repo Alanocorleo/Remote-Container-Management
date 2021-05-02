@@ -166,7 +166,7 @@ public class DisplayJourneysCompanyView extends JFrame {
 	}
 
 	public void showError() {
-		JOptionPane.showMessageDialog(this, "Origin and Destination required to create new journey", "Neccessary parameters not entered", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(this, "Both origin and destination are required to create a new journey.", "Neccessary parameters are not entered.", JOptionPane.ERROR_MESSAGE);
 	}
 
 	public void showError2() {
@@ -174,7 +174,7 @@ public class DisplayJourneysCompanyView extends JFrame {
 	}
 	
 	public void showError3() {
-		JOptionPane.showMessageDialog(this, "Date should be of the format dd/mm/yyyy", "Incorrect date format", JOptionPane.ERROR_MESSAGE);		
+		JOptionPane.showMessageDialog(this, "Date should be of the format DD/MM/YYYY", "Incorrect date format", JOptionPane.ERROR_MESSAGE);		
 	}
 	
 }
