@@ -42,6 +42,7 @@ public class HistoryBook {
 	}
 	
 	// this method returns history of container
+	// it also creates a matrix with each column containing data regarding a certain variable
 	public Object[][] showTable() {
 		//Object table[][] = {{date},{temperature},{humidity},{pressure},{position}};
 		int size = date.size();

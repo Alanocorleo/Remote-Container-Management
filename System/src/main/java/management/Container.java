@@ -190,12 +190,6 @@ public class Container {
 		return history;
 	}
 	/**
-	 * This method sets the history of the container.
-	 */
-	public void setHistory(HistoryBook history) {
-		this.history = history;
-	}
-	/**
 	 * This method adds the current values to the history of the container.
 	 * @return history
 	 */

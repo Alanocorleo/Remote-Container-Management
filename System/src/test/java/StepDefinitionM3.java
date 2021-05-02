@@ -28,7 +28,13 @@ public class StepDefinitionM3 {
 
 	@When("^logisitc company chooses the container with journey id (\\d+)$")
 	public void logisitc_company_chooses_the_container_with_journey_id(int id)  {
-	    //logcom.Chosen(id);
+	    	for (int i = 0; i < logcom.getContainerDatabase().getContainers().size(); i++) {
+	    		
+	    		if (logcom.getContainerDatabase().getContainers().get(i).getContainerID() == id) {
+	    			
+	    			container = logcom.getContainerDatabase().getContainers().get(i);
+	    		}
+	    	}
 		}
 
 	@When("^add Temperature (\\d+)$")
@@ -79,6 +85,11 @@ public class StepDefinitionM3 {
 
 	@Then("^history of container is shown$")
 	public void history_of_container_is_shown()  {
+		container.setDate("12\\12\\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
 		
 		if (container.getOwner() == client.getId()) {
 			container.getHistory().show();
@@ -102,11 +113,7 @@ public class StepDefinitionM3 {
 	    container = new Container();
 	    container.setContainerID(id);
 	    
-	    container.setDate("12\12\1212");
-		container.setHumidity(1);
-		container.setTemperature(1);
-		container.setPressure(1);
-		container.setPosition("Oslo");
+	    
 		
 	    container.setOwner(owner);
 	    
