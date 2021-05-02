@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 
 public class ContainerErrorGUI {
 	
+	/**
+	 * this creates the pop up error when the container is not found
+	 */
 	public ContainerErrorGUI() {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();

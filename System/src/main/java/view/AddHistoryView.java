@@ -48,6 +48,11 @@ public class AddHistoryView extends JFrame {
 		}
 	
 		
+		/**
+		 * this creates the GUI window that asks the company for container ID
+		 * and the new measurement values to be updated for that container
+		 * 
+		 */
 		private void initGUI() {
 			//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setTitle("Updating container information");

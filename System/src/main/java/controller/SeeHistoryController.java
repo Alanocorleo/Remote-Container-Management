@@ -35,6 +35,11 @@ public class SeeHistoryController {
 	
 	
 	
+	/**
+	 * @param id
+	 * this method finds the specified container and opens a new window containing data history
+	 * if container is not found, it opens an error pop up
+	 */
 	public void showHistory(int id) {
 		
 		ArrayList<Container> containers = new ArrayList<Container>();

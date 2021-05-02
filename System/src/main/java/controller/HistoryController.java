@@ -31,6 +31,11 @@ public class HistoryController {
 	}
 	
 	
+	/**
+	 * this method returns a matrix of data history
+	 * each column refers to a measurement
+	 * @return matrix of container data history
+	 */
 	public Object[][] history() {
 		
 		ArrayList<Container> containers = new ArrayList<Container>();

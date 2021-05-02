@@ -26,6 +26,11 @@ public class HistoryView extends JFrame {
 
 
 
+	/**
+	 * this is the GUI window that shows the table of container history
+	 * uses the matrix that its controller generates
+	 * 
+	 */
 	private void initGUI() {
 		
 		
@@ -37,10 +42,10 @@ public class HistoryView extends JFrame {
         
         
         if (data == null) {
-        	System.out.print("sdgiuoanbh");
+        	//System.out.print("sdgiuoanbh");
         	new IdFormatErrorGUI();
         } else {
-        	System.out.print("WOOOORKS");
+        	//System.out.print("WOOOORKS");
         	//create table with data
             JTable table = new JTable(data, columns);
              
