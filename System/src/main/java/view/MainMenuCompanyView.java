@@ -38,20 +38,20 @@ public class MainMenuCompanyView extends JFrame {
 			setPreferredSize(new Dimension(920, 630));
 			setResizable(false);
 
-			imageLabel = new JLabel();
-			URL url = this.getClass().getResource("/resources/cargo_blue.gif");
-     		ImageIcon imageIcon = new ImageIcon(url);
-            imageLabel.setIcon(imageIcon);
-            add(imageLabel, BorderLayout.CENTER);
+//			imageLabel = new JLabel();
+//			URL url = this.getClass().getResource("/resources/cargo_blue.gif");
+//     		ImageIcon imageIcon = new ImageIcon(url);
+//            imageLabel.setIcon(imageIcon);
+//            add(imageLabel, BorderLayout.CENTER);
 			
-			// buttons( can add as many as you want :) )
+			// buttons
 			
 			JButton btnClient = new JButton("Clients");
 			box.add(btnClient);
 			btnClient.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					MainMenucontroller.displayClients(); //implement displayClients()
+					MainMenucontroller.displayClients(); 
 				}
 			});
 			
@@ -70,7 +70,7 @@ public class MainMenuCompanyView extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					MainMenucontroller.displayJourneys();
-				}//implement displayJourneys()
+				}
 			});
 			JButton btnContainerUpdate = new JButton("Update container Status");
 			box.add(btnContainerUpdate);

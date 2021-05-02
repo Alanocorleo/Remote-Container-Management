@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ClientDatabase extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 1003884717778953988L;
-
+ 
 	final String database = "client_database.json";
 	
 	@JsonProperty("clients")
@@ -27,6 +27,7 @@ public class ClientDatabase extends AbstractTableModel {
 		setClients(new ArrayList <Client>());
 	}
 	
+	//getters and setters
 	public ArrayList <Client> getClients() {
 		return clients;
 	}
@@ -35,13 +36,14 @@ public class ClientDatabase extends AbstractTableModel {
 		this.clients = clients;
 	}
 	
+	//This method is used to produce a new database it is also used to remove an existing database and create a new fresh empty database
 	public void produce() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		this.clients = new ArrayList <Client>();
 		String jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		Files.write(Paths.get(database), jsonResult.getBytes());
 	}
-
+	//This method is used to fetch the information from the json file to the class
 	public void pull() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		ClientDatabase clients = new ClientDatabase();
@@ -50,25 +52,29 @@ public class ClientDatabase extends AbstractTableModel {
 		this.clients = clients.getClients();
 		
 	}
-	
+	//This method is used to save the changes in this class to the json file
 	public void push() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
 		Files.write(Paths.get(database), jsonResult.getBytes());
 	}
 	
+	
+	//This method checks if registered client has the same phone number of email as the to be updated one. This is to insure that emails and phonenumbers are unique
 	public boolean allowedUpdate(int id, String emailOrPhoneNumber) {
 		for (Client perticularClient : clients) {
-			if (perticularClient.getEmail() == emailOrPhoneNumber & perticularClient.getId() != id){
+			if (perticularClient.getEmail().equals(emailOrPhoneNumber) & perticularClient.getId() != id){
 				return false;
 				
-			}else if(perticularClient.getPhoneNumber() == emailOrPhoneNumber) {
+			}else if(perticularClient.getPhoneNumber().equals(emailOrPhoneNumber) ){
 				return false;
 			}
 			}
 		return true;
 		}
 	
+	
+	//password getter
 	public String getPassword(String email) {
 		for (Client perticularClient : clients) {
 			
@@ -76,52 +82,39 @@ public class ClientDatabase extends AbstractTableModel {
 				return perticularClient.getPassword();
 			}
 		}
-		return ("youarenotsupposedtoknowthispassword");
+		return null;
 	}
 	
-	public Client getClientbyEmail(String email) {
-		for (Client perticularClient : clients) {
-			
-			if (perticularClient.getEmail().equals(email)) {
-				return perticularClient;
-			}
-		}
-		return (null);
-	}
-	
+	//This method is used by the logistics company to make sure the registed clients all have a unique Email
+
 	public boolean legalEmailToAddClient(Client c) {
 		int counter = 0;
 		for (Client perticularClient : clients) {
-			if (perticularClient.getEmail() == c.getEmail()) {
+			if (perticularClient.getEmail().equals(c.getEmail())) {
 				counter ++;
 			}
 		}
 		return (counter == 0  );
 	}
-	
-	//IMPORTANT
+	//This method is used by the logistics company to make sure the registed clients all have a unique phone nunmber
+
 	public boolean legalPhoneNumberToAddClient(Client c) {
 		int counter = 0;
 	
 		for (Client perticularClient : clients) {
-			if (perticularClient.getPhoneNumber()== c.getPhoneNumber() ) {
+			if (perticularClient.getPhoneNumber().equals(c.getPhoneNumber())) {
 				counter ++;
 			}
 		}
 		return (counter == 0 );
 	}
 
- //methods used for tests
+	//The following methods are used for the BDD tests
 
 	public boolean ClientExists(Client c) {
 		return  (checkInstancesofClientinRegistery(c) != 0);
 	}
 	
-	public void print() {
-		for (Client i : clients) {
-			System.out.println(i);
-		}
-	}
 	public boolean checkID(Client c) {
 		int uniqueId = c.getId(); 
 		int counter = 0;
@@ -154,6 +147,10 @@ public class ClientDatabase extends AbstractTableModel {
 		
 	}
 	
+	
+	// The getClient method is overloaded so it is capable of returning a Client array list of all clients who match the searching input
+	
+	//For getting clients by Id the output would either be empty or contains one element due to the uniqueness of id 
 	public ArrayList <Client> getClient(int Id) {
 		ArrayList <Client> listOfClientMatchingId = new ArrayList <Client>();
 		for (Client Client : this.getClients()) {
@@ -164,16 +161,8 @@ public class ClientDatabase extends AbstractTableModel {
 		return listOfClientMatchingId;
 	}
 	
-	public ArrayList <Client> getClient(String firstName, String lastName) {
-		ArrayList <Client> listOfClientMatchingName = new ArrayList <Client>();
-		for (Client Client : this.getClients()) {
-			if (Client.getfirstName().equals(firstName) & Client.getlastName().equals(lastName)) {
-				listOfClientMatchingName.add(Client);
-			}
-		}
-		return listOfClientMatchingName;
-	}
-	
+	//For getting clients by email the output would either be empty or contains one element due to the uniqueness of email
+
 	public ArrayList <Client> getClient(String email) {
 		ArrayList <Client> listOfClientMatchingName = new ArrayList <Client>();
 		for (Client Client : this.getClients()) {
@@ -183,18 +172,30 @@ public class ClientDatabase extends AbstractTableModel {
 		}
 		return listOfClientMatchingName;
 	}
-	
-	@JsonIgnore
-	public int getColumnCount() {
-		return 6;
+	//For getting clients by first and last name the output can be an ArrayList of more than one client in case multiple clients have the same name
+
+	public ArrayList <Client> getClient(String firstName,String lastName) {
+		ArrayList <Client> listOfClientMatchingName = new ArrayList <Client>();
+		for (Client Client : this.getClients()) {
+			if (Client.getfirstName().equals(firstName) &  (Client.getlastName().equals(lastName))) {
+				listOfClientMatchingName.add(Client);
+			}
+		}
+		return listOfClientMatchingName;
 	}
 	
+	
+	//The following methods are used for defining the Jtable 
 	@JsonIgnore
 	@Override
 	public int getRowCount() {
 		return clients.size();
 	}
 
+	@JsonIgnore
+	public int getColumnCount() {
+		return 6;
+	}
 	@JsonIgnore
 	@Override
 	public TableModelListener[] getTableModelListeners() {
@@ -257,5 +258,6 @@ public class ClientDatabase extends AbstractTableModel {
 	}
 	
 }
+
 
 	

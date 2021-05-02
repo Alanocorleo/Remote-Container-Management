@@ -13,14 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+
 import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableModel;
 
 import controller.MainMenuClientController;
 import controller.Session;
@@ -46,11 +41,11 @@ public class MainMenuClientView extends JFrame {
 			setPreferredSize(new Dimension(920, 630));
 			setResizable(false);
 
-			imageLabel = new JLabel();
-			URL url = this.getClass().getResource("/resources/cargo_blue.gif");
-     		ImageIcon imageIcon = new ImageIcon(url);
-            imageLabel.setIcon(imageIcon);
-            add(imageLabel, BorderLayout.CENTER);
+//			imageLabel = new JLabel();
+//			URL url = this.getClass().getResource("/resources/cargo_blue.gif");
+//     		ImageIcon imageIcon = new ImageIcon(url);
+//            imageLabel.setIcon(imageIcon);
+//            add(imageLabel, BorderLayout.CENTER);
 			
 			// buttons( can add as many as you want :) )
 			

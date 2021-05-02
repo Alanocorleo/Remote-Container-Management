@@ -18,14 +18,14 @@
 #Sample Feature Definition Template
 @tag
 Feature: Register clients
-		I want to use this template for my feature file
+		Company adds clients
 
   @tag1
   Scenario: A client is registering in the system with date of birth, full name and email, phone number
     Given a new client with name "Alice Allison" 
-    And born 01012000  
+    And born "01012000"  
     And with email "AliceAllison@gmail.com" 
-    And with phone number 12345678
+    And with phone number "12345678"
     When the company registers the client
     Then the client is registered in the system successfully
     And the client is assigned a unique company ID 1
@@ -46,9 +46,6 @@ Feature: Register clients
 	
  Scenario: Client tries to register without name
 	  Given a client without a name
-    And born 01012000  
-    And with email "AliceAllison@gmail.com" 
-    And with phone number 12345678
 	  When they try to regsiter without a name
 		Then then the client is not registered in the system
 		

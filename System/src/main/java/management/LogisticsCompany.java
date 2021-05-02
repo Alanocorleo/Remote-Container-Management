@@ -6,7 +6,10 @@ import response.ResponseObject;
 
 public class LogisticsCompany {
 	
+	
+	//This is to insure the company follows the singleton design pattern
 	private static LogisticsCompany instance;
+	//Company's attributes
 	private String name;
 	private int count ;
 
@@ -14,6 +17,7 @@ public class LogisticsCompany {
 	private ContainerDatabase containerDatabase;
 	private JourneyDatabase journeyDatabase;
 	
+	//Constructor that pulls the latest changes from the json files.
 	public LogisticsCompany() {
 		
 		clientDatabase = new ClientDatabase();
@@ -31,7 +35,11 @@ public class LogisticsCompany {
 		count = clientDatabase.getClients().size() + 1 ;
 		
 	}
-	
+	//This insures the uniqueness of client id
+		public void countIncrement() {
+			this.count++;
+		}
+	//Getters and setter
 	public String getName() {
 		return name;	
 	}
@@ -39,13 +47,11 @@ public class LogisticsCompany {
 		this.name = name;
 	}
 	
-	public void countIncrement() {
-		this.count++;
-	}
 	public int getCount() {
 	return this.count;
 	}
-
+	
+	
 	public ClientDatabase getClientDatabase() {
 		return clientDatabase;
 	}
@@ -67,6 +73,8 @@ public class LogisticsCompany {
 		this.journeyDatabase = journeyDatabase;
 	}
 	
+	
+	//This method produces a fresh client Database.
 	public void cleanDataBase() {
 		
 		try {
@@ -77,7 +85,8 @@ public class LogisticsCompany {
 		this.count = 1;
 		
 	}
-	
+	//This method is used by the company to create a client and add it to their database 
+	//It returns a response Object corresponding to whether the creation is legal or not and gives the appropriate error codes and response for each of the cases.
 	public ResponseObject CreateNewClient(Client client) throws Exception {
 		
 		ResponseObject response;
@@ -114,36 +123,8 @@ public class LogisticsCompany {
 		
 	}
 	
-	public ArrayList <Client> getClient(int Id) {
-		ArrayList <Client> listOfClientMatchingId = new ArrayList <Client>();
-		for (Client Client : clientDatabase.getClients()) {
-			if (Client.getId() == Id) {
-				listOfClientMatchingId.add(Client);
-			}
-		}
-		return listOfClientMatchingId;
-	}
 	
-	public ArrayList <Client> getClient(String firstName, String lastName) {
-		ArrayList <Client> listOfClientMatchingName = new ArrayList <Client>();
-		for (Client Client : clientDatabase.getClients()) {
-			if (Client.getfirstName().equals(firstName) & Client.getlastName().equals(lastName)) {
-				listOfClientMatchingName.add(Client);
-			}
-		}
-		return listOfClientMatchingName;
-	}
-	
-	public ArrayList <Client> getClient(String email) {
-		ArrayList <Client> listOfClientMatchingName = new ArrayList <Client>();
-		for (Client Client : clientDatabase.getClients()) {
-			if (Client.getEmail().equals(email) ) {
-				listOfClientMatchingName.add(Client);
-			}
-		}
-		return listOfClientMatchingName;
-	}
-
+	//this is to insure the the company follows a singleton design pattern
 	public static LogisticsCompany getInstance() {
 		if (instance == null) {
 			instance = new LogisticsCompany();

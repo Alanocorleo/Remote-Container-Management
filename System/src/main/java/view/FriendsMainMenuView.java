@@ -20,7 +20,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 
 import controller.Session;
-import controller.DisplayClientsController;
 import controller.FriendsMainMenuController;
 
 public class FriendsMainMenuView extends JFrame {
@@ -93,6 +92,6 @@ public class FriendsMainMenuView extends JFrame {
 	}
 
 	public void showError(String errorMessage) {
-		JOptionPane.showMessageDialog(this, errorMessage, "Login error", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(this, errorMessage, "Adding Friend", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

@@ -1,20 +1,19 @@
 package controller;
-import management.User;
+import controller.User;
 
 public final class Session {
-
+	//Attributes
 	private User user;
 	private String role;
-	
+	//Constructor
 	public Session() {
 	}
-
+	//setters and getters
 	public void setUser(User user) {
 		this.user = user;
 	}
 	
 	public void setRole(User user) {
-		System.out.println(user.getUsername().equals("company"));
 		if (user.getUsername().equals("company")) {
 			this.role = "Company";
 		} else {

@@ -4,11 +4,13 @@ import management.Container;
 import management.ContainerDatabase;
 import management.Journey;
 import management.JourneyDatabase;
+import management.LogisticsCompany;
 
 public class Testing2 {
 	
 	public static void main(String[] args) {
-		
+		LogisticsCompany comp = LogisticsCompany.getInstance();
+		comp.cleanDataBase();
 		JourneyDatabase journeys = new JourneyDatabase();
 		
 		try {
@@ -129,39 +131,38 @@ public class Testing2 {
 			e.printStackTrace();
 		}
 		
-		ClientDatabase clients = new ClientDatabase();
+		ClientDatabase clients = comp.getClientDatabase();
+
 		
-		try {
-			clients.produce();
-			clients.pull();
-		} catch (Exception e) {
-			e.printStackTrace();
+    	Client client1 = new Client("Alan", "Mansour", "21\\04\\2021", "Alan.Mansour@mail.com", "12345678", "0000");
+
+		Client client2 = new Client("Javier" ,"Almendra", "21\\04\\2021", "Javier.Almendra@mail.com", "23456789", "0000");
+		
+		Client client3 = new Client("Kristyn" ,"Korboe", "21\\04\\2021", "Kristyn.Korboe@mail.com", "98765432", "0000");
+		
+		Client client4 = new Client("Ousama","Mhadden", "21\\04\\2021", "Ousama.Mhadden@mail.com", "96385274", "0000");
+		
+		Client client5 = new Client("Parsa","Mehrizi", "21\\04\\2021", "Parsa.Mehrizi@mail.com", "74185296", "0000");
+		
+		Client client6 = new Client("Sarthak","Trehan", "21\\04\\2021", "Sarthak.Trehan@mail.com", "75395123", "0000");
+		
+    	try {
+			comp.CreateNewClient(client1);
+			comp.CreateNewClient(client2);
+
+			comp.CreateNewClient(client3);
+
+			
+			comp.CreateNewClient(client4);
+			comp.CreateNewClient(client5);
+			comp.CreateNewClient(client6);
+
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		
-    	Client client1 = new Client("Alan", "Mansour", "21/04/2021", "Alan.Mansour@mail.com", "+999-999-99-999");
-    	client1.setId(100000);
-    	client1.setPassword("0000");
-    	clients.getClients().add(client1);
-		Client client2 = new Client("Javier" ,"Almendra", "21/04/2021", "Javier.Almendra@mail.com", "+999-999-99-999");
-		client2.setId(100001);
-		client2.setPassword("0000");
-		clients.getClients().add(client2);
-		Client client3 = new Client("Kristyn" ,"Korboe", "21/04/2021", "Kristyn.Korboe@mail.com", "+999-999-99-999");
-		client3.setId(100002);
-		client3.setPassword("0000");
-		clients.getClients().add(client3);
-		Client client4 = new Client("Ousama","Mhadden", "21/04/2021", "Ousama.Mhadden@mail.com", "+999-999-99-999");
-		client4.setId(100003);
-		client4.setPassword("0000");
-		clients.getClients().add(client4);
-		Client client5 = new Client("Parsa","Mehrizi", "21/04/2021", "Parsa.Mehrizi@mail.com", "+999-999-99-999");
-		client5.setId(100004);
-		client5.setPassword("0000");
-		clients.getClients().add(client5);
-		Client client6 = new Client("Sarthak","Trehan", "21/04/2021", "Sarthak.Trehan@mail.com", "+999-999-99-999");
-		client6.setId(100005);
-		client6.setPassword("0000");
-		clients.getClients().add(client6);
+    	
 		
 		containers.book(client1.getId(), "Copenhagen", "Fish", "Captain Fish", 2);
 		containers.book(client2.getId(), "Amsterdam", "Flowers", "Captain Flower", 7);

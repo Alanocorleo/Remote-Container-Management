@@ -1,31 +1,16 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableModel;
 
 import controller.ClientPersonalInfoController;
 import controller.Session;
@@ -35,7 +20,6 @@ public class ClientPersonalInfoView extends JFrame {
 
 	private static final long serialVersionUID = 989075282041187452L;
 	private ClientPersonalInfoController controller;
-	private JTable tblInventory;
 	private JLabel lblSession;
 
 
@@ -53,7 +37,6 @@ public class ClientPersonalInfoView extends JFrame {
 		setTitle("Account Details");
 		setPreferredSize(new Dimension(800, 600));
 		
-		// buttons
 
 
 		
@@ -82,7 +65,6 @@ public class ClientPersonalInfoView extends JFrame {
 					controller.updateInfo(textFieldName.getText(),textFieldNameL.getText(), textFieldDate.getText(), textFieldEmail.getText(), textFieldPhone.getText(), txtPass.getText());
 					
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -114,44 +96,11 @@ public class ClientPersonalInfoView extends JFrame {
 		
 		pack();
 		setLocationRelativeTo(null);
-		/*
-		panel.add(btnNew);
-		//panel.add(btnDelete);
-	   	//panel.add(updateBtn);
-		panel.add(Box.createHorizontalGlue());
-		
-		add(panel, BorderLayout.CENTER);
-		setVisible(true);
-		pack();
-		*/
-	}
-	
-	
-	
-		/*
-		// table
-		tblInventory = new JTable();
-		JTextField textField = new JTextField(20);
-		tblInventory.add(textField);
-		tblInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblInventory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				btnDelete.setEnabled((tblInventory.getSelectedRow() >= 0));
-			}
-		});
-		add(new JScrollPane(tblInventory), BorderLayout.CENTER);
-		
-		pack();
-		setLocationRelativeTo(null);
 		
 	}
 	
-	public void setTableModel(TableModel model) {
-		tblInventory.setModel(model);
-	}
 	
-	*/
+	
 
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");

@@ -9,7 +9,7 @@ import view.DisplayContainersView;
 import view.DisplayJourneysCompanyView;
 
 public class MainMenuCompanyController {
-		
+		//Attributes
 	    private LogisticsCompany logisticsCompany;
 		private Session sessionModel;
 		private MainMenuCompanyView MainMenuview;
@@ -18,21 +18,22 @@ public class MainMenuCompanyController {
 		private DisplayJourneysCompanyController displayJourneysController;
 		private AddHistorycontroller addHistorycontroller;
 		private SeeHistoryController seeHistoryController;
-
+		//Constructor
 		public MainMenuCompanyController(LogisticsCompany logisticCompany, Session session) {
 			this.logisticsCompany = logisticCompany;
 			this.sessionModel = session;
 		}
-
+		//setter
 		public void setView(MainMenuCompanyView MainMenuview) {
 			this.MainMenuview  = MainMenuview;
 			this.MainMenuview.setSession(sessionModel);
 		}
-
+		//Displays the company's main menu page 
 		public void display() {
 			MainMenuview.setVisible(true);
 		}
 		
+		//Sends to display clients page  
 		public void displayClients() {
 			displayClientsController = new DisplayClientsController(this.logisticsCompany, this.sessionModel);
 
@@ -40,7 +41,7 @@ public class MainMenuCompanyController {
 			displayClientsController.setView(invView);
 			displayClientsController.display();
 		}
-		
+		//Sends to display containers page  
 		public void displayContainers() {
 			displayContainersController = new DisplayContainersController(this.logisticsCompany, this.sessionModel);
 
@@ -48,7 +49,8 @@ public class MainMenuCompanyController {
 			displayContainersController.setView(invView);
 			displayContainersController.display();
 		}
-		
+		//Sends to display journeys page  
+
 		public void displayJourneys() {
 			displayJourneysController = new DisplayJourneysCompanyController(this.logisticsCompany, this.sessionModel);
 
@@ -56,7 +58,8 @@ public class MainMenuCompanyController {
 			displayJourneysController.setView(invView);
 			displayJourneysController.display();
 		}
-		
+		//Sends to display History page  
+
 		public void displayAddHistory() {
 			addHistorycontroller = new AddHistorycontroller(this.logisticsCompany, this.sessionModel);
 
@@ -66,6 +69,7 @@ public class MainMenuCompanyController {
 			
 		
 	}
+		//Sends to see History page  
 
 		public void displaySeeHistory() {
 			seeHistoryController = new SeeHistoryController(this.logisticsCompany, this.sessionModel);

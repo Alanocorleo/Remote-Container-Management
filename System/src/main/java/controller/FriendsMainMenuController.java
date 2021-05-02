@@ -9,13 +9,13 @@ import view.DisplayJourneysClientView;
 import view.FriendsMainMenuView;
 
 public class FriendsMainMenuController {
-
+	//Attributes
 	private LogisticsCompany logisticCompany;
 	private Session sessionModel;
 	private FriendsMainMenuView view;
 	private ClientDatabase registery = new ClientDatabase() ;
 	private Client client;
-	
+	//Construcotrs
 	public FriendsMainMenuController(Client client, LogisticsCompany logisticCompany, Session session) {
 		registery.setClients(client.getMyFriends(logisticCompany.getClientDatabase()));
 		this.client = client;
@@ -23,14 +23,13 @@ public class FriendsMainMenuController {
 		this.logisticCompany = logisticCompany;
 	}
 
-
+	//adds friends
 	public void friendAdding() {
 		String newProduct = JOptionPane.showInputDialog("Please insert the email of the client who you want to share infomation with:");
-        System.out.println(newProduct);
         ResponseObject result = client.addFriend(newProduct, logisticCompany.getClientDatabase());
         view.showError(result.getErrorMessage());
 	}
-	
+	//sends to friends jounreys page
 	public void showJourneys(int selectedRow) {
 		if (selectedRow >= 0) {
 			//we figure out the friend from the selectedRow
@@ -43,13 +42,13 @@ public class FriendsMainMenuController {
 			
 		}
 	}
-	
+	//setter
 	public void setView(FriendsMainMenuView view) {
 		this.view = view;
 		this.view.setTableModel(registery);
 		this.view.setSession(sessionModel);
 	}
-	
+	//diplays friends main menu page
 	public void display() {
 		view.setVisible(true);
 	}

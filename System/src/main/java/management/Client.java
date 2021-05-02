@@ -9,7 +9,7 @@ import response.ResponseObject;
 
 
 public class Client {
-	
+	//Clients attributes:
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -23,7 +23,9 @@ public class Client {
 	
 	@JsonProperty("friends")
 	private ArrayList<Integer> myFriends = new ArrayList<Integer>();	
-
+	
+	
+	//Constructors
 	public Client() {
 		super();
 	}
@@ -46,6 +48,7 @@ public class Client {
 		this.password = password;
 		
 	}
+	//getters and setters
 	public int getId() {
 		return id;
 	}
@@ -117,6 +120,8 @@ public class Client {
 		this.myJourneys = myJourneys;
 	}
 		
+	//The following method returns a response object corresponding to whether the personal information of the client has been updated or not. 
+	//In case we fail to update the information, we return a corresponding error code and message
 	public ResponseObject updateInfo(String firstName,String lastName, String birthDate, String email, String PhoneNumber, ClientDatabase registery) throws Exception {
 		ResponseObject response;
 		
@@ -141,6 +146,8 @@ public class Client {
 		
 	}
 	
+	//This method is used to change the password
+	//It could have been just merged wit the method above but the password attribute was not created yet.
 	public void updateInfo(String password, ClientDatabase registery) {
 		this.password = password;
 		try {
@@ -151,6 +158,10 @@ public class Client {
 		}
 	}
 
+	
+	//This method is used to find an existing client in database by an email
+	//It is used in conjunction with the updateFriendList method to implement the information sharing functionality
+	//this method is used by the client who want to share their information they do not necessarily have access to the information of who ever they send their info to
 	public ResponseObject addFriend(String email, ClientDatabase registery) {
 		
 		ResponseObject response;
@@ -176,10 +187,16 @@ public class Client {
 		
 	}
 	
+	//This method is used to update the list of client who this client has access to their information
 	public void updateFriendsList(int id) {
+		if (myFriends.contains(id)) {}
+		else{
 		myFriends.add(id);
+		}
 	}
 	
+	
+	//This method converts the array list of clients ids into an array list of Clients
 	public ArrayList<Client> getMyFriends(ClientDatabase registery){
 		ArrayList<Client> ListofFriendClients = new ArrayList<Client>();
 		for (int friend : this.myFriends) {

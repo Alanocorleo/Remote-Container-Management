@@ -13,7 +13,7 @@ import view.MainMenuClientView;
 import view.MainMenuCompanyView;
 
 public class ApplicationController {
-	
+	//Attributes
 	private Client client;
 	private LogisticsCompany logisticsCompany;
 	private LoginController loginController;
@@ -21,16 +21,18 @@ public class ApplicationController {
 	private MainMenuCompanyController mainMenuCompanyController;
 	private ClientDatabase clientDataBase;
 	
+	//constructor
 	public ApplicationController() {
 		logisticsCompany = LogisticsCompany.getInstance();
 		clientDataBase = logisticsCompany.getClientDatabase(); 
 	}
 	
+	//Sends to the login page 
 	public void login() {
 		loginController = new LoginController(this);
 		loginController.display();
 	}
-	
+	//Sends to the main menu page either the company's or the client's
 	public void mainMenu(Session session){
 		if (session.getRole().equals("Company")) {
 			mainMenuCompanyController = new MainMenuCompanyController(this.logisticsCompany, session);
@@ -41,7 +43,7 @@ public class ApplicationController {
 		}
 	
 		else {
-			this.client = clientDataBase.getClientbyEmail(session.getUsername());
+			this.client = clientDataBase.getClient(session.getUsername()).get(0);
 			mainMenuClientController = new MainMenuClientController(this.client, this.logisticsCompany, session);
 			
 			MainMenuClientView mainMenuView = new MainMenuClientView(this.mainMenuClientController);
@@ -51,10 +53,13 @@ public class ApplicationController {
 
 	}
 	
+	
+	//getter
 	public ClientDatabase getclientdatabase() {
 		return this.clientDataBase;
 	}
 	
+	//main 
 	public static void main(String[] args) {
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -66,7 +71,6 @@ public class ApplicationController {
 		        }
 		    }
 		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}
 		ApplicationController app = new ApplicationController();
 		app.login();

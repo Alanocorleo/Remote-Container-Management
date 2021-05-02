@@ -1,15 +1,9 @@
 package controller;
 
 import java.util.regex.*;  
+import management.Client;
 
-
-
-
-	import javax.swing.JOptionPane;
-
-	import management.Client;
-
-	import management.LogisticsCompany;
+import management.LogisticsCompany;
 import response.ResponseObject;
 import view.CompanyPersonalInfoView;
 import view.DisplayClientsView;
@@ -18,25 +12,23 @@ import view.DisplayClientsView;
 
 
 	public class CompanyPersonalInfoController {
-
+		//Attributes
 		private Session sessionModel;
 		private CompanyPersonalInfoView view;
 		
 		private LogisticsCompany company;
-		
+		//Constructor
 		public CompanyPersonalInfoController(  Session session,  LogisticsCompany company) {
 		
 			this.company =company;
 			this.sessionModel = session;
 		}
-
-
+		//setter
 		public void setView(CompanyPersonalInfoView view) {
 			this.view = view;
-			//this.view.setTableModel(inventoryModel);
 			this.view.setSession(sessionModel);
 		}
-
+		//Method used to check for right fomat and gets access to the model (LogisticsCompany class) in order to register a client
 		public void createInfo(String FirstName, String LastName, String BirthDate, String Email, String PhoneNumber, String password ) throws Exception {
 			boolean birthdayFormatChecker = Pattern.matches("([0-9]{2})\\\\([0-9]{2})\\\\([0-9]{4})", BirthDate);
 			boolean EmailFormatChecker = Pattern.matches("^(.+)@(.+)$", Email);
@@ -77,7 +69,8 @@ import view.DisplayClientsView;
 		}
 		
 		
-		
+		//Display the company personal information page 
+
 		public void display() {
 			view.setVisible(true);
 		}

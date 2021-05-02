@@ -18,13 +18,14 @@
 #Sample Feature Definition Template
 @tag
 Feature: Contacting clients
-  I want to use this template for my feature file
+  Company wants to have access to clients personal information to contact them
 
   @tag1
   Scenario: Contacting registered client by unique id
-    Given registered client
+    Given registered client2
     When the company searches for the client by id 
     Then the company gets all the info of the client
+ 
     
   Scenario: Contacting registered client by name
     Given atleast 2 registered clients with the same name
@@ -43,6 +44,9 @@ Feature: Contacting clients
     When the company searches for the client by the non existing name
     Then the company does not get any info
     
-    
+   Scenario: Contacting registered client by email
+    Given registered client2
+    When the company searches for the client by email 
+    Then the company gets all the info of the client
     
 
