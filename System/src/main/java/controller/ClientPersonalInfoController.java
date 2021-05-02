@@ -40,7 +40,7 @@ public class ClientPersonalInfoController {
 	//Method used to check for right format and gets access to the model (Client class) in order to update personal information
 	public void updateInfo(String FirstName, String LastName, String BirthDate, String Email, String PhoneNumber, String password ) throws Exception {
 //		boolean birthdayFormatChecker = Pattern.matches("([0-9]{2})\\\\([0-9]{2})\\\\([0-9]{4})", BirthDate);
-		boolean birthdayFormatChecker = Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|[1-9])/([0-9]{4}))$", BirthDate);
+		boolean birthdayFormatChecker = Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|0[1-9])/([0-9]{4}))$", BirthDate);
 		boolean emailFormatChecker = Pattern.matches("^(.+)@(.+)$", Email);
 		boolean phoneFormatChecker = Pattern.matches("([0-9]{8,}+)", PhoneNumber);
 		boolean nameFormatChecker = Pattern.matches("^[^\\d\\s]+$",FirstName) & Pattern.matches("^[^\\d\\s]+$",LastName);

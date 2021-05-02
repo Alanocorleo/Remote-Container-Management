@@ -116,7 +116,7 @@ public class DisplayJourneysCompanyController {
 				String date = JOptionPane.showInputDialog("Enter departure date:");
 				
 				if(date!=null) {
-					boolean dateFormatChecker = Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|[1-9])/([0-9]{4}))$", date);
+					boolean dateFormatChecker = Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|0[1-9])/([0-9]{4}))$", date);
 					if(dateFormatChecker) {
 						logisticsCompany.getJourneyDatabase().setDeparture(journeyID, date);
 					}
@@ -161,10 +161,10 @@ public class DisplayJourneysCompanyController {
 					journey.setOrigin(origin);
 					journey.setDestination(destination);
 					
-					if (!departureDate.equals("") && departureDate!=null && Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|[1-9])/([0-9]{4}))$", departureDate)) {
+					if (!departureDate.equals("") && departureDate!=null && Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|0[1-9])/([0-9]{4}))$", departureDate)) {
 						journey.setDepartureDate(departureDate);
 						
-						if (!arrivalDate.equals("") && arrivalDate!=null && Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|[1-9])/([0-9]{4}))$", arrivalDate)) {
+						if (!arrivalDate.equals("") && arrivalDate!=null && Pattern.matches("^((3[0-1]|2[0-9]|1[0-9]|[1-9])/(1[0-2]|0[1-9])/([0-9]{4}))$", arrivalDate)) {
 							journey.setArrivalDate(arrivalDate);
 							journey.setJourneyID(journey.createJourneyID());
 							logisticsCompany.getJourneyDatabase().create(journey);

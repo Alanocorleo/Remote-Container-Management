@@ -60,7 +60,7 @@ public class DisplayJourneyContainersClientController {
 				registry.setContainers(client.getMyContainers());
 				
 				if (!containerID.equals("") && containerID!=null) {
-			        registry.setContainers(registry.find("id", Integer.parseInt(containerID)));
+			        registry.setContainers(registry.find("containerID", Integer.parseInt(containerID)));
 				}
 				
 				if (!position.equals("") && position!=null) {
