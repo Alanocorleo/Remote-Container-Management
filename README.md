@@ -1,3 +1,11 @@
+# Download the "JAR.FILE.IS.IN.HERE" zip file from final release, extract and run the .jar file
+there are a few example databases in that zip as well, however you can delete the .json files in case you do not need any example data
+
+
+
+
+
+
 # Remote-Container-Management
 
 Use Eclipse to edit the repository by either pulling, or committing and pushing.
@@ -9,8 +17,3 @@ Thereafter, when starting a work session, be sure to pull in order to get the up
 The convetion for writing packages:  myPackage;
                            classes:  Class;
                            methods:  method.
-
-
-
-
-
