@@ -18,44 +18,84 @@
 #Sample Feature Definition Template
 
 @tag
-Feature: Finding a journey
+Feature: Finding journeys
 
-  @tag1
-  Scenario: Find journeys according to origin
-    Given 5 containers containing "Fish" registered to journey "CO02292" by client 234 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    And 2 containers containing "Flowers" registered to journey "AC02391" by client 234 from "Amsterdam" to "Copenhagen" regulated by "SeaLand"
-		And 3 containers containing "Fish" registered to journey "CO02292" by client 67 from "Copenhagen" to "Oslo" regulated by "Maersk"
+ 	@tag1
+  Scenario: Find client journeys according to journey-ID
+		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "journeyID" specified as "CO02292" for client 234
+    Then show journeys with journey-ID "CO02292" of client 234
+
+  @tag2
+  Scenario: Find client journeys according to origin
+		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
     When finding based on criteria "origin" specified as "Copenhagen" for client 234
     Then show journeys with origin "Copenhagen" of client 234
    
-  @tag2
-  Scenario: Find journeys according to destination
-    Given 5 containers containing "Fish" registered to journey "CO02292" by client 234 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    And 2 containers containing "Flowers" registered to journey "AC02391" by client 234 from "Amsterdam" to "Copenhagen" regulated by "SeaLand"
-		And 3 containers containing "Fish" registered to journey "CO02292" by client 67 from "Copenhagen" to "Oslo" regulated by "Maersk"
+  @tag3
+  Scenario: Find client journeys according to destination
+		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
     When finding based on criteria "destination" specified as "Oslo" for client 234
     Then show journeys with destination "Oslo" of client 234
     
-	@tag3
-  Scenario: Find journeys according to content-type
-    Given 5 containers containing "Fish" registered to journey "CO02292" by client 234 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    And 2 containers containing "Flowers" registered to journey "AC02391" by client 234 from "Amsterdam" to "Copenhagen" regulated by "SeaLand"
-		And 3 containers containing "Fish" registered to journey "CO02292" by client 67 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    When finding based on criteria "content-type" specified as "Fish" for client 234
-    Then show journeys with content-type "Fish" of client 234
-   
   @tag4
-  Scenario: Find journeys according to company
-    Given 5 containers containing "Fish" registered to journey "CO02292" by client 234 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    And 2 containers containing "Flowers" registered to journey "AC02391" by client 234 from "Amsterdam" to "Copenhagen" regulated by "SeaLand"
-		And 3 containers containing "Fish" registered to journey "CO02292" by client 67 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    When finding based on criteria "company" specified as "Maersk" for client 234
-    Then show journeys with company "Maersk" of client 234
+  Scenario: Find client journeys according to departure date
+		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "departureDate" specified as "30/04/2021" for client 234
+    Then show journeys with departure date "30/04/2021" of client 234
   
   @tag5
-  Scenario: Find all journeys
-    Given 5 containers containing "Fish" registered to journey "CO02292" by client 234 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    And 2 containers containing "Flowers" registered to journey "AC02391" by client 234 from "Amsterdam" to "Copenhagen" regulated by "SeaLand"
-		And 3 containers containing "Fish" registered to journey "CO02292" by client 67 from "Copenhagen" to "Oslo" regulated by "Maersk"
-    When finding based on criteria "none" specified as "unspecified" for client 234
-    Then show all journeys of client 234  
+  Scenario: Find client journeys according to arrival date
+		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "arrivalDate" specified as "31/04/2021" for client 234
+    Then show journeys with arrival date "31/04/2021" of client 234
+    
+ 	@tag6
+  Scenario: Find journeys according to journey-ID
+		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "journeyID" specified as "CO02292"
+    Then show journeys with journey-ID "CO02292"
+
+  @tag7
+  Scenario: Find journeys according to origin
+		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "origin" specified as "Copenhagen"
+    Then show journeys with origin "Copenhagen"
+   
+  @tag8
+  Scenario: Find journeys according to destination
+ 		Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "destination" specified as "Oslo"
+    Then show journeys with destination "Oslo"
+    
+  @tag9
+  Scenario: Find journeys according to departure date
+  	Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "departureDate" specified as "30/04/2021"
+    Then show journeys with departure date "30/04/2021"
+  
+  @tag10
+  Scenario: Find journeys according to arrival date
+   	Given 5 containers registered by client 234 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    And 2 containers registered by client 234 to journey "AC02391" from "Amsterdam" to "Copenhagen" departing "20/05/2021" and arriving "21/05/2021"
+		And 3 containers registered by client 67 to journey "CO02292" from "Copenhagen" to "Oslo" departing "30/04/2021" and arriving "31/04/2021"
+    When finding based on criteria "arrivalDate" specified as "31/04/2021"
+    Then show journeys with arrival date "31/04/2021"

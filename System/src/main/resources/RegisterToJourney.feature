@@ -16,13 +16,14 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Register client containers to a journey
 
   @tag1
   Scenario: Register to a journey
     Given journey "CO02292" from "Copenhagen" to "Oslo"
-    And 2 registered containers from "Copenhagen"
+    And 2 booked containers from "Copenhagen"
     And origin "Copenhagen"
     And destination "Oslo"
     When registering to "CO02292"
@@ -31,44 +32,44 @@ Feature: Register client containers to a journey
   @tag2
   Scenario: Deny registering due to unavailable journey
     Given journey "AO02292" from "Amsterdam" to "Oslo"
-    And 2 registered containers from "Copenhagen"
+    And 2 booked containers from "Copenhagen"
     And origin "Copenhagen"
     And destination "Oslo"
     When registering to "CO02292"
-    Then deny registering "Journey not found" 140
+    Then deny registering "Journey is not found" 120
     
   @tag3
   Scenario: Deny registering due to unavailable container
     Given journey "CO02292" from "Copenhagen" to "Oslo"
-    And 0 registered containers from "Copenhagen"
+    And 0 booked containers from "Copenhagen"
     And origin "Copenhagen"
     And destination "Oslo"
     When registering to "CO02292"
-    Then deny registering "Container not found" 111
+    Then deny registering "Container is not found" 110
     
   @tag4
-  Scenario: Deny assigning due to unavailable journey because of different origin and destination
+  Scenario: Deny registering due to unavailable journey because of different origin and destination
     Given journey "CO02292" from "Copenhagen" to "Oslo"
-    And 2 registered containers from "Copenhagen"
+    And 2 booked containers from "Copenhagen"
     And origin "Amsterdam"
     And destination "Oslo"
     When registering to "CO02292"
-    Then deny registering "Journey not found" 140
+    Then deny registering "Journey is not found" 120
     
   @tag5
-  Scenario: Deny assigning due to unavailable journey because of different origin
+  Scenario: Deny registering due to unavailable journey because of different origin
     Given journey "CO02292" from "Copenhagen" to "Oslo"
-    And 2 registered containers from "Copenhagen"
+    And 2 booked containers from "Copenhagen"
     And origin "Amsterdam"
     And destination "Oslo"
     When registering to "CO02292"
-    Then deny registering "Journey not found" 140
+    Then deny registering "Journey is not found" 120
     
   @tag6
-  Scenario: Deny assigning due to unavailable journey because of different destination
+  Scenario: Deny registering due to unavailable journey because of different destination
     Given journey "CO02292" from "Copenhagen" to "Oslo"
-    And 2 registered containers from "Copenhagen"
+    And 2 booked containers from "Copenhagen"
     And origin "Copenhagen"
     And destination "Amsterdam"
     When registering to "CO02292"
-    Then deny registering "Journey not found" 140
+    Then deny registering "Journey is not found" 120
