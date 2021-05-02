@@ -1,4 +1,4 @@
-# Download the "JAR.IS.IN.HERE" zip file from final release, extract and run the .jar file
+# Download the "JAR.FILE.IS.IN.HERE" zip file from final release, extract and run the .jar file
 there are a few example databases in that zip as well, however you can delete the .json files in case you do not need any example data
 
 
