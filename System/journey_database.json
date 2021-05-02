@@ -2,7 +2,7 @@
   "journeys" : {
     "\"{ID : CO23143, Origin : Copenhagen, Destination : Oslo, Departure : 21/04/2021, Arrival : 22/04/2021}\"" : [ {
       "containerID" : 1,
-      "owner" : 1,
+      "owner" : 100000,
       "position" : "Copenhagen",
       "contentType" : "Fish",
       "company" : "Captain Fish",
@@ -15,7 +15,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 2,
-      "owner" : 1,
+      "owner" : 100000,
       "position" : "Copenhagen",
       "contentType" : "Fish",
       "company" : "Captain Fish",
@@ -28,7 +28,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 3,
-      "owner" : 4,
+      "owner" : 100003,
       "position" : "Copenhagen",
       "contentType" : "Banana",
       "company" : "Captain Banana",
@@ -41,7 +41,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 4,
-      "owner" : 4,
+      "owner" : 100003,
       "position" : "Copenhagen",
       "contentType" : "Banana",
       "company" : "Captain Banana",
@@ -54,7 +54,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 5,
-      "owner" : 4,
+      "owner" : 100003,
       "position" : "Copenhagen",
       "contentType" : "Banana",
       "company" : "Captain Banana",
@@ -67,7 +67,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 6,
-      "owner" : 4,
+      "owner" : 100003,
       "position" : "Copenhagen",
       "contentType" : "Banana",
       "company" : "Captain Banana",
@@ -80,7 +80,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 7,
-      "owner" : 4,
+      "owner" : 100003,
       "position" : "Copenhagen",
       "contentType" : "Banana",
       "company" : "Captain Banana",
@@ -94,7 +94,7 @@
     } ],
     "\"{ID : AC21003, Origin : Amsterdam, Destination : Copenhagen, Departure : 12/06/2021, Arrival : 15/06/2021}\"" : [ {
       "containerID" : 31,
-      "owner" : 2,
+      "owner" : 100001,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Flower",
@@ -107,7 +107,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 32,
-      "owner" : 2,
+      "owner" : 100001,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Flower",
@@ -120,7 +120,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 33,
-      "owner" : 2,
+      "owner" : 100001,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Flower",
@@ -133,7 +133,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 34,
-      "owner" : 2,
+      "owner" : 100001,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Flower",
@@ -146,7 +146,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 35,
-      "owner" : 2,
+      "owner" : 100001,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Flower",
@@ -159,7 +159,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 36,
-      "owner" : 2,
+      "owner" : 100001,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Flower",
@@ -172,7 +172,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 37,
-      "owner" : 2,
+      "owner" : 100001,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Flower",
@@ -185,7 +185,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 38,
-      "owner" : 3,
+      "owner" : 100002,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Textile",
@@ -198,7 +198,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 39,
-      "owner" : 3,
+      "owner" : 100002,
       "position" : "Amsterdam",
       "contentType" : "Flowers",
       "company" : "Captain Textile",
@@ -211,7 +211,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 40,
-      "owner" : 6,
+      "owner" : 100005,
       "position" : "Amsterdam",
       "contentType" : "Tobacco",
       "company" : "Captain Tobacco",
@@ -226,7 +226,7 @@
     "\"{ID : CO22211, Origin : Copenhagen, Destination : Oslo, Departure : 30/04/2021, Arrival : 31/04/2021}\"" : [ ],
     "\"{ID : OC32413, Origin : Oslo, Destination : Copenhagen, Departure : 29/05/2021, Arrival : 30/05/2021}\"" : [ {
       "containerID" : 11,
-      "owner" : 3,
+      "owner" : 100002,
       "position" : "Oslo",
       "contentType" : "Textile",
       "company" : "Captain Textile",
@@ -239,7 +239,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 12,
-      "owner" : 3,
+      "owner" : 100002,
       "position" : "Oslo",
       "contentType" : "Textile",
       "company" : "Captain Textile",
@@ -252,7 +252,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 13,
-      "owner" : 3,
+      "owner" : 100002,
       "position" : "Oslo",
       "contentType" : "Textile",
       "company" : "Captain Textile",
@@ -266,7 +266,7 @@
     } ],
     "\"{ID : GA12147, Origin : Gothenburg, Destination : Amsterdam, Departure : 17/05/2021, Arrival : 19/05/2021}\"" : [ {
       "containerID" : 21,
-      "owner" : 5,
+      "owner" : 100004,
       "position" : "Gothenburg",
       "contentType" : "Plastic",
       "company" : "Captain Plastic",
@@ -279,7 +279,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 22,
-      "owner" : 5,
+      "owner" : 100004,
       "position" : "Gothenburg",
       "contentType" : "Plastic",
       "company" : "Captain Plastic",
@@ -292,7 +292,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 23,
-      "owner" : 5,
+      "owner" : 100004,
       "position" : "Gothenburg",
       "contentType" : "Plastic",
       "company" : "Captain Plastic",
@@ -305,7 +305,7 @@
       "history" : [ [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ], [ [ ] ] ]
     }, {
       "containerID" : 24,
-      "owner" : 5,
+      "owner" : 100004,
       "position" : "Gothenburg",
       "contentType" : "Plastic",
       "company" : "Captain Plastic",
