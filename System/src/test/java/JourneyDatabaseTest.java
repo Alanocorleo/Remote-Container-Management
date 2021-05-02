@@ -589,13 +589,6 @@ public class JourneyDatabaseTest {
 		journey.setDepartureDate("23/05/2020");
 		journey.setArrivalDate("24/05/2020");
 		journeys.create(journey);
-		Journey journey2 = new Journey();
-		journey2.setJourneyID("AO80000");
-		journey2.setOrigin("Accra");
-		journey2.setDestination("Oslo");
-		journey2.setDepartureDate("23/05/2020");
-		journey2.setArrivalDate("27/05/2020");
-		journeys.create(journey2);
 		
 		Object ID = journeys.getValueAt(0, 0);
 		assertEquals(ID, "CO89999");
@@ -609,16 +602,8 @@ public class JourneyDatabaseTest {
 		journey.setDepartureDate("23/05/2020");
 		journey.setArrivalDate("24/05/2020");
 		journeys.create(journey);
-		Journey journey2 = new Journey();
-		journey2.setJourneyID("AO80000");
-		journey2.setOrigin("Accra");
-		journey2.setDestination("Oslo");
-		journey2.setDepartureDate("23/05/2020");
-		journey2.setArrivalDate("27/05/2020");
-		journeys.create(journey2);
-		
-		Object origin = journeys.getValueAt(1, 1);
-		assertEquals(origin, "Accra");
+		Object origin = journeys.getValueAt(0, 1);
+		assertEquals(origin, "Copenhagen");
 	}
 	
 	@Test
@@ -629,13 +614,6 @@ public class JourneyDatabaseTest {
 		journey.setDepartureDate("23/05/2020");
 		journey.setArrivalDate("24/05/2020");
 		journeys.create(journey);
-		Journey journey2 = new Journey();
-		journey2.setJourneyID("AO80000");
-		journey2.setOrigin("Accra");
-		journey2.setDestination("Oslo");
-		journey2.setDepartureDate("23/05/2020");
-		journey2.setArrivalDate("27/05/2020");
-		journeys.create(journey2);
 		
 		Object destination = journeys.getValueAt(0, 2);
 		assertEquals(destination, "Oslo");
@@ -649,15 +627,8 @@ public class JourneyDatabaseTest {
 		journey.setDepartureDate("23/05/2020");
 		journey.setArrivalDate("24/05/2020");
 		journeys.create(journey);
-		Journey journey2 = new Journey();
-		journey2.setJourneyID("AO80000");
-		journey2.setOrigin("Accra");
-		journey2.setDestination("Oslo");
-		journey2.setDepartureDate("23/05/2020");
-		journey2.setArrivalDate("27/05/2020");
-		journeys.create(journey2);
 		
-		Object departure = journeys.getValueAt(1, 3);
+		Object departure = journeys.getValueAt(0, 3);
 		assertEquals(departure, "23/05/2020");
 	}
 	
@@ -669,13 +640,6 @@ public class JourneyDatabaseTest {
 		journey.setDepartureDate("23/05/2020");
 		journey.setArrivalDate("24/05/2020");
 		journeys.create(journey);
-		Journey journey2 = new Journey();
-		journey2.setJourneyID("AO80000");
-		journey2.setOrigin("Accra");
-		journey2.setDestination("Oslo");
-		journey2.setDepartureDate("23/05/2020");
-		journey2.setArrivalDate("27/05/2020");
-		journeys.create(journey2);
 		
 		Object arrival = journeys.getValueAt(0, 4);
 		assertEquals(arrival, "24/05/2020");
@@ -689,13 +653,6 @@ public class JourneyDatabaseTest {
 		journey.setDepartureDate("23/05/2020");
 		journey.setArrivalDate("24/05/2020");
 		journeys.create(journey);
-		Journey journey2 = new Journey();
-		journey2.setJourneyID("AO80000");
-		journey2.setOrigin("Accra");
-		journey2.setDestination("Oslo");
-		journey2.setDepartureDate("23/05/2020");
-		journey2.setArrivalDate("27/05/2020");
-		journeys.create(journey2);
 		
 		Object object = journeys.getValueAt(0, 7);
 		assertNull(object);
