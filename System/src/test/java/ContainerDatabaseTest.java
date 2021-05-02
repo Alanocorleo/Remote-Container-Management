@@ -172,7 +172,6 @@ public class ContainerDatabaseTest {
 		assertEquals(3, containerDatabase.extract(2).size());
 	}
 
-
 	@Test
 	public void testBook() {
 		container1.setPosition("Copenhagen");
@@ -186,7 +185,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(0, "Copenhagen", "Fish", "Captain Fish", 4);
-		assertEquals(response.getErrorCode(), 131);
+		assertEquals(response.getErrorCode(), 132);
 	}
 	
 	@Test
@@ -535,25 +534,25 @@ public class ContainerDatabaseTest {
 	
 	@Test
 	public void testFindStringString11() {
-	container1.setCurrentJourney("CO1111");
-	container2.setCurrentJourney("CO1111");
-	container3.setCurrentJourney("CO1111");
-	container4.setCurrentJourney("CO1111");
+	container1.setCurrentJourney("CO11111");
+	container2.setCurrentJourney("CO11111");
+	container3.setCurrentJourney("CO11111");
+	container4.setCurrentJourney("CO11111");
 	containers.add(container1);
 	containers.add(container2);
 	containers.add(container3);
 	containers.add(container4);
 	containerDatabase.setContainers(containers);
 	
-	assertEquals(containerDatabase.find("journeyID", "co1111").size(), 4);
+	assertEquals(containerDatabase.find("journeyID", "co11111").size(), 4);
 	}
 	
 	@Test
 	public void testFindStringString12() {
-	container1.setCurrentJourney("CO1111");
-	container2.setCurrentJourney("CO1111");
-	container3.setCurrentJourney("CO1111");
-	container4.setCurrentJourney("CO1111");
+	container1.setCurrentJourney("CO11111");
+	container2.setCurrentJourney("CO11111");
+	container3.setCurrentJourney("CO11111");
+	container4.setCurrentJourney("CO11111");
 	containers.add(container1);
 	containers.add(container2);
 	containers.add(container3);
@@ -565,21 +564,21 @@ public class ContainerDatabaseTest {
 	
 	@Test
 	public void testFindStringString13() {
-	container3.setCurrentJourney("CO1111");
-	container4.setCurrentJourney("CO1111");
+	container3.setCurrentJourney("CO11111");
+	container4.setCurrentJourney("CO11111");
 	containers.add(container2);
 	containers.add(container3);
 	containers.add(container4);
 	containerDatabase.setContainers(containers);
 	
-	assertEquals(containerDatabase.find("journeyID", "CO1111").size(), 2);
+	assertEquals(containerDatabase.find("journeyID", "CO11111").size(), 2);
 	}
 	
 	@Test
 	public void testFindStringString14() {
 	containerDatabase.setContainers(containers);
 	
-	assertEquals(containerDatabase.find("journeyID", "CO1111").size(), 0);
+	assertEquals(containerDatabase.find("journeyID", "CO11111").size(), 0);
 	}
 
 
@@ -649,30 +648,30 @@ public class ContainerDatabaseTest {
 
 	@Test
 	public void testUpdatePosition() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("CO1111");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("CO11111");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		response = containerDatabase.updatePosition("CO1111", "Accra");
+		response = containerDatabase.updatePosition("CO11111", "Accra");
 		assertEquals(response.getErrorCode(), 070);
 	}
 	
 	@Test
 	public void testUpdatePosition2() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		response = containerDatabase.updatePosition("CO1111", "Accra");
+		response = containerDatabase.updatePosition("CO11111", "Accra");
 		assertEquals(response.getErrorCode(), 070);
 		assertNull(container3.getPosition());
 	}
@@ -681,72 +680,70 @@ public class ContainerDatabaseTest {
 	public void testUpdatePosition3() {
 		containerDatabase.setContainers(containers);
 		
-		response = containerDatabase.updatePosition("CO1111", "Accra");
+		response = containerDatabase.updatePosition("CO11111", "Accra");
 		assertEquals(response.getErrorCode(), 110);
 		assertNull(container3.getPosition());
 	}
 	
 	@Test
 	public void testUpdatePosition4() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("MS8475");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("MS84275");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		
-		response = containerDatabase.updatePosition("CO1111", "Accra");
+		response = containerDatabase.updatePosition("CO11111", "Accra");
 		assertEquals(response.getErrorCode(), 070);
 		assertNull(container3.getPosition());
 	}
 	
 	@Test
 	public void testUpdatePosition5() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("MS8475");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("MS84275");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		
-		response = containerDatabase.updatePosition("CH4511", "Accra");
+		response = containerDatabase.updatePosition("CH45111", "Accra");
 		assertEquals(response.getErrorCode(), 110);
 	}
 
 	@Test
 	public void testMarkArrived() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("CO1111");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("CO11111");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		response = containerDatabase.markArrived("CO1111");
+		response = containerDatabase.markArrived("CO11111");
 		assertEquals(response.getErrorCode(), 022);
 	}
 	
 	@Test
 	public void testMarkArrived2() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		response = containerDatabase.markArrived("CO1111");
+		response = containerDatabase.markArrived("CO11111");
 		assertEquals(response.getErrorCode(), 022);
 		assertNull(container3.getPosition());
 	}
@@ -755,41 +752,39 @@ public class ContainerDatabaseTest {
 	public void testMarkArrived3() {
 		containerDatabase.setContainers(containers);
 		
-		response = containerDatabase.markArrived("CO1111");
+		response = containerDatabase.markArrived("CO11111");
 		assertEquals(response.getErrorCode(), 110);
 	}
 	
 	@Test
 	public void testMarkArrived4() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("MS8475");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("MS84275");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		
-		response = containerDatabase.markArrived("CH4511");
+		response = containerDatabase.markArrived("CH45111");
 		assertEquals(response.getErrorCode(), 110);
 	}
 	
 	@Test
 	public void testMarkArrived5() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("MS8475");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("MS84275");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
 		
-		
-		response = containerDatabase.updatePosition("CO1111", "Accra");
+		response = containerDatabase.updatePosition("CO11111", "Accra");
 		assertEquals(response.getErrorCode(), 070);
 		assertNull(container3.getPosition());
 	}
@@ -948,10 +943,10 @@ public class ContainerDatabaseTest {
 	
 	@Test
 	public void testGetValueAt7() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("MS8475");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("MS84275");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);
@@ -959,15 +954,15 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object journey = containerDatabase.getValueAt(2, 6);
-		assertEquals(journey, "MS8475");
+		assertEquals(journey, "MS84275");
 	}
 
 	@Test
 	public void testGetValueAt8() {
-		container1.setCurrentJourney("CO1111");
-		container2.setCurrentJourney("CO1111");
-		container3.setCurrentJourney("MS8475");
-		container4.setCurrentJourney("CO1111");
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("MS84275");
+		container4.setCurrentJourney("CO11111");
 		containers.add(container1);
 		containers.add(container2);
 		containers.add(container3);

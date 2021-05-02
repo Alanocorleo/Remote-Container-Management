@@ -295,6 +295,7 @@ public class StepDefinitionJourneyManagement {
 	@When("removing a container with ID {int} from journey {string}")
 	public void removing_a_container_with_ID_from_journey(Integer containerID, String journeyID) {
 	    response = journeys.removeContainer(journeyID, containerID);
+	    System.out.println(response.getErrorMessage());
 	}
 
 	@Then("confirm container removing {string} {int}")

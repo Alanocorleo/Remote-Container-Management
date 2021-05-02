@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: CucumberTest
 -------------------------------------------------------------------------------
-Tests run: 41, Failures: 0, Errors: 0, Skipped: 9, Time elapsed: 2.415 sec
+Tests run: 87, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 3.18 sec

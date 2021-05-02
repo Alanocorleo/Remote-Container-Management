@@ -185,14 +185,14 @@ public class ClientDatabase extends AbstractTableModel {
 	}
 	
 	@JsonIgnore
+	public int getColumnCount() {
+		return 6;
+	}
+	
+	@JsonIgnore
 	@Override
 	public int getRowCount() {
 		return clients.size();
-	}
-
-	@JsonIgnore
-	public int getColumnCount() {
-		return 6;
 	}
 
 	@JsonIgnore
