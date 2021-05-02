@@ -15,6 +15,24 @@ public class ContainerTest {
 	public void setUp() {
 		container = new Container();
 	}
+	
+	//////////////////
+	
+	@Test
+	public void testGetDate() {
+		assertNull(container.getDate());
+		container.setDate("12\\12\\1212");
+		assertEquals("12\\12\\1212", container.getDate());
+	
+	}
+	
+	@Test
+	public void testSetDate() {
+		container.setDate("13\\12\\1212");
+		assertEquals("13\\12\\1212", container.getDate());
+	}
+	
+	//////////////////
 
 	@Test
 	public void testGetContainerID() {
@@ -148,17 +166,97 @@ public class ContainerTest {
 
 	@Test
 	public void testGetHistory() {
-		fail("Not yet implemented");
+		container.setDate("12\\12\\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
+		container.appendHistory();
+		
+//		System.out.println(container.getHistory().show()[0][0].toString());
+		
+		assertEquals("[12\\12\\1212]", container.getHistory().show()[0][0].toString());
+		
 	}
-
+	
 	@Test
-	public void testSetHistory() {
-		fail("Not yet implemented");
+	public void testGetHistory1() {
+		container.setDate("12\\12\\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
+		container.appendHistory();
+		
+		assertEquals("[1]", container.getHistory().show()[1][0].toString());
+		
 	}
+	
+	@Test
+	public void testGetHistory2() {
+		container.setDate("12\\12\\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
+		container.appendHistory();
+		
+		//System.out.println(container.getHistory().show()[0][0].toString());
+		
+		assertEquals("[1]", container.getHistory().show()[2][0].toString());
+		
+	}
+	
+	@Test
+	public void testGetHistory3() {
+		container.setDate("12\\12\\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
+		container.appendHistory();
+		
+		//System.out.println(container.getHistory().show()[0][0].toString());
+		
+		assertEquals("[1]", container.getHistory().show()[3][0].toString());
+		
+	}
+	
+	@Test
+	public void testGetHistory4() {
+		container.setDate("12\\12\\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
+		container.appendHistory();
+		
+		//System.out.println(container.getHistory().show()[0][0].toString());
+		
+		assertEquals("[Oslo]", container.getHistory().show()[4][0].toString());
+		
+	}
+	
+
+
+//	@Test
+//	public void testSetHistory() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testAppendHistory() {
-		fail("Not yet implemented");
+		container.setDate("12\\12\\1212");
+		container.setHumidity(1);
+		container.setTemperature(1);
+		container.setPressure(1);
+		container.setPosition("Oslo");
+		container.appendHistory();
+		
+		/// the 5 tests above are also testing append each time since without append working they would not work either
+		assertEquals("[Oslo]", container.getHistory().show()[4][0].toString());
+		
+		
 	}
 
 }

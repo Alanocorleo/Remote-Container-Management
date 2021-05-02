@@ -25,6 +25,16 @@ public class AddHistorycontroller {
 		this.sessionModel = session;
 	}
 
+	/**
+	 * @param date
+	 * @param id
+	 * @param temp
+	 * @param humid
+	 * @param press
+	 * 
+	 * this method finds the specified container, and appends the new data to its history
+	 * in case of not finding the container it returns an error pop up
+	 */
 	public void submitChanges(String date, int id, int temp, int humid, int press) {
 
 

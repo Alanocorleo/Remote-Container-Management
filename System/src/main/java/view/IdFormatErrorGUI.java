@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 
 public class IdFormatErrorGUI {
 
+	/**
+	 * this creates the pop up error when wrong formats or types have been entered for either
+	 * temperature, humidity, pressure or container ID
+	 */
 	public IdFormatErrorGUI() {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();

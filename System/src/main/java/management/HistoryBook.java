@@ -15,6 +15,9 @@ public class HistoryBook {
 	private  ArrayList<Integer> pressure;
 	private  ArrayList<String> position;
 	
+	/**
+	 *  this constructor creates the arraylists that keep track of data history
+	 */
 	public HistoryBook() {
 		super();
 		date = new ArrayList<String>();
@@ -23,8 +26,11 @@ public class HistoryBook {
 		pressure = new ArrayList<Integer>();
 		position = new ArrayList<String>();
 	}
-	// this annotation fine tunes the deserialization process
-	// it specifies how to get the data from databse format
+	/**
+	 * @param history
+	 * this method and annotation fine tune the deserialization process
+	 * it specifies how to get the data from databse format
+	 */
 	@JsonCreator
 	@SuppressWarnings("unchecked")
 	public HistoryBook(Object[][] history) {
@@ -34,14 +40,23 @@ public class HistoryBook {
 		pressure = (ArrayList<Integer>) history[3][0];
 		position = (ArrayList<String>) history[4][0];
 	}
-	// this annotation specifies how the object is going to be serialized
+	/**
+	 * this method and annotation specify how the object is going to be serialized
+	 * it also creates a matrix with all the history data
+	 * @return matrix of data history
+	 */
 	@JsonValue
 	public Object[][] show() {
 		Object table[][] = {{date},{temperature},{humidity},{pressure},{position}};
 		return table;
 	}
 	
-	// this method returns history of container
+	/**
+	 * this method returns history of container
+	 * it also creates a matrix with each column containing data regarding a certain variable
+	 * this transposes the matrix that show() creates
+	 * @return matrix of data history
+	 */
 	public Object[][] showTable() {
 		//Object table[][] = {{date},{temperature},{humidity},{pressure},{position}};
 		int size = date.size();
@@ -60,6 +75,15 @@ public class HistoryBook {
 		return table;
 }
 	// this method appends new data to the history
+	/**
+	 * @param date
+	 * @param temperature
+	 * @param humidity
+	 * @param pressure
+	 * @param position
+	 * 
+	 *  this method appends the new data to the arraylists for each measurement
+	 */
 	public void add(String date, int temperature, int humidity, int pressure, String position) {
 		this.date.add(date);
 		this.temperature.add(temperature);

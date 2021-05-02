@@ -32,6 +32,9 @@ public class SeeHistoryView extends JFrame {
 
 
 
+	/**
+	 * this creates the GUI window which asks for the container ID and shows the container's history
+	 */
 	private void initGUI() {
 		
 		setTitle("Choosing Container");
