@@ -139,27 +139,27 @@ public class Testing2 {
 		}
 		
     	Client client1 = new Client("Alan", "Mansour", "21/04/2021", "Alan.Mansour@mail.com", "0000000001");
-    	client1.setId(100000);
+    	client1.setId(1);
     	client1.setPassword("0000");
     	clients.getClients().add(client1);
 		Client client2 = new Client("Javier" ,"Almendra", "21/04/2021", "Javier.Almendra@mail.com", "0000000002");
-		client2.setId(100001);
+		client2.setId(2);
 		client2.setPassword("0000");
 		clients.getClients().add(client2);
 		Client client3 = new Client("Kristyn" ,"Korboe", "21/04/2021", "Kristyn.Korboe@mail.com", "0000000003");
-		client3.setId(100002);
+		client3.setId(3);
 		client3.setPassword("0000");
 		clients.getClients().add(client3);
 		Client client4 = new Client("Ousama","Mhadden", "21/04/2021", "Ousama.Mhadden@mail.com", "0000000004");
-		client4.setId(100003);
+		client4.setId(4);
 		client4.setPassword("0000");
 		clients.getClients().add(client4);
 		Client client5 = new Client("Parsa","Mehrizi", "21/04/2021", "Parsa.Mehrizi@mail.com", "0000000005");
-		client5.setId(100004);
+		client5.setId(5);
 		client5.setPassword("0000");
 		clients.getClients().add(client5);
 		Client client6 = new Client("Sarthak","Trehan", "21/04/2021", "Sarthak.Trehan@mail.com", "0000000006");
-		client6.setId(100005);
+		client6.setId(6);
 		client6.setPassword("0000");
 		clients.getClients().add(client6);
 		
