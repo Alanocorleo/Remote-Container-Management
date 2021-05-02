@@ -1,7 +1,0 @@
-{
-  "journeys" : {
-    "\"{id=CO23192, origin=Amsterdam, destination=Copenhagen, departure=null, arrival=null}\"" : [ ],
-    "\"{id=CO23392, origin=Amsterdam, destination=Copenhagen, departure=null, arrival=null}\"" : [ ],
-    "\"{id=CO23092, origin=Copenhagen, destination=Oslo, departure=null, arrival=null}\"" : [ ]
-  }
-}
