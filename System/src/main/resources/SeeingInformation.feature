@@ -16,10 +16,10 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Seeing the info of containers
-  
-
+ 
   @tag1
   Scenario: Successful seeing of info
     Given a container with id 100 and owner 1000
@@ -33,4 +33,3 @@ Feature: Seeing the info of containers
     And a client with id 2000 
     When requesting to see info for container 100
     Then history of container is not shown
-

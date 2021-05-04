@@ -19,7 +19,7 @@ import response.ResponseObject;
 /**
  * ContainerDatabase class represent all containers that belong to the logistics
  * company. It extends AbstractTableModel in order to change the format of the 
- * container database, which is a array list composed of containers, into a 
+ * container database, which is an array list composed of containers, into a 
  * table to be used for GUI.
  */
 
@@ -31,7 +31,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	/**
-	 * Json annotations are used for instructing how to both serialize and
+	 * JSON annotations are used for instructing how to both serialize and
 	 * deserialize.
 	 */
 	@JsonProperty("containers")
@@ -55,6 +55,7 @@ public class ContainerDatabase extends AbstractTableModel {
 
 	/**
 	 * This method sets the containers.
+	 * @param containerList
 	 */
 	public void setContainers(ArrayList<Container> containerList) {
 		this.containers = containerList;
@@ -65,7 +66,8 @@ public class ContainerDatabase extends AbstractTableModel {
 	/**
 	 * This method produces a container database as a JSON file with name 
 	 * "container_database.json" to program's directory by serialising a newly
-	 * created container database object. 
+	 * created container database object.
+	 * @throws Exception 
 	 */
 	public void produce() throws Exception {
 		mapper = new ObjectMapper();
@@ -78,6 +80,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * This method pulls the container database from program's directory by 
 	 * deserializing "container_database.json" file, and assigning the information
 	 * to containers. 
+	 * @throws Exception
 	 */
 	public void pull() throws Exception {
 		mapper = new ObjectMapper();
@@ -88,6 +91,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * This method either produces or overwrites an existing container database in
 	 * program's directory with name "container_database.json" by serialising 
 	 * containers.
+	 * @throws Exception
 	 */
 	public void push() throws Exception {
 		mapper = new ObjectMapper();
@@ -102,6 +106,8 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * array list of containers. In case if there are no more containers left to 
 	 * extract relatively to the number given, then stop extracting, and print out 
 	 * a warning message listing the number of how many containers got extracted.
+	 * @param number
+	 * @param position
 	 * @return containers
 	 */
 	public ArrayList<Container> extract(int number, String position) {
@@ -130,6 +136,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * container that have an owner with the same given client-ID. Once found, it
 	 * is added to another array list of containers. This is repeated for every 
 	 * container.
+	 * @param clientID
 	 * @return containers
 	 */
 	public ArrayList<Container> extract(int clientID) {
@@ -158,6 +165,11 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * "Necessary parameters are not entered". Otherwise, return a response with 
 	 * a code 010 and a message "Container has been registered" for every container 
 	 * that gets assigned.
+	 * @param clientID
+	 * @param location
+	 * @param contentType
+	 * @param company
+	 * @param quantity
 	 * @return execution response
 	 */
 	public ResponseObject book(int clientID, String location, String contentType, String company, int quantity) {
@@ -195,6 +207,8 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * given criteria, it searches for every container that has a corresponding attribute equal to 
 	 * the entry. Once found, this container is added to another array list of 
 	 * containers. This is repeated for every container.
+	 * @param criteria
+	 * @param entry
 	 * @return containers
 	 */
 	public ArrayList<Container> find(String criteria, int entry) {
@@ -230,6 +244,8 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * given criteria, it searches for every container that has a corresponding 
 	 * attribute equal to the entry. Once found, this container is added to another 
 	 * array list of containers. This is repeated for every container.
+	 * @param criteria
+	 * @param entry
 	 * @return containers
 	 */
 	public ArrayList<Container> find(String criteria, String entry) {
@@ -290,6 +306,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * criteria, it searches for every container that has a corresponding attribute 
 	 * equal to the entry. Once found, this container is added to another array list
 	 * of containers. This is repeated for every container.
+	 * @param entry
 	 * @return containers
 	 */
 	public ArrayList<Container> find(boolean entry) {
@@ -312,6 +329,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * return a response with a code 162 and a message "Location is not valid".
 	 * Otherwise, return a response with a code 010 and a message "Container has 
 	 * been registered".
+	 * @param location
 	 * @return execution response
 	 */
 	public ResponseObject register(String location) {
@@ -351,6 +369,8 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * a message "Container is not found". Otherwise, return a response with a 
 	 * code 070 and a message "Position has been updated" for every container 
 	 * that gets updated.
+	 * @param journeyID
+	 * @param position
 	 * @return execution response
 	 */
 	public ResponseObject updatePosition(String journeyID, String position) {
@@ -378,6 +398,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * is not found, then return a response with a code 110 and a message "Container 
 	 * is not found". Otherwise, return a response with a code 022 and a message 
 	 * "Journey label has been updated" for every container that gets updated.
+	 * @param journeyID
 	 * @return execution response
 	 */
 	public ResponseObject markArrived(String journeyID) {
@@ -405,6 +426,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	 * not found, then return a response with a code 110 and a message "Container 
 	 * not found". Otherwise, return a response with a code 074 and a message 
 	 * "Container has been successfully removed".
+	 * @param row
 	 * @return execution response
 	 */
 	public ResponseObject remove(int row) {
@@ -464,6 +486,8 @@ public class ContainerDatabase extends AbstractTableModel {
 	/**
 	 * This method takes a row index, and column index as parameters, and returns 
 	 * the value of a container attribute from containers.
+	 * @param rowIndex
+	 * @param columnIndex
 	 * @return journey attribute values
 	 */
 	@Override
@@ -501,6 +525,7 @@ public class ContainerDatabase extends AbstractTableModel {
 	/**
 	 * This method takes a column index as a parameter, and returns 
 	 * the name of a container attribute.
+	 * @param columnIndex
 	 * @return container attribute names
 	 */
 	public String getColumnName(int columnIndex) {

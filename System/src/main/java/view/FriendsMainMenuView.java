@@ -22,18 +22,32 @@ import javax.swing.table.TableModel;
 import controller.Session;
 import controller.FriendsMainMenuController;
 
-public class FriendsMainMenuView extends JFrame {
+/**
+ * This class is responsible for displaying a window with a table of friends for the 
+ * clients. It extends JFrame to get advantage of the components that can be added 
+ * to the window.
+ */
 
+public class FriendsMainMenuView extends JFrame {
+	
 	private static final long serialVersionUID = 989075282041187452L;
 	private FriendsMainMenuController controller;
 	private JTable tblInventory;
 	private JLabel lblSession;
 	
+	/**
+	 * This constructor sets FriendsMainMenuController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public FriendsMainMenuView(FriendsMainMenuController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("User Manager");
 		setPreferredSize(new Dimension(800, 600));
@@ -55,6 +69,7 @@ public class FriendsMainMenuView extends JFrame {
 				controller.showJourneys(tblInventory.getSelectedRow());
 			}
 		});
+		
 		// toolbar
 		lblSession = new JLabel();
 		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -62,9 +77,7 @@ public class FriendsMainMenuView extends JFrame {
 		JToolBar toolbar = new JToolBar();
 		toolbar.add(btnFriend);
 		toolbar.add(btnShowJourneys);
-
 		toolbar.add(Box.createHorizontalGlue());
-
 		toolbar.add(lblSession);
 		add(toolbar, BorderLayout.NORTH);
 		
@@ -87,11 +100,20 @@ public class FriendsMainMenuView extends JFrame {
 		tblInventory.setModel(model);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}
 
+	/**
+	 * This methods displays a window with a given error message.
+	 * @param errorMessage
+	 */
 	public void showError(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage, "Adding Friend", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 }

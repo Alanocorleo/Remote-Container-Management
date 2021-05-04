@@ -30,6 +30,7 @@ public class Journey {
      * This constructor initialises journey attributes after deserializing 
      * the journey database. It is necessary since jackson cannot deserialize 
      * a hash map composed of journey keys and container array lists, automatically.
+     * @param key
      */
 	// @JsonCreator is used for deserializing
 	@JsonCreator
@@ -51,6 +52,7 @@ public class Journey {
 	}
 	/**
 	 * This method sets the journey-ID.
+	 * @param journeyID
 	 */
 	// @JsonProperty() can be used to rename variables instead of overriding toString()
 	@JsonProperty("ID")
@@ -67,6 +69,7 @@ public class Journey {
 	}
 	/**
 	 * This method sets the origin of the journey.
+	 * @param origin
 	 */
 	@JsonProperty("Origin")
 	public void setOrigin(String origin) {
@@ -82,6 +85,7 @@ public class Journey {
 	}
 	/**
 	 * This method sets the destination of the journey.
+	 * @param destination
 	 */
 	@JsonProperty("Destination")
 	public void setDestination(String destination) {
@@ -97,6 +101,7 @@ public class Journey {
 	}
 	/**
 	 * This method sets the departure date of the journey.
+	 * @param departureDate
 	 */
 	@JsonProperty("Departure")
 	public void setDepartureDate(String departureDate) {
@@ -112,6 +117,7 @@ public class Journey {
 	}
 	/**
 	 * This method sets the arrival date of the journey.
+	 * @param arrivalDate
 	 */
 	@JsonProperty("Arrival")
 	public void setArrivalDate(String arrivalDate) {
@@ -127,6 +133,7 @@ public class Journey {
 	}
 	/**
 	 * This method sets the journey database.
+	 * @param database
 	 */
 	public void setJourneyDatabase(JourneyDatabase database) {
 		this.journeyDatabase = database;
@@ -141,16 +148,15 @@ public class Journey {
 	 * @return journeyID
 	 */
 	public String createJourneyID() {
-		
 		SecureRandom output = new SecureRandom();
 		int cipher = output.nextInt(100000);
 		String journeyID = (String.format("%c%c", this.origin.charAt(0), this.destination.charAt(0)) + String.valueOf(cipher));
 		if (this.journeyDatabase.getJourneys().containsKey(journeyID)) {
 			return createJourneyID();
 		}
-		else 
+		else {
 			return this.journeyID = journeyID;
-			       
+		}	       
 	}
 	
 	/**

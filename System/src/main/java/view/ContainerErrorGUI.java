@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class ContainerErrorGUI {
 	
 	/**
-	 * this creates the pop up error when the container is not found
+	 * This method creates a pop up error when the container is not found.
 	 */
 	public ContainerErrorGUI() {
 		JFrame frame = new JFrame();
@@ -24,6 +24,7 @@ public class ContainerErrorGUI {
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setTitle("Error");
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 

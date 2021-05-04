@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -15,33 +14,23 @@ import management.JourneyDatabase;
 import management.LogisticsCompany;
 import response.ResponseObject;
 
-
 public class ClientTest {
-	private Client client;
 	
+	private Client client;
 	private LogisticsCompany company;
-	private Client myContainers;
-	private ContainerDatabase containers;
-	private ArrayList<Container> container;
 	
 	@Before
 	public void createClient() {
 		client = new Client();
 		company = LogisticsCompany.getInstance();
-		myContainers = new Client();
-		containers = new ContainerDatabase();
 	}
 	
-
 	@Test
 	public void testGetIdandSetId() {
 		client = new Client();
 		client.setId(100000);
-		assertTrue("Id is not 100000", client.getId() == 100000);
-
-		
+		assertTrue("ID is not 100000", client.getId() == 100000);
 	}
-
 
 	@Test
 	public void testGetfirstNameandSetfirstName() {
@@ -50,16 +39,12 @@ public class ClientTest {
 		assertTrue("First name is not Alice", "Alice".equals(client.getfirstName()));
 	}
 
-	
-
 	@Test
 	public void testGetlastNameandSetlastName() {
 		client = new Client();
 		client.setlastName("Allinson");
 		assertTrue("First name is not Allison", "Allinson".equals(client.getlastName()));
 	}
-
-
 
 	@Test
 	public void testGetBirthDateandSetBirthDate() {
@@ -72,10 +57,8 @@ public class ClientTest {
 	public void testGetEmailandSetEmail() {
 		client = new Client();
 		client.setEmail("Alice.Allinson@mail.com");
-		assertTrue("Email is not correct", "Alice.Allinson@mail.com".equals(client.getEmail()));
-		
+		assertTrue("Email is not correct", "Alice.Allinson@mail.com".equals(client.getEmail()));	
 	}
-
 
 	@Test
 	public void testGetPhoneNumberandSetPhoneNumber() {
@@ -84,8 +67,6 @@ public class ClientTest {
 		assertTrue("Phone number is not correct", "12345678".equals(client.getPhoneNumber()));
 	}
 
-	
-
 	@Test
 	public void testGetPasswordandSetPassword() {
 		client = new Client();
@@ -93,40 +74,28 @@ public class ClientTest {
 		assertTrue("Password is not correct", "12345678".equals(client.getPassword()));
 	}
 
-	
-
-	@Test (expected = NullPointerException.class)
+	@Test
 	public void testGetMyContainersandSetMyContainers() {
-		
-
-		ContainerDatabase containers = new ContainerDatabase();
-		ArrayList<Container> myContainers = new ArrayList<Container>();
-		
-		company = LogisticsCompany.getInstance();
 		Client client1 = new Client();
+		ContainerDatabase containers = new ContainerDatabase();
+
 		int counter = 1;
 		for (int i = 1; i <= 10; i++) {
 			containers.getContainers().add(new Container());
 			containers.getContainers().get(counter - 1).setContainerID(counter);
 			containers.getContainers().get(counter - 1).setPosition("Copenhagen");
 			containers.getContainers().get(counter - 1).setAvailability(true);
-			myContainers.add(container.get(i));
+			client1.getMyContainers().add(containers.getContainers().get(counter - 1));
 			counter += 1;
 		}
-		client1.setMyContainers(myContainers);
 		
-		assertTrue(myContainers.size() == client.getMyContainers().size());
-			
-			
-	
+		assertEquals(containers.getContainers().size(), client1.getMyContainers().size());
 	}
 
-
-	@Test (expected = NullPointerException.class)
+	@Test
 	public void testGetMyJourneysandSetMyJourneys() {
-		JourneyDatabase journeys = new JourneyDatabase();
-		company = LogisticsCompany.getInstance();
 		Client client1 = new Client();
+		JourneyDatabase journeys = new JourneyDatabase();
 		
 		Journey journey1 = new Journey();
 		String journeyID1 = "CO23143";
@@ -149,10 +118,9 @@ public class ClientTest {
 		journeys.create(journey2);
 		
 		client1.setMyJourneys(journeys);
-		assertTrue(journeys.equals(client.getMyJourneys()));
+		
+		assertTrue(journeys.equals(client1.getMyJourneys()));
 	}
-
-
 
 	@Test
 	public void testUpdateInfoStringStringStringStringStringClientDatabase() throws Exception {
@@ -169,18 +137,13 @@ public class ClientTest {
 		clients.getClients().add(client3);
 		clients.push();
 		
-		
-		company = LogisticsCompany.getInstance();
-
-		
 		ResponseObject response = client1.updateInfo("Alan", "Mansour", "21/04/2021", "Alice@mail.com", "0383747858", clients);
 		ResponseObject response1 = client2.updateInfo("Javier" ,"Almendra", "21/04/2021", "Alice@mail.com", "+999-999-99-999", clients);
 		ResponseObject response2 = client3.updateInfo("Kristyn" ,"Korboe", "21/04/2021", "Kristyn.Korboe@mail.com", "0383747858", clients);
-		assertTrue("info not updated", response.getErrorCode() == 1004);
-		assertTrue("info updated", response1.getErrorCode() == 1005);
-		assertTrue("info updated", response2.getErrorCode() == 1006);
-	
 		
+		assertTrue("Info has not been updated", response.getErrorCode() == 25);
+		assertTrue("Info has been updated", response1.getErrorCode() == 250);
+		assertTrue("Info has been updated", response2.getErrorCode() == 252);
 	}
 
 	@Test
@@ -190,15 +153,12 @@ public class ClientTest {
 		ClientDatabase registery = company.getClientDatabase();
 		client.setPassword("123456");
 		client.updateInfo("12345678", registery);
+		
 		assertTrue("password did not update", "12345678".equals(client.getPassword()));
 	}
 
 	@Test
 	public void testAddFriend() {
-		
-		company = LogisticsCompany.getInstance();
-		ClientDatabase registery = new ClientDatabase();
-		
 		ArrayList<Client> clients = new ArrayList<Client>();
 		Client client1 = new Client("Alan", "Mansour", "21/04/2021", "Alan.Mansour@mail.com", "+999-999-99-998");
     	client1.setId(100000);
@@ -211,25 +171,20 @@ public class ClientTest {
 		client3.setId(100002);
 		clients.add(client3);
 		
+		ClientDatabase registery = new ClientDatabase();
 		registery.setClients(clients);
 		client = new Client();
 		company = LogisticsCompany.getInstance();
-		
 	
 		ResponseObject response = client.addFriend("Alan.Mansour@mail.com", registery);
 		ResponseObject response1 = client.addFriend("AliceGOOO@mail.com", registery);
-		assertTrue("Friend not Added", response.getErrorCode() == 11560);
-		assertTrue("Friend Added", response1.getErrorCode() == 11021);
 		
-		
+		assertTrue("Friend has been added", response.getErrorCode() == 27);
+		assertTrue("Friend has not been added", response1.getErrorCode() == 270);
 	}
 	
 	@Test
 	public void testGetMyFriends() {
-		
-		company = LogisticsCompany.getInstance();
-		ClientDatabase registery = new ClientDatabase();
-		
 		ArrayList<Client> clients = new ArrayList<Client>();
 		Client client1 = new Client("Dodo", "Dodo", "21/04/2021", "Dodo", "+999-999-99-990");
     	client1.setId(100000);
@@ -242,6 +197,7 @@ public class ClientTest {
 		client3.setId(100002);
 		clients.add(client3);
 		
+		ClientDatabase registery = new ClientDatabase();
 		registery.setClients(clients);
 		
 		try {
@@ -251,12 +207,9 @@ public class ClientTest {
 		}
 		
 		client1.addFriend("Fodo.Fodo@mail.com", registery);
+		
 		assertTrue(client2.getMyFriends(registery).size() == 1);
 		assertFalse(client3.getMyFriends(registery).size() == 1);
-		
-		
-		
-	
 	}
 
 }

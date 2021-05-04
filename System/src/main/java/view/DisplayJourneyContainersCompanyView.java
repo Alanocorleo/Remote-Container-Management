@@ -21,6 +21,12 @@ import javax.swing.table.TableModel;
 import controller.Session;
 import controller.DisplayJourneyContainersCompanyController;
 
+/**
+ * This class is responsible for displaying a window with table of journey containers
+ * for the logistics company. It extends JFrame to get advantage of the components 
+ * that can be added to the window.
+ */
+
 public class DisplayJourneyContainersCompanyView extends JFrame {
 
 	private static final long serialVersionUID = -5189631801554166475L;
@@ -28,11 +34,19 @@ public class DisplayJourneyContainersCompanyView extends JFrame {
 	private JTable tblInventory;
 	private JLabel lblSession;
 	
+	/**
+	 * This constructor sets DisplayJourneyContainersCompanyController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public DisplayJourneyContainersCompanyView(DisplayJourneyContainersCompanyController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("Containers");
 		setPreferredSize(new Dimension(800, 600));
@@ -94,6 +108,10 @@ public class DisplayJourneyContainersCompanyView extends JFrame {
 		tblInventory.setModel(model);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}

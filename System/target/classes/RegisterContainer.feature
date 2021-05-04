@@ -30,4 +30,3 @@ Feature: Registering a container
   Scenario: Deny registering a container due to missing location
     When registering container
     Then deny registration "Location is not valid" 162
-

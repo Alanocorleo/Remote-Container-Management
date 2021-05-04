@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -16,14 +15,11 @@ public class ContainerTest {
 		container = new Container();
 	}
 	
-	//////////////////
-	
 	@Test
 	public void testGetDate() {
 		assertNull(container.getDate());
 		container.setDate("12\\12\\1212");
 		assertEquals("12\\12\\1212", container.getDate());
-	
 	}
 	
 	@Test
@@ -31,8 +27,6 @@ public class ContainerTest {
 		container.setDate("13\\12\\1212");
 		assertEquals("13\\12\\1212", container.getDate());
 	}
-	
-	//////////////////
 
 	@Test
 	public void testGetContainerID() {
@@ -173,10 +167,7 @@ public class ContainerTest {
 		container.setPosition("Oslo");
 		container.appendHistory();
 		
-//		System.out.println(container.getHistory().show()[0][0].toString());
-		
 		assertEquals("[12\\12\\1212]", container.getHistory().show()[0][0].toString());
-		
 	}
 	
 	@Test
@@ -189,7 +180,6 @@ public class ContainerTest {
 		container.appendHistory();
 		
 		assertEquals("[1]", container.getHistory().show()[1][0].toString());
-		
 	}
 	
 	@Test
@@ -201,10 +191,7 @@ public class ContainerTest {
 		container.setPosition("Oslo");
 		container.appendHistory();
 		
-		//System.out.println(container.getHistory().show()[0][0].toString());
-		
 		assertEquals("[1]", container.getHistory().show()[2][0].toString());
-		
 	}
 	
 	@Test
@@ -216,10 +203,7 @@ public class ContainerTest {
 		container.setPosition("Oslo");
 		container.appendHistory();
 		
-		//System.out.println(container.getHistory().show()[0][0].toString());
-		
-		assertEquals("[1]", container.getHistory().show()[3][0].toString());
-		
+		assertEquals("[1]", container.getHistory().show()[3][0].toString());	
 	}
 	
 	@Test
@@ -231,18 +215,8 @@ public class ContainerTest {
 		container.setPosition("Oslo");
 		container.appendHistory();
 		
-		//System.out.println(container.getHistory().show()[0][0].toString());
-		
-		assertEquals("[Oslo]", container.getHistory().show()[4][0].toString());
-		
+		assertEquals("[Oslo]", container.getHistory().show()[4][0].toString());	
 	}
-	
-
-
-//	@Test
-//	public void testSetHistory() {
-//		fail("Not yet implemented");
-//	}
 
 	@Test
 	public void testAppendHistory() {
@@ -253,10 +227,7 @@ public class ContainerTest {
 		container.setPosition("Oslo");
 		container.appendHistory();
 		
-		/// the 5 tests above are also testing append each time since without append working they would not work either
-		assertEquals("[Oslo]", container.getHistory().show()[4][0].toString());
-		
-		
+		assertEquals("[Oslo]", container.getHistory().show()[4][0].toString());	
 	}
 
 }

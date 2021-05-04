@@ -6,7 +6,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.time.Instant;
-// A book keeping array lists of data history
+
+/**
+ * HistoryBook class represents a book that keeps the container history.
+ */
+
 public class HistoryBook {
 	
 	private  ArrayList<String> date;
@@ -26,10 +30,11 @@ public class HistoryBook {
 		pressure = new ArrayList<Integer>();
 		position = new ArrayList<String>();
 	}
+	
 	/**
-	 * @param history
 	 * This method and annotation fine tune the deserialization process
-	 * it specifies how to get the data from database format
+	 * it specifies how to get the data from database format.
+	 * @param history
 	 */
 	@JsonCreator
 	@SuppressWarnings("unchecked")
@@ -40,9 +45,10 @@ public class HistoryBook {
 		pressure = (ArrayList<Integer>) history[3][0];
 		position = (ArrayList<String>) history[4][0];
 	}
+	
 	/**
 	 * This method and annotation specify how the object is going to be serialized
-	 * it also creates a matrix with all the history data
+	 * it also creates a matrix with all the history data.
 	 * @return matrix of data history
 	 */
 	@JsonValue
@@ -52,9 +58,9 @@ public class HistoryBook {
 	}
 	
 	/**
-	 * This method returns history of container
-	 * it also creates a matrix with each column containing data regarding a certain variable
-	 * this transposes the matrix that show() creates
+	 * This method returns history of container. It also creates a matrix with each 
+	 * column containing data regarding a certain variable. This transposes the 
+	 * matrix that show() creates.
 	 * @return matrix of data history
 	 */
 	public Object[][] showTable() {
@@ -63,26 +69,23 @@ public class HistoryBook {
 		Object[][] table = new Object[size][5];
 				
 		for (int i = 0; i < size; i++) {
-		
 			table[i][0] = date.get(i);
-			
 			table[i][1] = temperature.get(i);
 			table[i][2] = humidity.get(i);
 			table[i][3] = pressure.get(i);
 			table[i][4] = position.get(i);
-			
 		}
+		
 		return table;
-}
+	}
 	
 	/**
+	 * This method appends the new data to the array lists for each measurement.
 	 * @param date
 	 * @param temperature
 	 * @param humidity
 	 * @param pressure
 	 * @param position
-	 * 
-	 *  This method appends the new data to the arraylists for each measurement
 	 */
 	public void add(String date, int temperature, int humidity, int pressure, String position) {
 		this.date.add(date);

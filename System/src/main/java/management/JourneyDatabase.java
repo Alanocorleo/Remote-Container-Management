@@ -9,9 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
@@ -43,7 +40,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	/**
-	 * Json annotations are used for instructing how to both serialize and
+	 * JSON annotations are used for instructing how to both serialize and
 	 * deserialize.
 	 */
 	@JsonProperty("journeys")
@@ -70,6 +67,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	
 	/**
 	 * This method sets the journeys.
+	 * @param journeys
 	 */
 	public void setJourneys(Map<Journey, ArrayList<Container>> journeys) {
 		this.journeys = journeys;
@@ -81,6 +79,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * This method produces a journey database as a JSON file with name 
 	 * "journey_database.json" to program's directory by serialising a newly
 	 * created journey database object. 
+	 * @throws Exception
 	 */
 	public void produce() throws Exception {
 		mapper = new ObjectMapper();
@@ -93,6 +92,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * This method pulls the journey database from program's directory by 
 	 * deserializing "journey_database.json" file, and assigning the information
 	 * to journeys. 
+	 * @throws Exception
 	 */
 	public void pull() throws Exception {
 		mapper = new ObjectMapper();
@@ -103,6 +103,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * This method either produces or overwrites an existing journey database in
 	 * program's directory with name "journey_database.json" by serialising 
 	 * journeys.
+	 * @throws Exception
 	 */
 	public void push() throws Exception {
 		mapper = new ObjectMapper();
@@ -117,6 +118,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * empty, then return a response with a code 210 and a message "Necessary parameters 
 	 * are not entered". Otherwise, return a response with a code 020 and a message 
 	 * "Journey has been created".
+	 * @param journey
 	 * @return execution response
 	 */
 	public ResponseObject create(Journey journey) {
@@ -151,6 +153,10 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * 120 and a message "Journey is not found". Otherwise, return a response with
 	 * a code 014 and a message "Container has been assigned to a journey" for every
 	 * container that gets assigned.
+	 * @param journeyID
+	 * @param origin
+	 * @param destination
+	 * @param containerList
 	 * @return execution response
 	 */
 	public ResponseObject registerTo(String journeyID, String origin, String destination, ArrayList<Container> containerList) {
@@ -186,6 +192,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * given client-ID. Once found, these containers are then added to another array
 	 * list of containers, which are then put to a hash map with the journey as the 
 	 * key and the containers as the value. This is repeated for every journey.
+	 * @param clientID
 	 * @return journeys
 	 */
 	public Map<Journey, ArrayList<Container>> extract(int clientID) {
@@ -223,6 +230,8 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * attribute equal to the entry. Once found, this journey together with their 
 	 * containers are then put to a hash map with the journey as the key and the 
 	 * containers as the value. This is repeated for every journey.
+	 * @param criteria
+	 * @param entry
 	 * @return journeys
 	 */
 	public Map<Journey,  ArrayList<Container>> find(String criteria, String entry) {
@@ -285,6 +294,8 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * with a code 110 and a message "Container is not found". Otherwise, return a 
 	 * response with a code 070 and a message "Position has been updated" for every
 	 * container that gets updated.
+	 * @param journeyID
+	 * @param position
 	 * @return execution response
 	 */
 	public ResponseObject updatePosition(String journeyID, String position) {
@@ -313,6 +324,8 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * then return a response with a code 120 and a message "Journey is not found".
 	 * Otherwise, return a response with a code 071 and a message "Departure date 
 	 * has been set".
+	 * @param journeyID
+	 * @param date
 	 * @return execution response
 	 */
 	public ResponseObject setDeparture(String journeyID, String date) {
@@ -342,6 +355,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * 110 and a message "Container is not found". Otherwise, return a response with
 	 * a code 072 and a message "Arrival date has been set" for every container that
 	 * gets updated.
+	 * @param journeyID
 	 * @return execution response
 	 */
 	public ResponseObject markArrived(String journeyID) {
@@ -377,6 +391,8 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * a response with a code 110 and a message "Container is not found". Otherwise, 
 	 * return a response with a code 011 and a message "Container has been successfully 
 	 * removed".
+	 * @param journeyID
+	 * @param containerID
 	 * @return execution response
 	 */
 	public ResponseObject removeContainer(String journeyID, int containerID) {
@@ -409,6 +425,7 @@ public class JourneyDatabase extends AbstractTableModel {
 	 * with a code 120 and a message "Journey is not found". Otherwise, return a 
 	 * response with a code 021 and a message "Journey has been completed and 
 	 * successfully removed".
+	 * @param journeyID
 	 * @return execution response
 	 */
 	public ResponseObject complete(String journeyID) {

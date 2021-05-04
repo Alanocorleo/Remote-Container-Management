@@ -12,4 +12,5 @@ public class GridBagLayoutUtils {
 		c.insets = new Insets(inset, inset, inset, inset);
 		return c;
 	}
+	
 }

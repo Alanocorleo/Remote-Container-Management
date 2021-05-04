@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -20,21 +19,15 @@ public class LogisticsCompanyTest {
 	private Client client;
 	private LogisticsCompany company;
 	
-	
 	@Before
 	public void createCompany() {
-		client = new Client("Alice", "Allinson", "21-04-2021", "Alice@mail.com", "0383747858");
+		client = new Client("Alice", "Allinson", "21/04/2021", "Alice@mail.com", "0383747858");
 		company = LogisticsCompany.getInstance();
 		company.cleanDataBase();
-	
-	
 	}
 	
 	@Test
 	public void getClientDatabaseandSetClientDatabase() {
-		company = LogisticsCompany.getInstance();
-		ClientDatabase registery = new ClientDatabase();
-		
 		ArrayList<Client> clients = new ArrayList<Client>();
 		Client client1 = new Client("Alan", "Mansour", "21/04/2021", "Alan.Mansour@mail.com", "+999-999-99-998");
     	client1.setId(100000);
@@ -47,17 +40,18 @@ public class LogisticsCompanyTest {
 		client3.setId(100002);
 		clients.add(client3);
 		
+		ClientDatabase registery = new ClientDatabase();
 		registery.setClients(clients);
+		
+		company = LogisticsCompany.getInstance();
 		company.setClientDatabase(registery);
 		
 		assertTrue(registery.equals(company.getClientDatabase()));
-		
 	}
 	
 	@Test
 	public void getContainerDatabaseandSetContainerDatabase() {
 		ContainerDatabase containers = new ContainerDatabase();
-		company = LogisticsCompany.getInstance();
 		int counter = 1;
 		for (int i = 1; i <= 10; i++) {
 			containers.getContainers().add(new Container());
@@ -66,6 +60,8 @@ public class LogisticsCompanyTest {
 			containers.getContainers().get(counter - 1).setAvailability(true);
 			counter += 1;
 		}
+		
+		company = LogisticsCompany.getInstance();
 		company.setContainerDatabase(containers);
 		
 		assertNotNull(containers.equals(company.getContainerDatabase()));
@@ -74,7 +70,6 @@ public class LogisticsCompanyTest {
 	@Test
 	public void getJourneyDatabaseandSetJourneyDatabase() {
 		JourneyDatabase journeys = new JourneyDatabase();
-		company = LogisticsCompany.getInstance();
 		
 		Journey journey1 = new Journey();
 		String journeyID1 = "CO23143";
@@ -96,12 +91,10 @@ public class LogisticsCompanyTest {
 		journey2.setDestination(destination2);	
 		journeys.create(journey2);
 		
+		company = LogisticsCompany.getInstance();
 		company.setJourneyDatabase(journeys);
 		
 		assertTrue(journeys.equals(company.getJourneyDatabase()));
-		
-		
-		
 	}
 
 	
@@ -114,8 +107,6 @@ public class LogisticsCompanyTest {
 
 	@Test
 	public void testGetClientDatabaseandSetClientDatabase() {
-		ClientDatabase registery = new ClientDatabase();
-		
 		ArrayList<Client> clients = new ArrayList<Client>();
 		Client client1 = new Client("Alan", "Mansour", "21/04/2021", "Alan.Mansour@mail.com", "+999-999-99-998");
     	client1.setId(100000);
@@ -128,16 +119,15 @@ public class LogisticsCompanyTest {
 		client3.setId(100002);
 		clients.add(client3);
 		
+		ClientDatabase registery = new ClientDatabase();
 		registery.setClients(clients);
 		
 		assertNotNull(registery.getClients().size());
-		
 	}
 
 	
 	@Test
 	public void testCreateNewClient() throws Exception {
-		company = LogisticsCompany.getInstance();
 		Client client1 = new Client();
 		client1.setfirstName("Sarthak");
     	client1.setlastName("Trehan");
@@ -208,6 +198,7 @@ public class LogisticsCompanyTest {
     	client8.setId(5);
     	client8.setPassword("0000");
 		
+    	company = LogisticsCompany.getInstance();
 		ResponseObject response = company.CreateNewClient(client1);
 		ResponseObject response1 = company.CreateNewClient(client2);
 		ResponseObject response2 = company.CreateNewClient(client3);
@@ -217,69 +208,61 @@ public class LogisticsCompanyTest {
 		ResponseObject response6 = company.CreateNewClient(client7);
 		ResponseObject response7 = company.CreateNewClient(client8);
 		
-		assertTrue("client not created", response.getErrorCode() == 1000);
-		assertTrue("client not created", response1.getErrorCode() == 1001);
-		assertTrue("client not created", response2.getErrorCode() == 1001);
-		assertTrue("client not created", response5.getErrorCode() == 1002);
-		assertTrue("client not created", response3.getErrorCode() == 1002);
-		assertTrue("client not created", response4.getErrorCode() == 1002);
-		assertTrue("client not created", response6.getErrorCode() == 1003);
-		assertTrue("client not created", response7.getErrorCode() == 1003);
+		assertTrue("Client has been created", response.getErrorCode() == 90);
+		assertTrue("Client has not been created", response1.getErrorCode() == 900);
+		assertTrue("Client has not been created", response2.getErrorCode() == 901);
+		assertTrue("Client has not been created", response5.getErrorCode() == 902);
+		assertTrue("Client has not been created", response3.getErrorCode() == 902);
+		assertTrue("Client has not been created", response4.getErrorCode() == 902);
+		assertTrue("Client has not been created", response6.getErrorCode() == 903);
+		assertTrue("Client has not been created", response7.getErrorCode() == 904);
 	}
 
 	@Test (expected = IndexOutOfBoundsException.class)
 	public void testGetClientInt() throws Exception {
 		client = new Client();
-		company = LogisticsCompany.getInstance();
 		client.setId(1);
 		client.setfirstName("Alice");
 		
 		Client client1 = new Client("Alan", "Mansour", "21/04/2021", "Alan.Mansour@mail.com", "+999-999-99-998");
     	client1.setId(100000);
+    	
+    	company = LogisticsCompany.getInstance();
 		company.CreateNewClient(client);
-		assertTrue("not the correct client", client.getId() == company.getClientDatabase().getClient(1).get(0).getId());
 		
-		
-		
+		assertTrue("Incorrect client", client.getId() == company.getClientDatabase().getClient(1).get(0).getId());
 	}
 
 	@Test (expected = NullPointerException.class)
 	public void testGetClientStringString() {
-		
-		ClientDatabase registery = new ClientDatabase();
-		
 		ArrayList<Client> clients = new ArrayList<Client>();
 		Client client1 = new Client("Alan", "Mansour", "21/04/2021", "Alan.Mansour@mail.com", "+999-999-99-998");
     	client1.setId(100000);
     	client1.setPassword("0000");
     	clients.add(client1);
 		
+    	ClientDatabase registery = new ClientDatabase();
 		registery.setClients(clients);
 		
 		company = LogisticsCompany.getInstance();
 		
-		
-		assertTrue("not the correct client", client1.getfirstName().equals(company.getClientDatabase().getClient("Alan", "Mansour").get(0).getfirstName()) & client.getlastName().equals(company.getClientDatabase().getClient("Alan", "Mansour").get(0).getlastName()));
+		assertTrue("Incorrect client", client1.getfirstName().equals(company.getClientDatabase().getClient("Alan", "Mansour").get(0).getfirstName()) & client.getlastName().equals(company.getClientDatabase().getClient("Alan", "Mansour").get(0).getlastName()));
 	}
 
 	@Test (expected = IndexOutOfBoundsException.class)
 	public void testGetClientString() {
-		
-	ClientDatabase registery = new ClientDatabase();
-		
-		ArrayList<Client> clients = new ArrayList<Client>();
-		Client client1 = new Client("LOOO", "DOOOOr", "21/04/2021", "LOOO.DOOO@mail.com", "+999-999-99-998");
-    	client1.setId(100000);
-    	client1.setPassword("0000");
-    	clients.add(client1);
-		
-		registery.setClients(clients);
-		
-		company = LogisticsCompany.getInstance();
-		
-		
-		assertTrue("not the correct client", client1.getfirstName().equals(company.getClientDatabase().getClient("LOOO.DOOO@mail.com").get(0).getfirstName()) & client.getlastName().equals(company.getClientDatabase().getClient("LOOO.DOOO@mail.com").get(0).getlastName()));
-		
+	ArrayList<Client> clients = new ArrayList<Client>();
+	Client client1 = new Client("LOOO", "DOOOOr", "21/04/2021", "LOOO.DOOO@mail.com", "+999-999-99-998");
+	client1.setId(100000);
+	client1.setPassword("0000");
+	clients.add(client1);
+	
+	ClientDatabase registery = new ClientDatabase();	
+	registery.setClients(clients);
+	
+	company = LogisticsCompany.getInstance();
+	
+	assertTrue("not the correct client", client1.getfirstName().equals(company.getClientDatabase().getClient("LOOO.DOOO@mail.com").get(0).getfirstName()) & client.getlastName().equals(company.getClientDatabase().getClient("LOOO.DOOO@mail.com").get(0).getlastName()));
 	}
 
 }

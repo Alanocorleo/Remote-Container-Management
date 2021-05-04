@@ -16,6 +16,7 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Booking containers
 
@@ -73,4 +74,3 @@ Feature: Booking containers
     And shipping yard in "Copenhagen" with 20 containers
     When booking
     Then deny booking "Necessary parameters are not entered" 210
- 

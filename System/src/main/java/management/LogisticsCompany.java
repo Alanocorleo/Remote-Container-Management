@@ -1,15 +1,17 @@
 package management;
 
-import java.util.ArrayList;
-
 import response.ResponseObject;
+
+/**
+ * LogisticsCompany class represent the logistics company who will control the program.
+ */
 
 public class LogisticsCompany {
 	
-	
-	//This is to insure the company follows the singleton design pattern
+	// This is to insure the company follows the singleton design pattern.
 	private static LogisticsCompany instance;
-	//Company's attributes
+	
+	// Company's attributes
 	private String name;
 	private int count ;
 
@@ -17,9 +19,8 @@ public class LogisticsCompany {
 	private ContainerDatabase containerDatabase;
 	private JourneyDatabase journeyDatabase;
 	
-	//Constructor that pulls the latest changes from the json files.
+	// Constructor that pulls the latest changes from the JSON files
 	public LogisticsCompany() {
-		
 		clientDatabase = new ClientDatabase();
 		containerDatabase = new ContainerDatabase();
 		journeyDatabase = new JourneyDatabase();
@@ -33,13 +34,14 @@ public class LogisticsCompany {
 		}
 		
 		count = clientDatabase.getClients().size() + 1 ;
-		
 	}
-	//This insures the uniqueness of client id
-		public void countIncrement() {
-			this.count++;
-		}
-	//Getters and setter
+	
+	// This insures the uniqueness of client-ID.
+	public void countIncrement() {
+		this.count++;
+	}
+	
+	// Getters and setter
 	public String getName() {
 		return name;	
 	}
@@ -50,7 +52,6 @@ public class LogisticsCompany {
 	public int getCount() {
 	return this.count;
 	}
-	
 	
 	public ClientDatabase getClientDatabase() {
 		return clientDatabase;
@@ -73,49 +74,55 @@ public class LogisticsCompany {
 		this.journeyDatabase = journeyDatabase;
 	}
 	
-	
-	//This method produces a fresh client Database.
+	/**
+	 * This method produces a fresh client Database.
+	 */
 	public void cleanDataBase() {
-		
 		try {
 			clientDatabase.produce();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		this.count = 1;
-		
 	}
-	//This method is used by the company to create a client and add it to their database 
-	//It returns a response Object corresponding to whether the creation is legal or not and gives the appropriate error codes and response for each of the cases.
+	
+	/**
+	 * This method is used by the company to create a client and add it to their 
+	 * database. It returns a response Object corresponding to whether the creation
+	 * is legal or not and gives the appropriate error codes and response for each 
+	 * of the cases.
+	 * @param client
+	 * @return execution response
+	 * @throws Exception
+	 */
 	public ResponseObject CreateNewClient(Client client) throws Exception {
 		
 		ResponseObject response;
 		
 		if (clientDatabase.legalPhoneNumberToAddClient(client) & clientDatabase.legalEmailToAddClient(client) & client.getfirstName() != null & client.getlastName() != null & client.getEmail() !=null & client.getPhoneNumber() != null) {
-			//reg.clients.add(client);
 			client.setId(count);
 			clientDatabase.getClients().add(client);
 			clientDatabase.push();
 			countIncrement();
 			
-			response = new ResponseObject(1000, "Client Added Successfully");;
+			response = new ResponseObject(90, "Client has been added successfully");;
 
 		} else if (client.getfirstName() == null){
-			response = new ResponseObject(1001, "Client Not Added. Missing name.");
+			response = new ResponseObject(900, "Client has not been added. Missing first name");
 
 			
 		} else if (client.getlastName() == null){
-			response = new ResponseObject(1001, "Client Not Added. Missing name.");
+			response = new ResponseObject(901, "Client has not been added. Missing last name");
 
 			
 		} else if (client.getEmail() == null | client.getPhoneNumber() == null){
-			response = new ResponseObject(1002, "Client Not Added. Missing contact information. Please provide an email or a phone number.");
+			response = new ResponseObject(902, "Client has not been added. Missing contact information. Please provide an email or a phone number");
 
 		} else if (! clientDatabase.legalPhoneNumberToAddClient(client)){
-			response = new ResponseObject(1003, "Client Not Added. Phone number already used by a different client");
+			response = new ResponseObject(903, "Client has not been added. Phone number already used by a different client");
 
 		} else {
-			response = new ResponseObject(1003, "Client Not Added. Email already used by a different client");
+			response = new ResponseObject(904, "Client has not been added. Email already used by a different client");
 
 		}
 		
@@ -123,13 +130,15 @@ public class LogisticsCompany {
 		
 	}
 	
-	
-	//This is to insure the the company follows a singleton design pattern
+	/**
+	 * This is to insure the the company follows a singleton design pattern.
+	 * @return instance
+	 */
 	public static LogisticsCompany getInstance() {
 		if (instance == null) {
 			instance = new LogisticsCompany();
 		}
 		return instance;
 	}
-
+	
 }

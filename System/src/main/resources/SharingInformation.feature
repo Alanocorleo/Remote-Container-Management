@@ -16,27 +16,25 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Sharing information
   I registed client wants to share their information with another client and the other client wants to see the registed client's information
 
   @tag1
   Scenario: Send your information to another client successfully 
-    Given two registed clients2
+    Given two registered clients2
     When one client sends his information to the other client
-   Then The information is successfully sent
+   Then the information is successfully sent
     
   @tag1
   Scenario: Send your information to another client unsuccessfully 
-    Given one registed client and his unregisted friend
-    When one client sends his information to the unregisted client
-    Then The information is not successfully sent
+    Given one registered client and his unregistered friend
+    When one client sends his information to the unregistered client
+    Then the information is not successfully sent
     
-    
-  @tag1
+  @tag2
   Scenario: being able to access friend's shared information
-    Given two registed clients2
+    Given two registered clients2
     When one client tries to access his friend's information
-    Then The information received successfully.
-    
-  
+    Then the information received successfully

@@ -24,6 +24,12 @@ import javax.swing.border.Border;
 import controller.DisplayRegisterController;
 import controller.Session;
 
+/**
+ * This class is responsible for displaying a window to proceed with filling the
+ * required fields in order to book and register containers to journeys for the clients. 
+ * It extends JFrame to get advantage of the components that can be added to the window.
+ */
+
 public class DisplayRegisterView extends JFrame {
 
 	private static final long serialVersionUID = 4212863552112409964L;
@@ -34,11 +40,19 @@ public class DisplayRegisterView extends JFrame {
 	private JPanel boxContainers = new JPanel(new GridLayout(2, 2, 2, 0));
 	private JPanel panel = new JPanel();
 	
+	/**
+	 * This constructor sets DisplayRegisterController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public DisplayRegisterView(DisplayRegisterController displayRegisterController) {
 		this.controller = displayRegisterController;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("Register");
 		setPreferredSize(new Dimension(800, 600));
@@ -98,7 +112,6 @@ public class DisplayRegisterView extends JFrame {
             		  pref.height);
            }
        };
-       
        leftHalf.add(panel);
 	   add(leftHalf, BorderLayout.CENTER);
 	   
@@ -120,14 +133,22 @@ public class DisplayRegisterView extends JFrame {
 		toolbar.add(Box.createHorizontalGlue());
 		toolbar.add(lblSession);
 		add(toolbar, BorderLayout.NORTH);
+		
 		pack();
 		setLocationRelativeTo(null);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}
 	
+	/**
+	 * This methods displays a window with an error message.
+	 */
 	public void showError(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage, "Input error", JOptionPane.ERROR_MESSAGE);
 	}

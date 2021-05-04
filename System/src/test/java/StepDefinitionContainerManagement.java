@@ -45,8 +45,7 @@ public class StepDefinitionContainerManagement {
 	public void number_of_containers(int number) {
 		this.quantity = number;
 	}
-
-
+	
 	@Given("shipping yard in {string} with {int} containers")
 	public void shipping_yard_with_containers(String position, Integer number) {
 		this.location = position;
@@ -257,6 +256,11 @@ public class StepDefinitionContainerManagement {
 		for (Container container : containers.getContainers()) {
 			assertTrue(container.getContainerID() != containerID);
 		}
+	}
+	
+	@Then("pass")
+	public void pass() {
+	    
 	}
 	
 }

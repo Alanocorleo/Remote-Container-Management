@@ -18,9 +18,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 
-import controller.Session;
-import controller.DisplayContainersController;
 import controller.DisplayJourneyContainersClientController;
+import controller.Session;
+
+/**
+ * This class is responsible for displaying a window with table of journey containers
+ * for the clients. It extends JFrame to get advantage of the components that can be
+ * added to the window.
+ */
 
 public class DisplayJourneyContainersClientView extends JFrame {
 
@@ -29,11 +34,19 @@ public class DisplayJourneyContainersClientView extends JFrame {
 	private JTable tblInventory;
 	private JLabel lblSession;
 	
+	/**
+	 * This constructor sets DisplayJourneyContainersClientController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public DisplayJourneyContainersClientView(DisplayJourneyContainersClientController displayContainersController) {
 		this.controller = displayContainersController;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("Containers");
 		setPreferredSize(new Dimension(800, 600));
@@ -55,7 +68,6 @@ public class DisplayJourneyContainersClientView extends JFrame {
 				controller.showHistory(tblInventory.getSelectedRow());
 			}
 		});
-		
 		
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.addActionListener(new ActionListener() {
@@ -96,6 +108,10 @@ public class DisplayJourneyContainersClientView extends JFrame {
 		tblInventory.setModel(model);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}

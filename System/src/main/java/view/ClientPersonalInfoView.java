@@ -16,34 +16,37 @@ import controller.ClientPersonalInfoController;
 import controller.Session;
 import utils.GridBagLayoutUtils;
 
+/**
+ * This class is responsible for displaying a window with client's personal 
+ * information for the client. It extends JFrame to get advantage of the components 
+ * that can be added to the window.
+ */
+
 public class ClientPersonalInfoView extends JFrame {
 
 	private static final long serialVersionUID = 989075282041187452L;
 	private ClientPersonalInfoController controller;
 	private JLabel lblSession;
-
-
-
 	
-	
+	/**
+	 * This constructor sets ClientPersonalInfoController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public ClientPersonalInfoView(ClientPersonalInfoController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
-		
-		
 		setTitle("Account Details");
 		setPreferredSize(new Dimension(800, 600));
 		
-
-
-		
 		// toolbar
 		lblSession = new JLabel();
-	
-	
 		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		setLayout(new GridBagLayout());
@@ -54,7 +57,6 @@ public class ClientPersonalInfoView extends JFrame {
 		JTextField textFieldEmail = new JTextField(controller.getClient().getEmail(), 20);
 		JTextField textFieldPhone = new JTextField(controller.getClient().getPhoneNumber(), 20);
 		
-	
 		JTextField txtPass = new JTextField(controller.getClient().getPassword(), 20);
 		JButton updateBtn = new JButton("Save Changes");
 		
@@ -90,26 +92,27 @@ public class ClientPersonalInfoView extends JFrame {
 		add(new JLabel("Password:"), GridBagLayoutUtils.constraint(0, 6, 5));
 		add(txtPass, GridBagLayoutUtils.constraint(1, 6, 5));
 		
-
-		
 		add(updateBtn, GridBagLayoutUtils.constraint(1, 7, 5));
 		
 		pack();
 		setLocationRelativeTo(null);
-		
 	}
 	
-	
-	
-
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}
 	
-	
-	
+	/**
+	 * This methods displays a window with a given error message.
+	 * @param errorMessage
+	 */
 	public void showError(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage, "Updating information", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 }
 

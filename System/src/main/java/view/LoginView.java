@@ -14,6 +14,11 @@ import javax.swing.JTextField;
 import controller.LoginController;
 import utils.GridBagLayoutUtils;
 
+/**
+ * This class is responsible for displaying a login window. It extends JFrame 
+ * to get advantage of the components that can be added to the window.
+ */
+
 public class LoginView extends JFrame {
 
 	private static final long serialVersionUID = 8981053836072595592L;
@@ -23,11 +28,19 @@ public class LoginView extends JFrame {
 	private JPasswordField txtPass;
 	private LoginController controller;
 
+	/**
+	 * This constructor sets LoginController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public LoginView(LoginController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -54,6 +67,9 @@ public class LoginView extends JFrame {
 		setLocationRelativeTo(null);
 	}
 	
+	/**
+	 * This methods displays a window with an error message.
+	 */
 	public void showError() {
 		JOptionPane.showMessageDialog(this, "Wrong username/password combination", "Login error", JOptionPane.ERROR_MESSAGE);
 	}

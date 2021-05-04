@@ -13,26 +13,22 @@ public class StepDefinitionRegisterClients {
 	LogisticsCompany logisticsCompany = LogisticsCompany.getInstance();
 	Client newClient = new Client();
 	Client registeredClient = new Client("Alice", "Allison","01012000" ,"AliceAllison@gmail.com", "12345678");
+	Client registeredClient2 = new Client("Alice", "Allison","01012000" ,"AliceAllison@gmail.com", "12345678");
 	Client clientWithSameNameasRegisteredClient = new Client("Alice", "Allison", "999999","AliceAllison12@gmail.com" , "12345679");
 	Client clientWithoutEmail;
 	Client clientWithoutPhoneNumber;
-	Client registeredClient2 = new Client("Alice", "Allison","01012000" ,"AliceAllison@gmail.com", "12345678");
-	LogisticsCompany logisticscompany2;
 	Client unregisteredClient;
 	ArrayList <Client> theReturnedClientList;
+	LogisticsCompany logisticscompany2;
 	ResponseObject response1;
 	ResponseObject response2;
 	
-	
 	//Scenario 1  A client is registering in the system with date of birth, full name and email, phone number
-	
 	
 	@Given("a new client with name {string}")
 	public void a_new_client_with_name(String name) {
-		
 		newClient.setfirstName("Alice");
 		newClient.setlastName("Allison");
-
 	}
 
 	@Given("born {string}")
@@ -52,49 +48,41 @@ public class StepDefinitionRegisterClients {
 
 	@When("the company registers the client")
 	public void the_company_registers_the_client() throws Exception {
-		
 		logisticsCompany.cleanDataBase();
 		logisticsCompany.CreateNewClient(newClient);
-	
-	 
 	}
+	
 	@Then("the client is registered in the system successfully")
 	public void the_client_is_registered_in_the_system_successfully() {
-	    
 	    assertTrue(logisticsCompany.getClientDatabase().ClientExists(newClient));
 	}
 
 	@Then("the client is assigned a unique company ID {int}")
 	public void the_client_is_assigned_a_unique_company_ID(Integer id) {
 		assertTrue(logisticsCompany.getClientDatabase().checkID(newClient));
-	   
 	}
+	
 	//Scenario 2 Same client registers again
+	
 	@Given("a registered client")
 	public void a_registered_client() throws Exception {
 		logisticsCompany.cleanDataBase();
 		response1 = logisticsCompany.CreateNewClient(registeredClient);
-
-
-		
 	}
 
 	@When("the registered client tries to register again")
 	public void the_registered_client_tries_to_register_again() throws Exception {
 		response2 = logisticsCompany.CreateNewClient(registeredClient);
-	    
 	}
 
 	@Then("the client is not registered in the system again")
 	public void the_client_is_not_registered_in_the_system_again() {
-		assertTrue(response1.getErrorCode() == 1000);
-		assertTrue(response2.getErrorCode() == 1003);
-
+		assertTrue(response1.getErrorCode() == 90);
+		assertTrue(response2.getErrorCode() == 903);
 	}
 
 	//scenario 3  Two client with same name but different contact info register
 	
-
 	@Given("an already registered client")
 	public void an_already_registered_client() throws Exception {
 		logisticsCompany.cleanDataBase();
@@ -104,14 +92,12 @@ public class StepDefinitionRegisterClients {
 	@When("a new client registers with the same name but different contact info")
 	public void a_new_client_registers_with_the_same_name_but_different_contact_info() throws Exception {
 		logisticsCompany.CreateNewClient(clientWithSameNameasRegisteredClient);
-		
 	}
 	
 	@Then("the new client is registered in the system successfully")
 	public void the_new_client_is_registered_in_the_system_successfully() {
 		logisticsCompany.getClientDatabase().ClientExists(registeredClient);
 		logisticsCompany.getClientDatabase().ClientExists(clientWithSameNameasRegisteredClient);
-	   
 	}
 	
 	@Then("both clients have different unique company IDs")
@@ -132,10 +118,11 @@ public class StepDefinitionRegisterClients {
 		response1 = logisticsCompany.CreateNewClient(newClient);
 	}
 
-	@Then("then the client is not registered in the system")
-	public void then_the_client_is_not_registered_in_the_system() {
-	    assertTrue(response1.getErrorCode() == 1001);
+	@Then("the client is not registered in the system")
+	public void the_client_is_not_registered_in_the_system() {
+	    assertTrue(response1.getErrorCode() == 900);
 	}
+	
 	//scenario 5: Client tries to register with one contact info
 	
 	@Given("a client with all info except email")
@@ -150,10 +137,11 @@ public class StepDefinitionRegisterClients {
 		response1 = logisticsCompany.CreateNewClient(clientWithoutEmail);
 	}
 
-	@Then("then the client is registered in the system successfully")
-	public void then_the_client_is_registered_in_the_system_successfully() {
-	    assertTrue(response1.getErrorCode() == 1002);
+	@Then("the client without the email is not registered in the system successfully")
+	public void the_client_without_the_email_is_not_registered_in_the_system_successfully() {
+	    assertTrue(response1.getErrorCode() == 902);
 	}
+	
 	//Scenario 6: Client tries to register with the other contact info
 	
 	@Given("a client with all info except phone number")
@@ -166,12 +154,10 @@ public class StepDefinitionRegisterClients {
 	public void they_try_to_regsiter_without_an_phone_number() throws Exception {
 		logisticsCompany.cleanDataBase();
 		response1 = logisticsCompany.CreateNewClient(clientWithoutPhoneNumber);
-
 	}
 
-	@Then("then the client without the phone numver is registered in the system successfully")
-	public void then_the_client_without_the_phone_numver_is_registered_in_the_system_successfully() {
-		 assertTrue(response1.getErrorCode() == 1002);
-	    
+	@Then("the client without the phone number is registered in the system successfully")
+	public void the_client_without_the_phone_number_is_registered_in_the_system_successfully() {
+		assertTrue(response1.getErrorCode() == 902);
 	}
 }

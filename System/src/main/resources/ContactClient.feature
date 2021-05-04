@@ -16,14 +16,15 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Contacting clients
   Company wants to have access to clients personal information to contact them
 
   @tag1
-  Scenario: Contacting registered client by unique id
+  Scenario: Contacting registered client by unique ID
     Given registered client2
-    When the company searches for the client by id 
+    When the company searches for the client by ID
     Then the company gets all the info of the client
  
     
@@ -33,9 +34,9 @@ Feature: Contacting clients
     Then the company gets all the info of the client of both clients
     
     
-  Scenario: Contacting client by id that doesnt exists
+  Scenario: Contacting client by ID that doesnt exists
     Given a registery 
-    When the company searches for the client by the non existing id
+    When the company searches for the client by the non existing ID
     Then the company does not get any info
     
     
@@ -48,5 +49,3 @@ Feature: Contacting clients
     Given registered client2
     When the company searches for the client by email 
     Then the company gets all the info of the client
-    
-

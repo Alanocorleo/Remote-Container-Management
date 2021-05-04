@@ -21,6 +21,12 @@ import javax.swing.table.TableModel;
 import controller.Session;
 import controller.DisplayContainersController;
 
+/**
+ * This class is responsible for displaying a window with table of containers for 
+ * the logistics company. It extends JFrame to get advantage of the components that
+ * can be added to the window.
+ */
+
 public class DisplayContainersView extends JFrame {
 
 	private static final long serialVersionUID = 4212860552112409964L;
@@ -28,11 +34,19 @@ public class DisplayContainersView extends JFrame {
 	private JTable tblInventory;
 	private JLabel lblSession;
 	
+	/**
+	 * This constructor sets DisplayContainersController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public DisplayContainersView(DisplayContainersController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("Containers");
 		setPreferredSize(new Dimension(800, 600));
@@ -62,7 +76,7 @@ public class DisplayContainersView extends JFrame {
 			}
 		});
 		
-		JButton btnDelete = new JButton("Remove"); // add code to delete from database so changes are not lost upon exit
+		JButton btnDelete = new JButton("Remove");
 		btnDelete.setEnabled(false);
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
@@ -70,7 +84,6 @@ public class DisplayContainersView extends JFrame {
 				controller.delete(tblInventory.getSelectedRow());
 			}
 		});
-		
 		
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.addActionListener(new ActionListener() {
@@ -127,6 +140,10 @@ public class DisplayContainersView extends JFrame {
 		tblInventory.setModel(model);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}

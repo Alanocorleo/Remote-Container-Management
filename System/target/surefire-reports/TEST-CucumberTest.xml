@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="91" failures="0" name="CucumberTest" time="2.397" errors="0" skipped="1">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.vm.version" value="15.0.2+7-27"/>
+    <property name="sun.boot.library.path" value="C:\Users\Alan\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.2.v20210201-0955\jre\bin"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management\System"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="GB"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management\System"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="java.runtime.version" value="15.0.2+7-27"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Alan\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf18367087334022197100.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Users\Alan\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.2.v20210201-0955\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/Alan/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.2.v20210201-0955/jre/bin/server;C:/Users/Alan/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.2.v20210201-0955/jre/bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\MATLAB\R2020a\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Graphviz 2.44.1\bin;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Users\Alan\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Users\Alan\.dotnet\tools;C:\Users\Alan\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Autodesk\Inventor 2021\Bin;;."/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="59.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\Alan"/>
+    <property name="user.timezone" value="Europe/Copenhagen"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.specification.version" value="15"/>
+    <property name="user.name" value="Alan"/>
+    <property name="java.class.path" value="C:\Users\Alan\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.16.0.20200610-1735\jars\plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
+    <property name="java.home" value="C:\Users\Alan\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.2.v20210201-0955\jre"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="15.0.2"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\Alan\Desktop\02160 Agile Object-oriented Software Development\Remote-Container-Management\System\EMBEDDED"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.version.date" value="2021-01-19"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="Adding information to containers" name="Successful addition of info" time="0.45"/>
+  <testcase classname="Adding information to containers" name="adding info to a non-existent container" time="0.035"/>
+  <testcase classname="Booking containers" name="Book containers" time="0.05"/>
+  <testcase classname="Booking containers" name="Book fewer containers than requested" time="0.039"/>
+  <testcase classname="Booking containers" name="Deny booking due to unavailable containers" time="0.03"/>
+  <testcase classname="Booking containers" name="Deny booking due to missing content type" time="0.025"/>
+  <testcase classname="Booking containers" name="Deny booking due to missing company" time="0.023"/>
+  <testcase classname="Booking containers" name="Deny booking due to missing company and content-type" time="0.022"/>
+  <testcase classname="Update information" name="Successfull update of al information except name and birth date" time="0.031"/>
+  <testcase classname="Update information" name="UnSuccessful update due to the client not being registered by the company" time="0.016"/>
+  <testcase classname="Update information" name="UnSuccessful update due to illegal phone number" time="0.035"/>
+  <testcase classname="Update information" name="UnSuccessful update due to illegal email" time="0.033"/>
+  <testcase classname="Contacting clients" name="Contacting registered client by unique id" time="0.022"/>
+  <testcase classname="Contacting clients" name="Contacting registered client by name" time="0.014"/>
+  <testcase classname="Contacting clients" name="Contacting client by id that doesnt exists" time="0.017"/>
+  <testcase classname="Contacting clients" name="Contacting client by name that doesnt exists" time="0.017"/>
+  <testcase classname="Contacting clients" name="Contacting registered client by email" time="0.018"/>
+  <testcase classname="Creating a journey" name="Successfully create a journey" time="0.019"/>
+  <testcase classname="Creating a journey" name="Deny journey creation due to missing parameters" time="0.012"/>
+  <testcase classname="Creating a journey" name="Deny journey creation due to missing origin" time="0.011"/>
+  <testcase classname="Creating a journey" name="Deny journey creation due to missing destination" time="0.012"/>
+  <testcase classname="Creating a journey" name="Deny journey creation due to missing departure date" time="0.011"/>
+  <testcase classname="Creating a journey" name="Deny journey creation due to missing arrival date" time="0.011"/>
+  <testcase classname="Finding containers" name="Find containers according to container-ID" time="0.015"/>
+  <testcase classname="Finding containers" name="Find containers according to client-ID" time="0.018"/>
+  <testcase classname="Finding containers" name="Find containers according to position" time="0.015"/>
+  <testcase classname="Finding containers" name="Find containers according to content-type" time="0.021"/>
+  <testcase classname="Finding containers" name="Find containers according to company" time="0.016"/>
+  <testcase classname="Finding containers" name="Find containers according to journey-ID" time="0.017"/>
+  <testcase classname="Finding containers" name="Find containers according to availability" time="0.015"/>
+  <testcase classname="Finding journeys" name="Find client journeys according to journey-ID" time="0.014"/>
+  <testcase classname="Finding journeys" name="Find client journeys according to origin" time="0.01"/>
+  <testcase classname="Finding journeys" name="Find client journeys according to destination" time="0.01"/>
+  <testcase classname="Finding journeys" name="Find client journeys according to departure date" time="0.011"/>
+  <testcase classname="Finding journeys" name="Find client journeys according to arrival date" time="0.01"/>
+  <testcase classname="Finding journeys" name="Find journeys according to journey-ID" time="0.019"/>
+  <testcase classname="Finding journeys" name="Find journeys according to origin" time="0.011"/>
+  <testcase classname="Finding journeys" name="Find journeys according to destination" time="0.01"/>
+  <testcase classname="Finding journeys" name="Find journeys according to departure date" time="0.011"/>
+  <testcase classname="Finding journeys" name="Find journeys according to arrival date" time="0.013"/>
+  <testcase classname="Management of Json databases" name="Successfully produce program databases" time="0.044"/>
+  <testcase classname="Management of Json databases" name="Successfully update program databases" time="0.062"/>
+  <testcase classname="Management of Json databases" name="Successfully produce and update program databases in case if they do not exist when updating" time="0.035"/>
+  <testcase classname="Management of Json databases" name="Successfully produce empty program databases when saving without data" time="0.028"/>
+  <testcase classname="Management of Json databases" name="Unsuccessful pull when the databases do not exist" time="0.018"/>
+  <testcase classname="Register clients" name="A client is registering in the system with date of birth, full name and email, phone number" time="0.032"/>
+  <testcase classname="Register clients" name="Same client registers again" time="0.034"/>
+  <testcase classname="Register clients" name="Two client with same name but different contact info register" time="0.035"/>
+  <testcase classname="Register clients" name="Client tries to register without name" time="0.024"/>
+  <testcase classname="Register clients" name="Client tries to register with one contact info" time="0.017"/>
+  <testcase classname="Register clients" name="Client tries to register with the other contact info" time="0.02"/>
+  <testcase classname="Registering a container" name="Successfully register a container" time="0.013"/>
+  <testcase classname="Registering a container" name="Deny registering a container due to missing location" time="0.016"/>
+  <testcase classname="Register client containers to a journey" name="Register to a journey" time="0.021"/>
+  <testcase classname="Register client containers to a journey" name="Deny registering due to unavailable journey" time="0.022"/>
+  <testcase classname="Register client containers to a journey" name="Deny registering due to unavailable container" time="0.024"/>
+  <testcase classname="Register client containers to a journey" name="Deny registering due to unavailable journey because of different origin and destination" time="0.018"/>
+  <testcase classname="Register client containers to a journey" name="Deny registering due to unavailable journey because of different origin" time="0.015"/>
+  <testcase classname="Register client containers to a journey" name="Deny registering due to unavailable journey because of different destination" time="0.019"/>
+  <testcase classname="Remove container from registry" name="Successfully remove the selected container" time="0.019"/>
+  <testcase classname="Remove container from registry" name="Successfully remove the selected container" time="0.014"/>
+  <testcase classname="Remove container from registry" name="Restrict removing when there is nothing to select" time="0.07">
+    <skipped/>
+  </testcase>
+  <testcase classname="Complete and remove journey from registry" name="Complete a journey and remove it from the registry" time="0.091"/>
+  <testcase classname="Complete and remove journey from registry" name="Deny completion because the journey was not found" time="0.068"/>
+  <testcase classname="Complete and remove journey from registry" name="Deny completion because the journey was not found" time="0.051"/>
+  <testcase classname="Complete and remove journey from registry" name="Remove a container from a journey" time="0.016"/>
+  <testcase classname="Complete and remove journey from registry" name="Deny completion because the journey was not found" time="0.014"/>
+  <testcase classname="Complete and remove journey from registry" name="Deny completion because the journey was not found" time="0.018"/>
+  <testcase classname="Complete and remove journey from registry" name="Deny completion because the journey was not found" time="0.018"/>
+  <testcase classname="Seeing the info of containers" name="Successful seeing of info" time="0.016"/>
+  <testcase classname="Seeing the info of containers" name="Unsuccessful seeing of info because container does not belong to the client" time="0.013"/>
+  <testcase classname="Sharing information" name="Send your information to another client successfully" time="0.021"/>
+  <testcase classname="Sharing information" name="Send your information to another client unsuccessfully" time="0.014"/>
+  <testcase classname="Sharing information" name="being able to access friend&apos;s shared information" time="0.019"/>
+  <testcase classname="Updating containers information" name="Update the current position of a container" time="0.017"/>
+  <testcase classname="Updating containers information" name="Deny position updating because the container was not found" time="0.013"/>
+  <testcase classname="Updating containers information" name="Deny position updating because the container was not found" time="0.012"/>
+  <testcase classname="Updating containers information" name="Update the current journey label of a container to arrived" time="0.014"/>
+  <testcase classname="Updating containers information" name="Deny updating of the current journey label because the container was not found" time="0.012"/>
+  <testcase classname="Updating containers information" name="Deny updating of the current journey label because the container was not found" time="0.013"/>
+  <testcase classname="Updating journeys information" name="Update the current position of containers" time="0.012"/>
+  <testcase classname="Updating journeys information" name="Deny updating because the journey was not found" time="0.015"/>
+  <testcase classname="Updating journeys information" name="Deny updating because the journey was not found" time="0.012"/>
+  <testcase classname="Updating journeys information" name="Deny updating because containers were not found" time="0.014"/>
+  <testcase classname="Updating journeys information" name="Update the current departure date" time="0.013"/>
+  <testcase classname="Updating journeys information" name="Deny updating because the journey was not found" time="0.011"/>
+  <testcase classname="Updating journeys information" name="Deny updating because the journey was not found" time="0.012"/>
+  <testcase classname="Updating journeys information" name="Update the current journey label of containers to arrived and set todays arrival date" time="0.031"/>
+  <testcase classname="Updating journeys information" name="Deny updating because the journey was not found" time="0.017"/>
+  <testcase classname="Updating journeys information" name="Deny updating because the journey was not found" time="0.015"/>
+  <testcase classname="Updating journeys information" name="Deny updating because containers were not found" time="0.016"/>
+</testsuite>

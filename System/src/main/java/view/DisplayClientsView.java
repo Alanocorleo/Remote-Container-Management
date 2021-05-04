@@ -20,6 +20,12 @@ import javax.swing.table.TableModel;
 import controller.Session;
 import controller.DisplayClientsController;
 
+/**
+ * This class is responsible for displaying a window with table of clients for
+ * the logistics company. It extends JFrame to get advantage of the components 
+ * that can be added to the window.
+ */
+
 public class DisplayClientsView extends JFrame {
 
 	private static final long serialVersionUID = 2888791217183873215L;
@@ -27,11 +33,19 @@ public class DisplayClientsView extends JFrame {
 	private JTable tblInventory;
 	private JLabel lblSession;
 	
+	/**
+	 * This constructor sets DisplayClientsController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public DisplayClientsView(DisplayClientsController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("Clients");
 		setPreferredSize(new Dimension(800, 600));
@@ -45,16 +59,11 @@ public class DisplayClientsView extends JFrame {
 			}
 		});
 		
-		
-	
-		
 		JButton btnAddClient = new JButton("Add Client"); 
-		
 		btnAddClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.addClient();
-				
 			}
 		});
 		
@@ -67,7 +76,6 @@ public class DisplayClientsView extends JFrame {
 			}
 		});
 		
-	
 		// toolbar
 		lblSession = new JLabel();
 		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -94,6 +102,10 @@ public class DisplayClientsView extends JFrame {
 		tblInventory.setModel(model);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}

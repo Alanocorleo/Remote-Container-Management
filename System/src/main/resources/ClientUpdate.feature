@@ -16,6 +16,7 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Update information
 	Client wants to update their personal information.
@@ -26,24 +27,20 @@ Feature: Update information
     When the client wants to update all their information except their name and birth date
     Then the informtion is updated successfully
  
-	Scenario: UnSuccessful update due to the client not being registered by the company
+	Scenario: Unsuccessful update due to the client not being registered by the company
 	  Given unregistered client
 	  When the person wants to update all their information except their name and birth date
 	  Then the informtion is not updated successfully
   
- Scenario: UnSuccessful update due to illegal phone number
+ Scenario: Unsuccessful update due to illegal phone number
   Given registered client
   And a phone number that exists in the system
   When the client wants to update all their contact phone number to already existing phone number
   Then the informtion is not updated 
   
   
- Scenario: UnSuccessful update due to illegal email
+ Scenario: Unsuccessful update due to illegal email
   Given registered client
-  And a email that exists in the system
+  And an email that exists in the system
   When the client wants to update all their contact phone number to already existing email
   Then the informtion is not updated version 2
-  
- 
-
-

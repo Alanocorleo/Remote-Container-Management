@@ -37,6 +37,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the container-ID.
+	 * @param containerID
 	 */
 	public void setContainerID(int containerID) {
 		this.containerID = containerID;
@@ -51,6 +52,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the current owner of the container.
+	 * @param owner
 	 */
 	public void setOwner(int owner) {
 		this.owner = owner;
@@ -65,6 +67,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the current position of the container.
+	 * @param position
 	 */
 	public void setPosition(String position) {
 		this.position = position;
@@ -79,6 +82,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the content type of the container.
+	 * @param contentType
 	 */
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
@@ -93,6 +97,7 @@ public class Container {
 	}
 	/**
 	 * This method returns sets company using the container.
+	 * @param company
 	 */
 	public void setCompany(String company) {
 		this.company = company;
@@ -107,6 +112,7 @@ public class Container {
 	}
 	/**
 	 * This method returns the availability status of the container.
+	 * @param availability
 	 */
 	public void setAvailability(boolean availability) {
 		this.availability = availability;
@@ -121,6 +127,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the current journey of the container.
+	 * @param currentJourney
 	 */
 	public void setCurrentJourney(String currentJourney) {
 		this.currentJourney = currentJourney;
@@ -135,6 +142,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the current humidity of the container.
+	 * @param humidity
 	 */
 	public void setHumidity(int humidity) {
 		this.humidity = humidity;
@@ -149,6 +157,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the current temperature of the container.
+	 * @param temperature
 	 */
 	public void setTemperature(int temperature) {
 		this.temperature = temperature;
@@ -163,6 +172,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the current pressure of the container.
+	 * @param pressure
 	 */
 	public void setPressure(int pressure) {
 		this.pressure = pressure;
@@ -177,6 +187,7 @@ public class Container {
 	}
 	/**
 	 * This method sets the date of container updates.
+	 * @param date
 	 */
 	public void setDate(String date) {
 		this.date = date;

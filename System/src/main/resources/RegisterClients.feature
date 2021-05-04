@@ -16,6 +16,7 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Register clients
 		Company adds clients
@@ -30,12 +31,10 @@ Feature: Register clients
     Then the client is registered in the system successfully
     And the client is assigned a unique company ID 1
     
-    
 	Scenario: Same client registers again
 		Given a registered client 
 		When the registered client tries to register again 
 	  Then the client is not registered in the system again
-	  
   
  Scenario: Two client with same name but different contact info register
 	  Given an already registered client
@@ -43,28 +42,17 @@ Feature: Register clients
 		Then the new client is registered in the system successfully
 		And both clients have different unique company IDs
 		
-	
  Scenario: Client tries to register without name
 	  Given a client without a name
 	  When they try to regsiter without a name
-		Then then the client is not registered in the system
-		
-		
+		Then the client is not registered in the system
 		
  Scenario: Client tries to register with one contact info
 	  Given a client with all info except email
 	  When they try to regsiter without an email
-		Then then the client is registered in the system successfully
-		
+		Then the client without the email is not registered in the system successfully
 		
 	Scenario: Client tries to register with the other contact info
 	  Given a client with all info except phone number
 	  When they try to regsiter without an phone number
-		Then then the client without the phone numver is registered in the system successfully
-		
-		
-		
-		
-  
-
-
+		Then the client without the phone number is registered in the system successfully

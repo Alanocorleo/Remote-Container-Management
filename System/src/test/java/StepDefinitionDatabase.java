@@ -38,6 +38,7 @@ public class StepDefinitionDatabase {
 		clientDatabase.pull();
 		containerDatabase.pull();
 		journeyDatabase.pull();
+		
 		assertTrue(clientDatabase.getClients().isEmpty());
 		assertTrue(containerDatabase.getContainers().isEmpty());
 		assertTrue(journeyDatabase.getJourneys().isEmpty());
@@ -90,11 +91,13 @@ public class StepDefinitionDatabase {
 		clientDatabase.pull();
 		containerDatabase.pull();
 		journeyDatabase.pull();
+		
 		assertEquals(clientDatabase.getClients().get(0).getId(), 100);
 		assertEquals(containerDatabase.getContainers().get(0).getContainerID(), 100);
+		
 		for (Journey journey : journeyDatabase.getJourneys().keySet()) {
 			assertEquals(journey.getJourneyID(), "XX00000");
-		};
+		}
 	}
 
 	@When("pulling")
@@ -116,4 +119,5 @@ public class StepDefinitionDatabase {
 	public void fail() throws Exception {
 	    assertTrue(status);
 	}
+	
 }

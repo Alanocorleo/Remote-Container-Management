@@ -12,27 +12,42 @@ import management.LogisticsCompany;
 import view.MainMenuClientView;
 import view.MainMenuCompanyView;
 
+/**
+ * This class is responsible for initiating the application.
+ */
+
 public class ApplicationController {
+	
 	// Attributes
 	private Client client;
 	private LogisticsCompany logisticsCompany;
 	private LoginController loginController;
 	private MainMenuClientController mainMenuClientController;
 	private MainMenuCompanyController mainMenuCompanyController;
-	private ClientDatabase clientDataBase;
+	private ClientDatabase clientDatabase;
 	
+	/**
+	 * This constructor calls the logistics company, and sets the client database.
+	 */
 	// Constructor
 	public ApplicationController() {
 		logisticsCompany = LogisticsCompany.getInstance();
-		clientDataBase = logisticsCompany.getClientDatabase(); 
+		clientDatabase = logisticsCompany.getClientDatabase(); 
 	}
 	
-	// Sends to the login page 
+	/**
+	 * This method sends the user to the login page. 
+	 */
 	public void login() {
 		loginController = new LoginController(this);
 		loginController.display();
 	}
-	// Sends to the main menu page either the company's or the client's
+
+	/**
+	 * This method sends the users, either the client, or the logistics company, to 
+	 * their corresponding main menu windows.
+	 * @param session
+	 */
 	public void mainMenu(Session session){
 		if (session.getRole().equals("Company")) {
 			mainMenuCompanyController = new MainMenuCompanyController(this.logisticsCompany, session);
@@ -43,7 +58,7 @@ public class ApplicationController {
 		}
 	
 		else {
-			this.client = clientDataBase.getClient(session.getUsername()).get(0);
+			this.client = clientDatabase.getClient(session.getUsername()).get(0);
 			mainMenuClientController = new MainMenuClientController(this.client, this.logisticsCompany, session);
 			
 			MainMenuClientView mainMenuView = new MainMenuClientView(this.mainMenuClientController);
@@ -53,13 +68,18 @@ public class ApplicationController {
 
 	}
 	
-	
-	// Getter
+	/**
+	 * This method return client database.
+	 * @return client database
+	 */
 	public ClientDatabase getclientdatabase() {
-		return this.clientDataBase;
+		return this.clientDatabase;
 	}
 	
-	// main 
+	/**
+	 * This main method starts the application.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

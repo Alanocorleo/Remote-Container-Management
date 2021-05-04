@@ -22,6 +22,12 @@ import javax.swing.table.TableModel;
 import controller.Session;
 import controller.DisplayJourneysCompanyController;
 
+/**
+ * This class is responsible for displaying a window with table of journeys for the
+ * logistics company. It extends JFrame to get advantage of the components that can 
+ * be added to the window.
+ */
+
 public class DisplayJourneysCompanyView extends JFrame {
 
 	private static final long serialVersionUID = 4212860552112409964L;
@@ -29,11 +35,19 @@ public class DisplayJourneysCompanyView extends JFrame {
 	private JTable tblInventory;
 	private JLabel lblSession;
 	
+	/**
+	 * This constructor sets DisplayJourneysCompanyController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public DisplayJourneysCompanyView(DisplayJourneysCompanyController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("Journeys");
 		setPreferredSize(new Dimension(800, 600));
@@ -161,18 +175,31 @@ public class DisplayJourneysCompanyView extends JFrame {
 		tblInventory.setModel(model);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}
 
+	/**
+	 * This methods displays a window with an error message.
+	 */
 	public void showError() {
-		JOptionPane.showMessageDialog(this, "Both origin and destination are required to create a new journey.", "Neccessary parameters are not entered.", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(this, "Both origin and destination are required to create a new journey", "Neccessary parameters are not entered", JOptionPane.ERROR_MESSAGE);
 	}
 
+	/**
+	 * This methods displays a window with an error message.
+	 */
 	public void showError2() {
 		JOptionPane.showMessageDialog(this, "Text field cannot be left empty", "Position unchanged", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * This methods displays a window with an error message.
+	 */
 	public void showError3() {
 		JOptionPane.showMessageDialog(this, "Date should be of the format DD/MM/YYYY", "Incorrect date format", JOptionPane.ERROR_MESSAGE);		
 	}

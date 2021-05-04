@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class DateFormatErrorGUI {
 	
 	/**
-	 * this creates the pop up error when the entered date is in the wrong format
+	 * This method creates a pop up error when the entered date is in the wrong format.
 	 */
 	public DateFormatErrorGUI() {
 		JFrame frame = new JFrame();
@@ -24,6 +24,8 @@ public class DateFormatErrorGUI {
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setTitle("Error");
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
 }

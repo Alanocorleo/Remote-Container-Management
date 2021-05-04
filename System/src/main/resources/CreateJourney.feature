@@ -66,4 +66,3 @@ Feature: Creating a journey
     And departure date "30/04/2021"
     When creating journey 
     Then deny journey creation "Necessary parameters are not entered" 210
-  

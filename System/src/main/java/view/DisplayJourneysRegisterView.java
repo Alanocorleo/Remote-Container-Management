@@ -22,6 +22,12 @@ import javax.swing.table.TableModel;
 import controller.Session;
 import controller.DisplayJourneysRegisterController;
 
+/**
+ * This class is responsible for displaying a window with a table of journeys 
+ * to book containers, and eventually register them the desired journey for the clients. 
+ * It extends JFrame to get advantage of the components that can be added to the window.
+ */
+
 public class DisplayJourneysRegisterView extends JFrame {
 
 	private static final long serialVersionUID = 4212860552112409994L;
@@ -29,11 +35,19 @@ public class DisplayJourneysRegisterView extends JFrame {
 	private JTable tblInventory;
 	private JLabel lblSession;
 	
+	/**
+	 * This constructor sets DisplayJourneysRegisterController, and calls for GUI initialization
+	 * and window displaying.
+	 * @param controller
+	 */
 	public DisplayJourneysRegisterView(DisplayJourneysRegisterController controller) {
 		this.controller = controller;
 		initGUI();
 	}
 	
+	/**
+	 * This method initializes a GUI, and displays a corresponding window.
+	 */
 	private void initGUI() {
 		setTitle("Journeys");
 		setPreferredSize(new Dimension(800, 600));
@@ -100,10 +114,17 @@ public class DisplayJourneysRegisterView extends JFrame {
 		tblInventory.setModel(model);
 	}
 
+	/**
+	 * This methods sets the session to a JLabel to be displayed on the window.
+	 * @param sessionModel
+	 */
 	public void setSession(Session sessionModel) {
 		lblSession.setText("<html>" + sessionModel.getUsername() + " <i>(" + sessionModel.getRole() + ")</i></html>");
 	}
 	
+	/**
+	 * This methods displays a window with a confirmation message.
+	 */
 	public void showConfirmation(String message) {
 		JOptionPane.showMessageDialog(this, message, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
 	}

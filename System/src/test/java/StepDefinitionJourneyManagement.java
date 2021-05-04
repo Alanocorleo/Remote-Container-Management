@@ -40,7 +40,9 @@ public class StepDefinitionJourneyManagement {
 		journey.setDestination(destination);
 		journey.setDepartureDate("undefined");
 		journey.setArrivalDate("undefined");
+		
 		response = journeys.create(journey);
+		
 		assertEquals(response.getErrorMessage(), "Journey has been created");
 		assertEquals(response.getErrorCode(), 020);
 	}
@@ -54,7 +56,9 @@ public class StepDefinitionJourneyManagement {
 			containers.getContainers().get(i - 1).setPosition(position);
 			containers.getContainers().get(i - 1).setAvailability(true);
 		}
+		
 		client = new Client();
+		
 		containers.book(client.getId(), location, contentType, company, quantity);
 	}
 	
@@ -239,6 +243,7 @@ public class StepDefinitionJourneyManagement {
 	    journey.setDestination(destination);
 	    journey.setDepartureDate(departureDate);
 	    journey.setArrivalDate(arrivalDate);
+	    
 	    response = journeys.create(journey);
 	}
 	
@@ -294,7 +299,6 @@ public class StepDefinitionJourneyManagement {
 	@When("removing a container with ID {int} from journey {string}")
 	public void removing_a_container_with_ID_from_journey(Integer containerID, String journeyID) {
 	    response = journeys.removeContainer(journeyID, containerID);
-	    System.out.println(response.getErrorMessage());
 	}
 
 	@Then("confirm container removing {string} {int}")

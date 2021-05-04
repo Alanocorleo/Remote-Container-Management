@@ -16,15 +16,15 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
 @tag
 Feature: Adding information to containers
   
-
   @tag1
   Scenario: Successful addition of info
     Given a container with id 100 
-    And a logisitc company "Maersk" 
-    When logisitc company chooses the container with journey id 100
+    And a logisitcs company "Maersk" 
+    When logisitcs company chooses the container with journey-ID 100
     And add Temperature 101 
     And add Humidity 102 
     And add Pressure 103 
@@ -32,8 +32,8 @@ Feature: Adding information to containers
     Then update container's values
 	
 	@tag2
-  Scenario: adding info to a non-existent container
-    Given a logisitc company "Maersk"
+  Scenario: Adding info to a non-existent container
+    Given a logisitcs company "Maersk"
     And a container with id 100 
-    When logisitc company chooses the container with journey id 200 
+    When logisitcs company chooses the container with journey-ID 200 
     Then show message: container does not exist

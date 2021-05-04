@@ -1,15 +1,18 @@
 package management;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import response.ResponseObject;
 
+/**
+ * Client class represent single clients who use the system.
+ */
 
 public class Client {
-	//Clients attributes:
+	
+	// Clients' attributes:
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -24,8 +27,7 @@ public class Client {
 	@JsonProperty("friends")
 	private ArrayList<Integer> myFriends = new ArrayList<Integer>();	
 	
-	
-	//Constructors
+	// Constructor
 	public Client() {
 		super();
 	}
@@ -37,8 +39,8 @@ public class Client {
 		this.email = email;
 		this.phoneNumber = PhoneNumber;
 		this.password = BirthDate;
-		
 	}
+	
 	public Client(String firstName, String lastName, String BirthDate, String email, String PhoneNumber, String password) {		
 		this.firstName= firstName;
 		this.lastName= lastName;
@@ -46,9 +48,9 @@ public class Client {
 		this.email = email;
 		this.phoneNumber = PhoneNumber;
 		this.password = password;
-		
 	}
-	//getters and setters
+	
+	// Getters and setters
 	public int getId() {
 		return id;
 	}
@@ -97,7 +99,6 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	
 	public String getPassword() {
 		return password;
 	}
@@ -120,90 +121,119 @@ public class Client {
 		this.myJourneys = myJourneys;
 	}
 		
-	//The following method returns a response object corresponding to whether the personal information of the client has been updated or not. 
-	//In case we fail to update the information, we return a corresponding error code and message
-	public ResponseObject updateInfo(String firstName,String lastName, String birthDate, String email, String PhoneNumber, ClientDatabase registery) throws Exception {
+	/**
+	 * The following method returns a response object corresponding to whether the 
+	 * personal information of the client has been updated or not. In case we fail 
+	 * to update the information, we return a corresponding error code and message.
+	 * @param firstName
+	 * @param lastName
+	 * @param birthDate
+	 * @param email
+	 * @param phoneNumber
+	 * @param registery
+	 * @return execution response
+	 * @throws Exception
+	 */
+	public ResponseObject updateInfo(String firstName,String lastName, String birthDate, String email, String phoneNumber, ClientDatabase registery) throws Exception {
+		
 		ResponseObject response;
 		
-		if (registery.allowedUpdate(this.id,email) & registery.allowedUpdate(this.id,PhoneNumber)) {
+		if (registery.allowedUpdate(this.id,email) & registery.allowedUpdate(this.id,phoneNumber)) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
 		this.email = email;
-		this.phoneNumber = PhoneNumber;
+		this.phoneNumber = phoneNumber;
 		
-		response = new ResponseObject(1004, "Information Updated successfully");
+		response = new ResponseObject(25, "Information has been updated successfully");
 		registery.push();
 		
 		} else if(!registery.allowedUpdate(this.id, email) ) {
-			response = new ResponseObject(1005, "Information not updated. Email already used by an existing client");
+			response = new ResponseObject(250, "Information has not been updated. Email is already used by an existing client");
 
 		} else {
-			response = new ResponseObject(1006, "Information not updated. Phone number already used by an existing client");
+			response = new ResponseObject(252, "Information has not been updated. Phone number is already used by an existing client");
 		}
 		
 		return response;
 		
 	}
 	
-	//This method is used to change the password
-	//It could have been just merged wit the method above but the password attribute was not created yet.
+	/**
+	 * This method is used to change the password. It could have been just merged
+	 * with the method above but the password attribute was not created yet.
+	 * @param password
+	 * @param registery
+	 */
 	public void updateInfo(String password, ClientDatabase registery) {
 		this.password = password;
 		try {
 			registery.push();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	
-	//This method is used to find an existing client in database by an email
-	//It is used in conjunction with the updateFriendList method to implement the information sharing functionality
-	//this method is used by the client who want to share their information they do not necessarily have access to the information of who ever they send their info to
+	/**
+	 * This method is used to find an existing client in database by an email.
+	 * It is used in conjunction with the updateFriendList method to implement 
+	 * the information sharing functionality. This method is used by the client 
+	 * who want to share their information they do not necessarily have access 
+	 * to who ever they send to.
+	 * @param email
+	 * @param registery
+	 * @return execution response
+	 */
 	public ResponseObject addFriend(String email, ClientDatabase registery) {
 		
 		ResponseObject response;
+		
 		ArrayList<Client> theToBeAddedFriend = registery.getClient(email);
 		if (theToBeAddedFriend.isEmpty()){
-			response = new ResponseObject(11021, "Friend not found!!!");
-			
+			response = new ResponseObject(270, "Friend is not found");
 			}
 		
-		
 		else {
-			// Codes from 100 to 999 indicate otherwise
 			theToBeAddedFriend.get(0).updateFriendsList(this.id);
 			try {
 				registery.push();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			response = new ResponseObject(11560, "Now you friend can see your information");
+			response = new ResponseObject(27, "Now your friend can see your information");
 		}
 			 
 		return response;
 		
 	}
 	
-	//This method is used to update the list of client who this client has access to their information
+	/**
+	 * This method is used to update the list of client who this client has access 
+	 * to their information.
+	 * @param id
+	 */
 	public void updateFriendsList(int id) {
-		if (myFriends.contains(id)) {}
-		else{
-		myFriends.add(id);
+		if (myFriends.contains(id)) {
+		}
+		else {
+			myFriends.add(id);
 		}
 	}
 	
-	
-	//This method converts the array list of clients ids into an array list of Clients
+	/**
+	 * This method converts the array list of clients IDs into an array 
+	 * list of clients. 
+	 * @param registry
+	 */
 	public ArrayList<Client> getMyFriends(ClientDatabase registery){
+		
 		ArrayList<Client> ListofFriendClients = new ArrayList<Client>();
 		for (int friend : this.myFriends) {
-			ListofFriendClients.add(registery.getClient(friend).get(0));
-			
+			ListofFriendClients.add(registery.getClient(friend).get(0));	
 		}
+		
 		return ListofFriendClients;
+		
 	}
 
 }

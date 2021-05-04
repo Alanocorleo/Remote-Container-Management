@@ -1,5 +1,3 @@
-
-
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -87,6 +85,7 @@ public class JourneyTest {
 		JourneyDatabase journeyDatabase = new JourneyDatabase();
 		assertNull(journey.getJourneyDatabase());
 		journey.setJourneyDatabase(journeyDatabase);
+		
 		assertNotNull(journey.getJourneyDatabase());
 	}
 
@@ -98,6 +97,7 @@ public class JourneyTest {
 		journey.setDestination("Oslo");
 		assertNull(journey.getJourneyID());
 		journey.createJourneyID();
+		
 		assertNotNull(journey.getJourneyID());
 	}
 	
@@ -115,6 +115,7 @@ public class JourneyTest {
 		journey2.setJourneyDatabase(journeys);
 		assertNull(journey2.getJourneyID());
 		journey2.createJourneyID();
+		
 		assertNotNull(journey2.getJourneyID());
 	}
 

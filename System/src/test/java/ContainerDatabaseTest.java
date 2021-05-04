@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import management.ContainerDatabase;
 import response.ResponseObject;
 
 public class ContainerDatabaseTest {
+	
 	private ContainerDatabase containerDatabase;
 	private ArrayList<Container> containers;
 	private Container container1;
@@ -22,12 +22,15 @@ public class ContainerDatabaseTest {
 	@Before
 	public void setUp() {
 		containerDatabase = new ContainerDatabase();
+		
 		containers = new ArrayList<>();
+		
 		container1 = new Container();
 		container2 = new Container();
 		container3 = new Container();
 		container4 = new Container();
-		ResponseObject response = new ResponseObject(0,"New response object");
+		
+		response = new ResponseObject(0,"New response object");
 	}
 	
 	@Test
@@ -185,6 +188,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(0, "Copenhagen", "Fish", "Captain Fish", 4);
+		
 		assertEquals(response.getErrorCode(), 132);
 	}
 	
@@ -201,6 +205,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(4, null, "Fish", "Captain Fish", 4);
+		
 		assertEquals(response.getErrorCode(), 210);
 	}
 	
@@ -217,6 +222,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(4, "Copenhagen", null, "Captain Fish", 4);
+		
 		assertEquals(response.getErrorCode(), 210);
 	}
 	
@@ -233,6 +239,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(4, "Copenhagen", "Fish", null, 4);
+		
 		assertEquals(response.getErrorCode(), 210);
 	}
 	
@@ -249,6 +256,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(4, "Copenhagen", "Fish", "Captain Fish", 0);
+		
 		assertEquals(response.getErrorCode(), 210);
 	}
 	
@@ -269,6 +277,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(4, "Copenhagen", "Fish", "Captain Fish", 3);
+		
 		assertEquals(response.getErrorCode(), 010);
 	}
 	
@@ -289,13 +298,13 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.book(4, "Copenhagen", "Fish", "Captain Fish", 3);
+		
 		assertEquals(response.getErrorCode(), 110);
 	}
 	
 	@Test
 	public void testBook8() {
 		containerDatabase.setContainers(containers);
-		
 		response = containerDatabase.book(4, "Copenhagen", "Fish", "Captain Fish", 3);
 		assertEquals(response.getErrorCode(), 110);
 	}
@@ -379,205 +388,202 @@ public class ContainerDatabaseTest {
 	@Test
 	public void testFindStringInt6() {
 		containerDatabase.setContainers(containers);
-		
 		assertEquals(containerDatabase.find("owner", 4).size(), 0);
 		assertEquals(containerDatabase.find("containerID", 10).size(), 0);
 	}
 
 	@Test
 	public void testFindStringString() {
-	container1.setPosition("Accra");
-	container2.setPosition("Accra");
-	container3.setPosition("Accra");
-	container4.setPosition("Manchester");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find(null, "Manchester").size(), 0);
+		container1.setPosition("Accra");
+		container2.setPosition("Accra");
+		container3.setPosition("Accra");
+		container4.setPosition("Manchester");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find(null, "Manchester").size(), 0);
 	}
 	
 	@Test
 	public void testFindStringString2() {
-	container1.setPosition("Accra");
-	container2.setPosition("Accra");
-	container3.setPosition("Accra");
-	container4.setPosition("Manchester");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("position", "mANCheSTer").size(), 1);
+		container1.setPosition("Accra");
+		container2.setPosition("Accra");
+		container3.setPosition("Accra");
+		container4.setPosition("Manchester");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("position", "mANCheSTer").size(), 1);
 	}
 	
 	@Test
 	public void testFindStringString3() {
-	container1.setPosition("Accra");
-	container2.setPosition("Accra");
-	container3.setPosition("Accra");
-	container4.setPosition("Manchester");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("position", "Oslo").size(), 0);
+		container1.setPosition("Accra");
+		container2.setPosition("Accra");
+		container3.setPosition("Accra");
+		container4.setPosition("Manchester");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("position", "Oslo").size(), 0);
 	}
 	
 	@Test
 	public void testFindStringString4() {
-	container1.setPosition("Accra");
-	container2.setPosition("Accra");
-	container4.setPosition("Manchester");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("position", "Accra").size(), 2);
+		container1.setPosition("Accra");
+		container2.setPosition("Accra");
+		container4.setPosition("Manchester");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("position", "Accra").size(), 2);
 	}
 	
 	@Test
 	public void testFindStringString5() {
-	container1.setContentType("Oranges");
-	container2.setContentType("Oranges");
-	container3.setContentType("Peaches");
-	container4.setContentType("Avocado");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("contentType", "oranges").size(), 2);
+		container1.setContentType("Oranges");
+		container2.setContentType("Oranges");
+		container3.setContentType("Peaches");
+		container4.setContentType("Avocado");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("contentType", "oranges").size(), 2);
 	}
 	
 	@Test
 	public void testFindStringString6() {
-	container1.setContentType("Oranges");
-	container2.setContentType("Oranges");
-	container3.setContentType("Peaches");
-	container4.setContentType("Avocado");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("contentType", "plums").size(), 0);
+		container1.setContentType("Oranges");
+		container2.setContentType("Oranges");
+		container3.setContentType("Peaches");
+		container4.setContentType("Avocado");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("contentType", "plums").size(), 0);
 	}
 	
 	@Test
 	public void testFindStringString7() {
-	container1.setContentType("Oranges");
-	container3.setContentType("Peaches");
-	container4.setContentType("Avocado");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("contentType", "peaches").size(), 1);
+		container1.setContentType("Oranges");
+		container3.setContentType("Peaches");
+		container4.setContentType("Avocado");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("contentType", "peaches").size(), 1);
 	}
 	
 	@Test
 	public void testFindStringString8() {
-	container1.setCompany("Captain Orange");
-	container2.setCompany("Captain Orange");
-	container3.setCompany("Captain Peach");
-	container4.setCompany("Captain Avocado");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("company", "captain orange").size(), 2);
+		container1.setCompany("Captain Orange");
+		container2.setCompany("Captain Orange");
+		container3.setCompany("Captain Peach");
+		container4.setCompany("Captain Avocado");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("company", "captain orange").size(), 2);
 	}
 	
 	@Test
 	public void testFindStringString9() {
-	container1.setCompany("Captain Orange");
-	container2.setCompany("Captain Orange");
-	container3.setCompany("Captain Peach");
-	container4.setCompany("Captain Avocado");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("company", "Captain Plum").size(), 0);
+		container1.setCompany("Captain Orange");
+		container2.setCompany("Captain Orange");
+		container3.setCompany("Captain Peach");
+		container4.setCompany("Captain Avocado");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("company", "Captain Plum").size(), 0);
 	}
 	
 	@Test
 	public void testFindStringString10() {
-	container1.setCompany("Captain Orange");
-	container2.setCompany("Captain Orange");
-	container3.setCompany("Captain Peach");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("company", "Captain orange").size(), 2);
+		container1.setCompany("Captain Orange");
+		container2.setCompany("Captain Orange");
+		container3.setCompany("Captain Peach");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("company", "Captain orange").size(), 2);
 	}
 	
 	@Test
 	public void testFindStringString11() {
-	container1.setCurrentJourney("CO11111");
-	container2.setCurrentJourney("CO11111");
-	container3.setCurrentJourney("CO11111");
-	container4.setCurrentJourney("CO11111");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("journeyID", "co11111").size(), 4);
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("CO11111");
+		container4.setCurrentJourney("CO11111");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("journeyID", "co11111").size(), 4);
 	}
 	
 	@Test
 	public void testFindStringString12() {
-	container1.setCurrentJourney("CO11111");
-	container2.setCurrentJourney("CO11111");
-	container3.setCurrentJourney("CO11111");
-	container4.setCurrentJourney("CO11111");
-	containers.add(container1);
-	containers.add(container2);
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("journeyID", "MS8273").size(), 0);
+		container1.setCurrentJourney("CO11111");
+		container2.setCurrentJourney("CO11111");
+		container3.setCurrentJourney("CO11111");
+		container4.setCurrentJourney("CO11111");
+		containers.add(container1);
+		containers.add(container2);
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("journeyID", "MS8273").size(), 0);
 	}
 	
 	@Test
 	public void testFindStringString13() {
-	container3.setCurrentJourney("CO11111");
-	container4.setCurrentJourney("CO11111");
-	containers.add(container3);
-	containers.add(container4);
-	containerDatabase.setContainers(containers);
-	
-	System.out.println(containerDatabase.find("journeyID", "CO11111").size());
-	assertEquals(containerDatabase.find("journeyID", "CO11111").size(), 2);
+		container3.setCurrentJourney("CO11111");
+		container4.setCurrentJourney("CO11111");
+		containers.add(container3);
+		containers.add(container4);
+		containerDatabase.setContainers(containers);
+		
+		assertEquals(containerDatabase.find("journeyID", "CO11111").size(), 2);
 	}
 	
 	@Test
 	public void testFindStringString14() {
-	containerDatabase.setContainers(containers);
-	
-	assertEquals(containerDatabase.find("journeyID", "CO11111").size(), 0);
+		containerDatabase.setContainers(containers);
+		assertEquals(containerDatabase.find("journeyID", "CO11111").size(), 0);
 	}
 
 
@@ -599,7 +605,6 @@ public class ContainerDatabaseTest {
 	@Test
 	public void testFindBoolean2() {
 		containerDatabase.setContainers(containers);
-		
 		assertEquals(containerDatabase.find(false).size(), 0);
 	}
 
@@ -616,6 +621,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.register("Oslo");
+		
 		assertEquals(response.getErrorCode(),010);
 		assertEquals(containerDatabase.getContainers().get(4).getPosition(),"Oslo");
 		assertEquals(containerDatabase.getContainers().get(4).getContainerID(), 11);
@@ -634,13 +640,13 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.register(null);
+		
 		assertEquals(response.getErrorCode(),162);
 	}
 	
 	@Test
 	public void testRegister3() {
 		containerDatabase.setContainers(containers);
-		
 		response = containerDatabase.register("Oslo");
 		assertEquals(containerDatabase.getContainers().get(0).getContainerID(), 1);
 	}
@@ -658,6 +664,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.updatePosition("CO11111", "Accra");
+		
 		assertEquals(response.getErrorCode(), 070);
 	}
 	
@@ -671,6 +678,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.updatePosition("CO11111", "Accra");
+		
 		assertEquals(response.getErrorCode(), 070);
 		assertNull(container3.getPosition());
 	}
@@ -680,6 +688,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.updatePosition("CO11111", "Accra");
+		
 		assertEquals(response.getErrorCode(), 110);
 		assertNull(container3.getPosition());
 	}
@@ -697,6 +706,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.updatePosition("CO11111", "Accra");
+		
 		assertEquals(response.getErrorCode(), 070);
 		assertNull(container3.getPosition());
 	}
@@ -714,6 +724,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.updatePosition("CH45111", "Accra");
+		
 		assertEquals(response.getErrorCode(), 110);
 	}
 
@@ -730,6 +741,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.markArrived("CO11111");
+		
 		assertEquals(response.getErrorCode(), 022);
 	}
 	
@@ -743,6 +755,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.markArrived("CO11111");
+		
 		assertEquals(response.getErrorCode(), 022);
 		assertNull(container3.getPosition());
 	}
@@ -752,6 +765,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.markArrived("CO11111");
+		
 		assertEquals(response.getErrorCode(), 110);
 	}
 	
@@ -768,6 +782,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.markArrived("CH45111");
+		
 		assertEquals(response.getErrorCode(), 110);
 	}
 	
@@ -784,6 +799,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.updatePosition("CO11111", "Accra");
+		
 		assertEquals(response.getErrorCode(), 070);
 		assertNull(container3.getPosition());
 	}
@@ -802,13 +818,13 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.remove(5);
+		
 		assertEquals(response.getErrorCode(), 110);
 	}
 	
 	@Test
 	public void testRemove2() {
 		containerDatabase.setContainers(containers);
-		
 		response = containerDatabase.remove(1);
 		assertEquals(response.getErrorCode(), 110);
 	}
@@ -826,6 +842,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		response = containerDatabase.remove(3);
+		
 		assertEquals(response.getErrorCode(), 074);
 	}
 
@@ -841,6 +858,7 @@ public class ContainerDatabaseTest {
 		containers.add(container3);
 		containers.add(container4);
 		containerDatabase.setContainers(containers);
+		
 		assertEquals(containerDatabase.getRowCount(),4);
 	}
 
@@ -857,6 +875,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object ID = containerDatabase.getValueAt(0, 0);
+		
 		assertEquals(ID, 4);
 	}
 	
@@ -873,6 +892,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object owner = containerDatabase.getValueAt(0, 1);
+		
 		assertEquals(owner, 4);
 	}
 	
@@ -889,6 +909,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object position = containerDatabase.getValueAt(3, 2);
+		
 		assertEquals(position, "Manchester");
 	}
 	
@@ -905,6 +926,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object position = containerDatabase.getValueAt(2, 3);
+		
 		assertEquals(position, "Peaches");
 	}
 	
@@ -921,6 +943,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object company = containerDatabase.getValueAt(2, 4);
+		
 		assertEquals(company, "Captain Peach");
 	}
 	
@@ -937,6 +960,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object availability = containerDatabase.getValueAt(2, 5);
+		
 		assertEquals(availability, true);
 	}
 	
@@ -953,6 +977,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object journey = containerDatabase.getValueAt(2, 6);
+		
 		assertEquals(journey, "MS84275");
 	}
 
@@ -969,6 +994,7 @@ public class ContainerDatabaseTest {
 		containerDatabase.setContainers(containers);
 		
 		Object journey = containerDatabase.getValueAt(2, 10);
+		
 		assertNull(journey);
 	}
 
